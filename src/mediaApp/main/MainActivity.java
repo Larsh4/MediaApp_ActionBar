@@ -38,15 +38,13 @@ public class MainActivity extends BaseActivity implements
         setContentView(R.layout.main);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
         	this.getActionBar().setHomeButtonEnabled(true);
-        }       
+        }
+        //UI
         ETUser = (EditText)findViewById(R.id.ETLoginUser);
         ETPass = (EditText)findViewById(R.id.ETLoginPass);
-        
-        Button login = (Button)findViewById(R.id.BLogin);
-        login.setOnClickListener( this);
-        
         CHRemember = (CheckBox)findViewById(R.id.CHLoginRemember);
-        
+        ((Button)findViewById(R.id.BLogin)).setOnClickListener( this);
+         
         LoadPreferences();
     }
 
