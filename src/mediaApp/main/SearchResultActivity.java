@@ -1,12 +1,10 @@
 package mediaApp.main;
 
-import java.net.URL;
 import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,9 +41,11 @@ public class SearchResultActivity extends BaseActivity implements OnItemClickLis
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
-		URL resultUrl = results.get(position).getUrl();
+		String resultUrl = results.get(position).getUrl().toString();
 
-		Log.d(TAG, "Url: " + resultUrl.toString());
+		Intent resultDetailIntent = new Intent(this, ResultDetailActivity.class);
+		resultDetailIntent.putExtra("url", resultUrl);
+		startActivity(resultDetailIntent);
 	}
 
 	@Override

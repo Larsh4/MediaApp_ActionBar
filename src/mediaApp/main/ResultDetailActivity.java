@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 public class ResultDetailActivity extends BaseActivity
@@ -19,6 +20,10 @@ public class ResultDetailActivity extends BaseActivity
 		{
 			this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
+
+		WebView webView = (WebView) findViewById(R.id.WVResultDetail);
+		String url = getIntent().getStringExtra("url");
+		webView.loadUrl(url);
 	}
 
 	@Override
