@@ -53,7 +53,7 @@ public class SearchResultActivity extends BaseActivity implements OnItemClickLis
 	{
 		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.searchresult, menu);
-		return super.onCreateOptionsMenu(menu);
+		return true;
 	}
 
 	@Override

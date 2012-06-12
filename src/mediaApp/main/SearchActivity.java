@@ -3,6 +3,7 @@ package mediaApp.main;
 import java.util.List;
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
@@ -28,6 +30,7 @@ public class SearchActivity extends BaseActivity implements
 
 	private static String	TAG	= "SearchAct";
 	private ListView		LV;
+	private ProgressDialog	progressDialog;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -59,22 +62,19 @@ public class SearchActivity extends BaseActivity implements
 	}
 
 	@Override
+	protected void onDestroy()
+	{
+		if (progressDialog != null)
+			progressDialog.dismiss();
+		super.onDestroy();
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.search, menu);
 		return true;// super.onCreateOptionsMenu(menu);
-	}
-
-	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
-	{
-
-	}
-
-	@SuppressWarnings("rawtypes")
-	public void onNothingSelected(AdapterView parent)
-	{
-		// Do nothing.
 	}
 
 	@Override
@@ -83,9 +83,11 @@ public class SearchActivity extends BaseActivity implements
 		switch (v.getId())
 		{
 			case R.id.searchBut:
-
-				// String URL =
-				// "http://yd3wb8fs2g.cs.xml.serialssolutions.com/sru?version=1.1&query=title+any+aardvark&recordSchema=cs1.2&operation=searchRetrieve&x-cs-categories=101486,101500";
+				progressDialog = new ProgressDialog(this);
+				progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+				progressDialog.setMessage("Zoeken...");
+				progressDialog.setCancelable(false);
+				progressDialog.show();
 				new HTTPGetTask(this).execute(createURL());
 				break;
 		}
@@ -94,6 +96,8 @@ public class SearchActivity extends BaseActivity implements
 	@Override
 	public void onResponseReceived(String response)
 	{
+		progressDialog.dismiss();
+
 		LucasParser lp = new LucasParser();
 		List<LucasResult> list = lp.parse(response);
 		for (LucasResult r : list)
@@ -122,7 +126,7 @@ public class SearchActivity extends BaseActivity implements
 
 	private String createURL()
 	{
-		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com/sru?version=1.1&query=title+any+aardvark&recordSchema=cs1.2&operation=searchRetrieve&x-cs-categories=";
+		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve&x-cs-categories=";
 
 		for (int i = 1; i < LV.getCount() - 1; i++) // one less because of 'Other Databases'
 		{
@@ -134,6 +138,23 @@ public class SearchActivity extends BaseActivity implements
 		}
 		URL = URL.substring(0, URL.length() - 1);
 
+		EditText searchField = (EditText) findViewById(R.id.searchTerm);
+		URL += "&query=" + searchField.getText().toString();
+
 		return URL;
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0)
+	{
+		// TODO Auto-generated method stub
+
 	}
 }

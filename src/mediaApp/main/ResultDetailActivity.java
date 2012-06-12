@@ -31,7 +31,7 @@ public class ResultDetailActivity extends BaseActivity
 	{
 		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.resultdetail, menu);
-		return true;// super.onCreateOptionsMenu(menu);
+		return true;
 	}
 
 	@Override
