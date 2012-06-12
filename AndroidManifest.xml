@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mediaApp.main"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14" />
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <application
+        android:name=".MediaApplication"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/appName" 
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="mediaApp.main.MainActivity"
+            android:label="@string/appName" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>           
+            
+        </activity>
+        
+        
+        <activity
+            android:name="mediaApp.main.SearchActivity"
+            android:label="@string/searchLabel">
+        </activity>
+        
+        <activity
+            android:name="mediaApp.main.NewsActivity"
+            android:label="@string/newsLabel">
+        </activity>
+        
+        <activity
+            android:name="mediaApp.main.ContactActivity"
+            android:label="@string/contactLabel">
+        </activity>        
+        
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settingsLabel">
+        </activity>
+          
+        <activity
+            android:name="mediaApp.main.SearchResultActivity"
+            android:label="@string/searchLabel">
+        </activity>
+        
+        <activity
+            android:name="mediaApp.main.ResultDetailActivity"
+            android:label="@string/searchLabel">
+        </activity>              
+        
+    </application>
+    
+	
+</manifest>

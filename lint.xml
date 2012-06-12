@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="HardcodedText">
+        <ignore path="res\layout\contact.xml" />
+        <ignore path="res\layout\resultdetail.xml" />
+        <ignore path="res\layout\rssitemview.xml" />
+        <ignore path="res\layout\searchresult.xml" />
+    </issue>
+</lint>
