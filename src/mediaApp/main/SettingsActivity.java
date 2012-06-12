@@ -14,7 +14,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 public class SettingsActivity extends BaseActivity implements OnCheckedChangeListener{
 
 	RadioGroup RGStartup;
-	static final String SELECTION_KEY = "RGStartupSel";
+	static final String SELECTION_KEY = "RGStartupSelasdgfd";
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
