@@ -123,7 +123,7 @@ public class MainActivity extends BaseActivity implements
       
    private void LoadPreferences(){
 	    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-	    boolean remember = (sharedPreferences.getInt("Remember", 0)==1);
+	    boolean remember = (sharedPreferences.getInt(REMEMBER_KEY, 0)==1);
         String strSavedMem1 = sharedPreferences.getString(USER_KEY, "");
         String strSavedMem2 = sharedPreferences.getString(PASS_KEY, "");
         CHRemember.setChecked(remember);
