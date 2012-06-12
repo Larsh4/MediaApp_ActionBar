@@ -1,7 +1,6 @@
 package mediaApp.main;
 
 import java.util.List;
-
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import android.content.Intent;
@@ -64,7 +63,7 @@ public class SearchActivity extends BaseActivity implements
 	{
 		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.search, menu);
-		return true;//super.onCreateOptionsMenu(menu);
+		return true;// super.onCreateOptionsMenu(menu);
 	}
 
 	public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
@@ -104,7 +103,7 @@ public class SearchActivity extends BaseActivity implements
 
 		((MediaApplication) getApplication()).setResults(list);
 
-		Intent resultIntent = new Intent(this, ResultDetailActivity.class);
+		Intent resultIntent = new Intent(this, SearchResultActivity.class);
 		startActivity(resultIntent);
 	}
 
