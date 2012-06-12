@@ -4,7 +4,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.RadioGroup;
@@ -12,9 +11,12 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class SettingsActivity extends BaseActivity implements OnCheckedChangeListener
 {
-
+	static final String TAG = "SettingsAct";
+	
+	//UI
 	RadioGroup			RGStartup;
-	static final String	SELECTION_KEY	= "RGStartupSel";
+	//Preference Keys
+	static final String	SELECTION_KEY	= "RGStartupSel";	
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -35,29 +37,19 @@ public class SettingsActivity extends BaseActivity implements OnCheckedChangeLis
 	{
 		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.settings, menu);
-		return true;// super.onCreateOptionsMenu(menu);
-	}
-
-	private void SavePreferences(String key, int value)
-	{
-		Log.i("settings", "save value: " + value);
-		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-		SharedPreferences.Editor editor = sharedPreferences.edit();
-		editor.putInt(key, value);
-		editor.commit();
+		return true;//super.onCreateOptionsMenu(menu);
 	}
 
 	private void LoadPreferences()
 	{
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		int RadioButtonSelection = sharedPreferences.getInt(SELECTION_KEY, R.id.RBNews);
-		Log.i("settings", "load value: " + RadioButtonSelection);
 		RGStartup.check(RadioButtonSelection);
 	}
 
 	@Override
 	public void onCheckedChanged(RadioGroup arg0, int arg1)
 	{
-		SavePreferences(SELECTION_KEY, arg1);
+		SaveIntPreferences(SELECTION_KEY, arg1);
 	}
 }

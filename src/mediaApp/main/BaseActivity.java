@@ -2,6 +2,8 @@ package mediaApp.main;
 
 import mediaApp.compatible.ActionBarActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -62,5 +64,18 @@ public abstract class BaseActivity extends ActionBarActivity
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	protected void SaveStringPreferences(String key, String value){
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.commit();
+    }
 
+	protected void SaveIntPreferences(String key, int value){
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(key, value);
+        editor.commit();
+   }	
 }
