@@ -140,7 +140,7 @@ public class SearchActivity extends BaseActivity implements
 		}
 		URL = URL.substring(0, URL.length() - 1);
 
-		EditText searchField = (EditText) findViewById(R.id.searchTerm);
+		EditText searchField = (EditText) findViewById(R.id.ETSearch);
 		URL += "&query=" + searchField.getText().toString();
 
 		return URL;
