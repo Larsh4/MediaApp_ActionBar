@@ -25,7 +25,11 @@ public class MainActivity extends BaseActivity implements
 	//Dialogs
 	static final int CONNECTING_DIALOG = 1;   
     ProgressDialog progressDialog;
-    
+    //Preference Keys
+    static final String REMEMBER_KEY	= "remember";
+    static final String USER_KEY		= "user";
+    static final String PASS_KEY		= "pass";    
+    //UI
 	EditText ETUser, ETPass;
 	CheckBox CHRemember;
 	
@@ -54,39 +58,40 @@ public class MainActivity extends BaseActivity implements
     }
 
     protected Dialog onCreateDialog(int id) {
-  	   //Log.v(TAG, "onCreateDialog");
-         switch(id) {
-         case CONNECTING_DIALOG:
-             progressDialog = new ProgressDialog(MainActivity.this);
-             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-             progressDialog.setMessage("Logging in...");
-             progressDialog.setCancelable(false);
-             return progressDialog;
-         default:
-             return null;
-         }
-     }
+  	   Log.v(TAG, "onCreateDialog");
+       switch(id) {
+         	case CONNECTING_DIALOG:
+	             progressDialog = new ProgressDialog(MainActivity.this);
+	             progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+	             progressDialog.setMessage("Logging in...");
+	             progressDialog.setCancelable(false);
+	             return progressDialog;
+        	default:
+        		return null;
+        }
+    }
      
-     @Override
-     protected void onPrepareDialog(int id, Dialog dialog) {
-  	   Log.v(TAG, "onPrepareDialog");
-         switch(id) {
-         case CONNECTING_DIALOG:
-      	   progressDialog.setMessage("Logging in...");
+	 @Override
+	protected void onPrepareDialog(int id, Dialog dialog) {
+		Log.v(TAG, "onPrepareDialog");
+        switch(id) {
+       		case CONNECTING_DIALOG:
+       			progressDialog.setMessage("Logging in...");
+       			break;
          }
      }
 
 	@Override
 	public void onClick(View v) {
 		//click login
-		SavePreferences("Remember", String.valueOf(CHRemember.isChecked()) );
+		SaveIntPreferences(REMEMBER_KEY, CHRemember.isChecked()?1:0 );
 		if(CHRemember.isChecked()){			
-			SavePreferences("UserName", ETUser.getText().toString());
-			SavePreferences("Password", ETPass.getText().toString());
+			SaveStringPreferences(USER_KEY, ETUser.getText().toString());
+			SaveStringPreferences(PASS_KEY, ETPass.getText().toString());
 		}
 		else{
-			SavePreferences("UserName", "");
-			SavePreferences("Password", "");			
+			SaveStringPreferences(USER_KEY, "");
+			SaveStringPreferences(PASS_KEY, "");			
 		}
 		
 		//showDialog(CONNECTING_DIALOG);
@@ -114,26 +119,17 @@ public class MainActivity extends BaseActivity implements
         }
         startActivity(serverIntent);        
 	}
-	
-	
-	private void SavePreferences(String key, String value){
-		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key, value);
-        editor.commit();
-       }
+
       
    private void LoadPreferences(){
-	   SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        boolean remember = Boolean.getBoolean(sharedPreferences.getString("Remember", ""));
-        String strSavedMem1 = sharedPreferences.getString("UserName", "");
-        String strSavedMem2 = sharedPreferences.getString("Password", "");
+	    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean remember = Boolean.getBoolean(sharedPreferences.getString(REMEMBER_KEY, ""));
+        String strSavedMem1 = sharedPreferences.getString(USER_KEY, "");
+        String strSavedMem2 = sharedPreferences.getString(PASS_KEY, "");
         CHRemember.setChecked(remember);
         ETUser.setText(strSavedMem1);
         ETPass.setText(strSavedMem2);
-       }
-   
-	  
+   }   	 
 
 	/*private void proxyLogin(String user, String pass) {
 	    // Create a new HttpClient and Post Header
