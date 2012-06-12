@@ -103,6 +103,8 @@ public class LucasResult implements Comparable<LucasResult>
 				throw new RuntimeException(e2);
 			}
 		}
+		if (this.date.getTime() > new Date().getTime())
+			this.date = null;
 	}
 
 	public LucasResult copy()
