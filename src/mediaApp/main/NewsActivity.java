@@ -34,6 +34,8 @@ import android.widget.Toast;
 
 public class NewsActivity extends ActionBarListActivity
 {
+	
+	static final String TAG 				= "NewsAct";
 
 	private ArrayList<RSSItem>	itemlist	= null;
 	private RSSListAdapter		rssadapter	= null;

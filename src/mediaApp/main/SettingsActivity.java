@@ -11,7 +11,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class SettingsActivity extends BaseActivity implements OnCheckedChangeListener
 {
-	static final String TAG = "SettingsAct";
+	static final String TAG 			= "SettingsAct";
 	
 	//UI
 	RadioGroup			RGStartup;

@@ -12,7 +12,8 @@ import android.widget.Button;
 
 public class ContactActivity extends BaseActivity implements OnClickListener
 {
-
+	static final String TAG 			= "ContactAct";
+	
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);

@@ -2,6 +2,7 @@
 package mediaApp.main;
 
 import mediaApp.HTTP.HTTPResponseListener;
+import mediaApp.HTTP.ProxyLoginTask;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -20,10 +21,10 @@ import android.widget.EditText;
 public class MainActivity extends BaseActivity implements 
 					HTTPResponseListener, OnClickListener{
 
-	static final String TAG = "MainAct";
+	static final String TAG 			= "MainAct";
 	
 	//Dialogs
-	static final int CONNECTING_DIALOG = 1;   
+	static final int CONNECTING_DIALOG 	= 1;   
     ProgressDialog progressDialog;
     //Preference Keys
     static final String REMEMBER_KEY	= "remember";
@@ -92,30 +93,9 @@ public class MainActivity extends BaseActivity implements
 			SaveStringPreferences(PASS_KEY, "");			
 		}
 		
-		//showDialog(CONNECTING_DIALOG);
-		//ProxyLoginTask plt = new ProxyLoginTask(this);
-		//plt.execute("https://login.www.dbproxy.hu.nl/login",ETUser.getText().toString(), ETPass.getText().toString());
-		
-		
-		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
-        Log.i(TAG, "id="+StartUpSelection);
-        Intent serverIntent;
-        switch(StartUpSelection){
-        	case R.id.RBSearch:
-        		serverIntent = new Intent(this, SearchActivity.class);
-				break;			
-			case R.id.RBNews:
-				serverIntent = new Intent(this, NewsActivity.class);
-				break;
-			case R.id.RBContact:	
-				serverIntent = new Intent(this, ContactActivity.class);
-				break;
-			default:	
-				serverIntent = new Intent(this, NewsActivity.class);
-				break;
-        }
-        startActivity(serverIntent);        
+		showDialog(CONNECTING_DIALOG);
+		ProxyLoginTask plt = new ProxyLoginTask(this);
+		plt.execute("https://login.www.dbproxy.hu.nl/login",ETUser.getText().toString(), ETPass.getText().toString());					   
 	}
 
       
@@ -155,8 +135,26 @@ public class MainActivity extends BaseActivity implements
 	@Override
 	public void onResponseReceived(String response) {
 		Log.v(TAG, "onResponseReceived");
-		// TODO Auto-generated method stub
 		removeDialog(CONNECTING_DIALOG);
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
+        Log.i(TAG, "id="+StartUpSelection);
+        Intent serverIntent;
+        switch(StartUpSelection){
+        	case R.id.RBSearch:
+        		serverIntent = new Intent(this, SearchActivity.class);
+				break;			
+			case R.id.RBNews:
+				serverIntent = new Intent(this, NewsActivity.class);
+				break;
+			case R.id.RBContact:	
+				serverIntent = new Intent(this, ContactActivity.class);
+				break;
+			default:	
+				serverIntent = new Intent(this, NewsActivity.class);
+				break;
+        }
+        startActivity(serverIntent);    
 	}
    
 }

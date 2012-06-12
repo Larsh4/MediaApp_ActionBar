@@ -1,6 +1,7 @@
 package mediaApp.main;
 
 import java.util.List;
+
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import android.app.ProgressDialog;
@@ -28,7 +29,8 @@ public class SearchActivity extends BaseActivity implements
 		OnItemSelectedListener
 {
 
-	private static String	TAG	= "SearchAct";
+	private static String	TAG			= "SearchAct";
+	//UI
 	private ListView		LV;
 	private ProgressDialog	progressDialog;
 

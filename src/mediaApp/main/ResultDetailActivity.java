@@ -11,7 +11,8 @@ import android.widget.Toast;
 
 public class ResultDetailActivity extends BaseActivity
 {
-
+	static final String TAG 		= "ResultDetailAct";
+	
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
