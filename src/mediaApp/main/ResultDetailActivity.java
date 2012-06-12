@@ -1,14 +1,11 @@
 package mediaApp.main;
 
-import java.util.List;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class ResultDetailActivity extends BaseActivity
@@ -22,15 +19,6 @@ public class ResultDetailActivity extends BaseActivity
 		{
 			this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
-
-		TextView tvResults = (TextView) findViewById(R.id.TVResult);
-		List<LucasResult> list = ((MediaApplication) getApplication()).getResults();
-		String str = "";
-		for (LucasResult r : list)
-		{
-			str += r.toString() + "\n============\n";
-		}
-		tvResults.setText(str);
 	}
 
 	@Override
@@ -38,9 +26,9 @@ public class ResultDetailActivity extends BaseActivity
 	{
 		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.resultdetail, menu);
-		return true;//super.onCreateOptionsMenu(menu);
+		return true;// super.onCreateOptionsMenu(menu);
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{

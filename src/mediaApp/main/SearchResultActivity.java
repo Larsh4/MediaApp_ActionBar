@@ -1,20 +1,27 @@
 package mediaApp.main;
 
+import java.net.URL;
 import java.util.List;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-public class SearchResultActivity extends BaseActivity
+public class SearchResultActivity extends BaseActivity implements OnItemClickListener
 {
+
+	private static final String			TAG	= "SearchResultAct";
+	private static List<LucasResult>	results;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -27,9 +34,18 @@ public class SearchResultActivity extends BaseActivity
 
 		ListView resultList = (ListView) findViewById(R.id.LVResults);
 		MediaApplication app = (MediaApplication) getApplication();
-		List<LucasResult> results = app.getResults();
+		results = app.getResults();
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		resultList.setAdapter(new SearchResultAdapter(inflater, results));
+		resultList.setOnItemClickListener(this);
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+	{
+		URL resultUrl = results.get(position).getUrl();
+
+		Log.d(TAG, "Url: " + resultUrl.toString());
 	}
 
 	@Override
@@ -39,7 +55,7 @@ public class SearchResultActivity extends BaseActivity
 		menuInflater.inflate(R.menu.searchresult, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
