@@ -1,17 +1,21 @@
 package mediaApp.HTTP;
 
+import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
+import org.apache.http.ParseException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -56,26 +60,31 @@ public class ProxyLoginTaskAlt extends AsyncTask<String, Void, String>
 			// Execute HTTP Post Request
 			response = httpclient.execute(httppost);
 
-			Log.i(TAG, EntityUtils.toString(response.getEntity()));
+			//Log.v(TAG, EntityUtils.toString(response.getEntity()));
 		}
 		catch (SocketTimeoutException e)
 		{
-			// Log.e(TAG, "doInBackground socket timed out", e);
+			Log.e(TAG, "doInBackground socket timed out", e);
 		}
 		catch (Exception e)
 		{
-			// Log.e(TAG, "Error in doInbackground: ", e);
+			Log.e(TAG, "Error in doInbackground: ", e);
 		}
 		Log.i("proxy", "done");
 		if (response != null)
-			return response.getEntity().toString();
+			try {
+				return EntityUtils.toString(response.getEntity());
+			} catch (ParseException e) {
+				return null;
+			} catch (IOException e) {
+				return null;
+			}
 		return null;
 	}
 
 	@Override
 	protected void onPostExecute(String result)
 	{
-		Log.i("proxy", "onPostExecute");
 		if (listener != null)
 		{
 			listener.onResponseReceived(result);
