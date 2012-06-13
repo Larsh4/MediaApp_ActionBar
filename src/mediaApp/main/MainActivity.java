@@ -2,6 +2,7 @@ package mediaApp.main;
 
 import mediaApp.HTTP.HTTPResponseListener;
 import mediaApp.HTTP.ProxyLoginTaskAlt;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -25,6 +26,8 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 	// Dialogs
 	static final int	CONNECTING_DIALOG	= 1;
 	ProgressDialog		progressDialog;
+	static final int	LOGIN_UNSUCCESSFUL	= 2;
+	AlertDialog			alertDialog;
 	// Preference Keys
 	static final String	REMEMBER_KEY		= "remember";
 	static final String	USER_KEY			= "user";
@@ -64,11 +67,18 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 		switch (id)
 		{
 			case CONNECTING_DIALOG:
-				progressDialog = new ProgressDialog(MainActivity.this);
+				progressDialog = new ProgressDialog(getBaseContext());
 				progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 				progressDialog.setMessage(getString(R.string.loginLoading));
 				progressDialog.setCancelable(false);
 				return progressDialog;
+			case LOGIN_UNSUCCESSFUL:
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage("Are you sure you want to exit?");
+				builder.setNeutralButton("OK", (android.content.DialogInterface.OnClickListener) this);
+				       
+				alertDialog = builder.create();
+				
 			default:
 				return null;
 		}
@@ -135,26 +145,33 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 	{
 		Log.v(TAG, "onResponseReceived");
 		removeDialog(CONNECTING_DIALOG);
-		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-		int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
-		Log.i(TAG, "id=" + StartUpSelection);
-		Intent serverIntent;
-		switch (StartUpSelection)
-		{
-			case R.id.RBSearch:
-				serverIntent = new Intent(this, SearchActivity.class);
-				break;
-			case R.id.RBNews:
-				serverIntent = new Intent(this, NewsActivity.class);
-				break;
-			case R.id.RBContact:
-				serverIntent = new Intent(this, ContactActivity.class);
-				break;
-			default:
-				serverIntent = new Intent(this, NewsActivity.class);
-				break;
+		boolean succes = true;
+		if(succes){
+			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+			int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
+			Log.i(TAG, "id=" + StartUpSelection);
+			Intent serverIntent;
+			switch (StartUpSelection)
+			{
+				case R.id.RBSearch:
+					serverIntent = new Intent(this, SearchActivity.class);
+					break;
+				case R.id.RBNews:
+					serverIntent = new Intent(this, NewsActivity.class);
+					break;
+				case R.id.RBContact:
+					serverIntent = new Intent(this, ContactActivity.class);
+					break;
+				default:
+					serverIntent = new Intent(this, NewsActivity.class);
+					break;
+			}
+			startActivity(serverIntent);
+		}else{
+			
+			
 		}
-		startActivity(serverIntent);
+		
 	}
 
 }
