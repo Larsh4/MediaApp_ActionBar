@@ -12,32 +12,44 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-  -->
+-->
 
 <resources>
+
     <string name="appName">MediaApp</string>
-    <string name="menuSearch">Search</string><string name="menuNews">News</string><string name="menuContact">Contact</string><string name="menuSettings">Settings</string><string name="loginUser">Username:</string><string name="loginUserHint">name.lastname@student.hu.nl</string>
-    <string name="loginPass">Password:</string><string name="loginPassHint">*****</string>
-    <string name="loginRemember">Remember login</string><string name="loginButton">Login</string><string name="searchLabel">LUCAS</string>
-        
-    
-    
-    
-    <string name="searchHeader">Search on LUCAS:</string>    
+    <string name="menuSearch">Search</string>
+    <string name="menuNews">News</string>
+    <string name="menuContact">Contact</string>
+    <string name="menuSettings">Settings</string>
+    <string name="loginUser">Username:</string>
+    <string name="loginUserHint">name.lastname@student.hu.nl</string>
+    <string name="loginPass">Password:</string>
+    <string name="loginPassHint">*****</string>
+    <string name="loginRemember">Remember login</string>
+    <string name="loginButton">Login</string>
+    <string name="loginLoading">Logging in&#8230;</string>
+    <string name="searchLabel">LUCAS</string>
+    <string name="searchHeader">Search on LUCAS:</string>
     <string name="searchTerm">[search term]</string>
     <string name="searchField">Search Field</string>
+    <string name="searchLoading">Searching&#8230;</string>
+    
+    <string name="resultDetailLoading">Loading page&#8230;</string>
+
     <string-array name="searchFieldArray">
-        <item >Any</item>
-        <item >Title</item>
-        <item >Author</item>
-        <item >Full Text</item>
-        <item >Keyword</item>
-        <item >Subject</item>
-        <item >Abstract</item>
-        <item >ISBN</item>
-        <item >ISSN</item>
+        <item>Any</item>
+        <item>Title</item>
+        <item>Author</item>
+        <item>Full Text</item>
+        <item>Keyword</item>
+        <item>Subject</item>
+        <item>Abstract</item>
+        <item>ISBN</item>
+        <item>ISSN</item>
     </string-array>
+
     <string name="searchDatabases">Databases</string>
+
     <string-array name="searchDatabaseArray">
         <item>Catalogues</item>
         <item>Communication &amp; Journalism</item>
@@ -50,12 +62,15 @@
         <item>Visual material</item>
         <item>Dutch databases</item>
         <item>English databases</item>
-        <item>Other databases</item><item>Select All</item>
-        
+        <item>Other databases</item>
+        <item>Select All</item>
     </string-array>
-    <string name="contactLabel">Contact</string><string name="contactCall">Call</string>
+
+    <string name="contactLabel">Contact</string>
+    <string name="contactCall">Call</string>
     <string name="contactEmail">Email</string>
-    <string name="contactLocation">Location</string><string name="contactFCJ">FCJ</string>
+    <string name="contactLocation">Location</string>
+    <string name="contactFCJ">FCJ</string>
     <string name="contactFE">FE</string>
     <string name="contactFEM">FEM</string>
     <string name="contactFG">FG</string>
@@ -65,16 +80,11 @@
     <string name="contactHUAmers">HU Amersfoort</string>
     <string name="contactAlgemeen">Mediatheek General</string>
     <string name="contactWebmaster">Webmaster</string>
-    
-    
-    
-    <string name="newsLabel">News</string><string name="settingsLabel">Settings</string><string name="settingsStartupHeader">Choose a screen to show after login:</string><string name="settingsSearch">LUCAS search</string>
+    <string name="newsLabel">News</string>
+    <string name="settingsLabel">Settings</string>
+    <string name="settingsStartupHeader">Choose a screen to show after login:</string>
+    <string name="settingsSearch">LUCAS search</string>
     <string name="settingsContact">Contact information</string>
     <string name="settingsNews">News RSS feed</string>
-    
-    
-    
-    
-    
-           
+
 </resources>
