@@ -2,8 +2,10 @@ package mediaApp.main;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -67,14 +69,38 @@ public class ResultDetailActivity extends BaseActivity
 				startActivity(serverIntent);
 				return true;
 			case R.id.menu_mail:
-				Intent mailIntent = new Intent(Intent.ACTION_SEND);
-				mailIntent.setType("message/rfc822");
-				mailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { "recipient@example.com" });
-				mailIntent.putExtra(Intent.EXTRA_SUBJECT, result.getTitle());
-				mailIntent.putExtra(Intent.EXTRA_TEXT, result.getUrl().toString());
-				startActivity(Intent.createChooser(mailIntent, "Send mail..."));
+				prepareMail();
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void prepareMail()
+	{
+		Intent mailIntent = new Intent(Intent.ACTION_SEND);
+		mailIntent.setType("message/rfc822");
+
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		String[] email = { prefs.getString("user", "") };
+
+		mailIntent.putExtra(Intent.EXTRA_EMAIL, email);
+		mailIntent.putExtra(Intent.EXTRA_SUBJECT, result.getTitle());
+
+		String emailBody = "";
+		emailBody += "Title of the document: " + result.getTitle();
+		if (result.getAuthor() != null)
+			emailBody += "\n\nAuthor: " + result.getAuthor();
+		if (result.getDate() != null)
+			emailBody += "\n\nDate published: " + result.getDate();
+		if (result.getIssn() != null)
+			emailBody += "\n\nISSN: " + result.getIssn();
+		if (result.getIsbn() != null)
+			emailBody += "\n\nISBN: " + result.getIsbn();
+		if (result.getSource() != null)
+			emailBody += "\n\nPublisher: " + result.getSource();
+		emailBody += "URL: " + result.getUrl().toString();
+		mailIntent.putExtra(Intent.EXTRA_TEXT, emailBody);
+
+		startActivity(Intent.createChooser(mailIntent, "Send mail..."));
 	}
 }
