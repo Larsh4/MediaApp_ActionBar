@@ -2,7 +2,6 @@ package mediaApp.HTTP;
 
 import java.io.IOException;
 import java.net.SocketTimeoutException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,20 +46,13 @@ public class ProxyLoginTaskAlt extends AsyncTask<String, Void, String>
 
 		try
 		{
-			URL url = new URL(args[0]);
-
 			HttpClient httpclient = new DefaultHttpClient();
-			HttpPost httppost = new HttpPost(args[0]);
-
+			HttpPost httppost = new HttpPost(args[0]);//url
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			nameValuePairs.add(new BasicNameValuePair("user", args[1]));
 			nameValuePairs.add(new BasicNameValuePair("pass", args[2]));
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-			// Execute HTTP Post Request
 			response = httpclient.execute(httppost);
-
-			//Log.v(TAG, EntityUtils.toString(response.getEntity()));
 		}
 		catch (SocketTimeoutException e)
 		{
@@ -70,8 +62,8 @@ public class ProxyLoginTaskAlt extends AsyncTask<String, Void, String>
 		{
 			Log.e(TAG, "Error in doInbackground: ", e);
 		}
-		Log.i("proxy", "done");
-		if (response != null)
+		Log.v(TAG, "done");
+		if (response != null){
 			try {
 				return EntityUtils.toString(response.getEntity());
 			} catch (ParseException e) {
@@ -79,6 +71,7 @@ public class ProxyLoginTaskAlt extends AsyncTask<String, Void, String>
 			} catch (IOException e) {
 				return null;
 			}
+		}
 		return null;
 	}
 
@@ -90,5 +83,4 @@ public class ProxyLoginTaskAlt extends AsyncTask<String, Void, String>
 			listener.onResponseReceived(result);
 		}
 	}
-
 }

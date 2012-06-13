@@ -64,7 +64,6 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 
 	protected Dialog onCreateDialog(int id)
 	{
-		Log.v(TAG, "onCreateDialog");
 		switch (id)
 		{
 			case CONNECTING_DIALOG:
@@ -77,7 +76,10 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(R.string.appName);
 				builder.setMessage("Login was unsuccessful");
-				builder.setIconAttribute(android.R.attr.alertDialogIcon);
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+				{
+					builder.setIconAttribute(android.R.attr.alertDialogIcon);
+				}				
 				builder.setNeutralButton("OK",  this);				       
 				alertDialog = builder.create();
 				return alertDialog;
@@ -89,7 +91,6 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 	@Override
 	protected void onPrepareDialog(int id, Dialog dialog)
 	{
-		Log.v(TAG, "onPrepareDialog");
 		switch (id)
 		{
 			case CONNECTING_DIALOG:
@@ -101,7 +102,6 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 	@Override
 	public void onClick(View v)
 	{
-		// click login
 		switch(v.getId()){
 		case R.id.BLogin:		
 			SaveIntPreferences(REMEMBER_KEY, CHRemember.isChecked() ? 1 : 0);
