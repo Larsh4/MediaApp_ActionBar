@@ -61,21 +61,26 @@ public abstract class BaseActivity extends ActionBarActivity
 				final Intent settings = new Intent(this, SettingsActivity.class);
 				startActivity(settings);
 				break;
+
+			case R.id.menu_mail:
+				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	protected void SaveStringPreferences(String key, String value){
-		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(key, value);
-        editor.commit();
-    }
 
-	protected void SaveIntPreferences(String key, int value){
+	protected void SaveStringPreferences(String key, String value)
+	{
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(key, value);
-        editor.commit();
-   }	
+		SharedPreferences.Editor editor = sharedPreferences.edit();
+		editor.putString(key, value);
+		editor.commit();
+	}
+
+	protected void SaveIntPreferences(String key, int value)
+	{
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		SharedPreferences.Editor editor = sharedPreferences.edit();
+		editor.putInt(key, value);
+		editor.commit();
+	}
 }

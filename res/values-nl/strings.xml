@@ -21,6 +21,7 @@
     <string name="menuNews">Nieuws</string>
     <string name="menuContact">Contact</string>
     <string name="menuSettings">Instellingen</string>
+    <string name="menuMail">Mail deze pagina naar mij</string>
     <string name="loginUser">Gebruikersnaam:</string>
     <string name="loginUserHint">voornaam.achternaam@student.hu.nl</string>
     <string name="loginPass">Wachtwoord:</string>

@@ -21,6 +21,7 @@
     <string name="menuNews">News</string>
     <string name="menuContact">Contact</string>
     <string name="menuSettings">Settings</string>
+    <string name="menuMail">Mail this page to me</string>
     <string name="loginUser">Username:</string>
     <string name="loginUserHint">name.lastname@student.hu.nl</string>
     <string name="loginPass">Password:</string>
