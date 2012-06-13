@@ -39,7 +39,7 @@
     </string-array>
     <string name="searchDatabases">Databases</string>
     <string-array name="searchDatabaseArray">
-        <item>Select All</item><item>Catalogues</item>
+        <item>Catalogues</item>
         <item>Communication &amp; Journalism</item>
         <item>Economy &amp; Managment</item>
         <item>Education</item>
@@ -50,7 +50,7 @@
         <item>Visual material</item>
         <item>Dutch databases</item>
         <item>English databases</item>
-        <item>Other databases</item>
+        <item>Other databases</item><item>Select All</item>
         
     </string-array>
     <string name="contactLabel">Contact</string><string name="contactCall">Call</string>

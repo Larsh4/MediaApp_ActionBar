@@ -44,12 +44,12 @@ public class SearchActivity extends BaseActivity implements
 		}
 
 		// search field part
-		Spinner spinner = (Spinner) findViewById(R.id.searchFieldSpinner);
+		Spinner S = (Spinner) findViewById(R.id.searchFieldSpinner);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(	this, R.array.searchFieldArray,
 																				android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(adapter);
-		spinner.setOnItemSelectedListener(this);
+		S.setAdapter(adapter);
+		S.setOnItemSelectedListener(this);
 
 		// databases part
 		LV = (ListView) findViewById(R.id.databaseList);
@@ -116,14 +116,14 @@ public class SearchActivity extends BaseActivity implements
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
-		if (position == 0)
+		if (position == LV.getCount()-1 )
 		{ // select all item
 			boolean isChecked = LV.isItemChecked(position);
-			for (int i = 1; i < LV.getCount(); i++)
+			for (int i = 0; i < LV.getCount()-1; i++)
 				LV.setItemChecked(i, isChecked);
 		}
 		else
-			LV.setItemChecked(0, false);
+			LV.setItemChecked(LV.getCount()-1, false);
 	}
 
 	private String createURL()
