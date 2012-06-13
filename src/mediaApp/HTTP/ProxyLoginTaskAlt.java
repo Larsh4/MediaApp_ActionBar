@@ -4,7 +4,6 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
@@ -13,13 +12,13 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-
 import android.os.AsyncTask;
 import android.util.Log;
 
 public class ProxyLoginTaskAlt extends AsyncTask<String, Void, String>
 {
-	static final String TAG = "ProxyLoginTaskAlt";
+
+	static final String					TAG	= "ProxyLoginTaskAlt";
 	private final HTTPResponseListener	listener;
 
 	public ProxyLoginTaskAlt(HTTPResponseListener list)
@@ -41,23 +40,23 @@ public class ProxyLoginTaskAlt extends AsyncTask<String, Void, String>
 	protected String doInBackground(String... args)
 	{
 		HttpResponse response = null;
-		
+
 		try
 		{
 			URL url = new URL(args[0]);
 
-			HttpClient httpclient = new DefaultHttpClient();	    
-		    HttpPost httppost = new HttpPost(args[0]);
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost(args[0]);
 
-		    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-	        nameValuePairs.add(new BasicNameValuePair("user", args[1]));
-	        nameValuePairs.add(new BasicNameValuePair("pass", args[2]));
-	        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			nameValuePairs.add(new BasicNameValuePair("user", args[1]));
+			nameValuePairs.add(new BasicNameValuePair("pass", args[2]));
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-	        // Execute HTTP Post Request
-	        response = httpclient.execute(httppost);
-	        
-	        Log.i(TAG, EntityUtils.toString(response.getEntity()));
+			// Execute HTTP Post Request
+			response = httpclient.execute(httppost);
+
+			Log.i(TAG, EntityUtils.toString(response.getEntity()));
 		}
 		catch (SocketTimeoutException e)
 		{
@@ -67,15 +66,17 @@ public class ProxyLoginTaskAlt extends AsyncTask<String, Void, String>
 		{
 			// Log.e(TAG, "Error in doInbackground: ", e);
 		}
-		Log.i("proxy","done");
-		return response.getEntity().toString();
+		Log.i("proxy", "done");
+		if (response != null)
+			return response.getEntity().toString();
+		return null;
 	}
 
 	@Override
 	protected void onPostExecute(String result)
 	{
-		Log.i("proxy","onPostExecute");
-		if (listener != null && result != null)
+		Log.i("proxy", "onPostExecute");
+		if (listener != null)
 		{
 			listener.onResponseReceived(result);
 		}
