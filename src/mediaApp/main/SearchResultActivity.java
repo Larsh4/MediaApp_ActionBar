@@ -41,10 +41,8 @@ public class SearchResultActivity extends BaseActivity implements OnItemClickLis
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
-		String resultUrl = results.get(position).getUrl().toString();
-
 		Intent resultDetailIntent = new Intent(this, ResultDetailActivity.class);
-		resultDetailIntent.putExtra("url", resultUrl);
+		resultDetailIntent.putExtra("id", position);
 		startActivity(resultDetailIntent);
 	}
 

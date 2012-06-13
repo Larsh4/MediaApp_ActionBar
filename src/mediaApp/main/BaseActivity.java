@@ -61,9 +61,6 @@ public abstract class BaseActivity extends ActionBarActivity
 				final Intent settings = new Intent(this, SettingsActivity.class);
 				startActivity(settings);
 				break;
-
-			case R.id.menu_mail:
-				break;
 		}
 		return super.onOptionsItemSelected(item);
 	}
