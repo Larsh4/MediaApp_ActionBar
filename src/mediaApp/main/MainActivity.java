@@ -2,7 +2,7 @@
 package mediaApp.main;
 
 import mediaApp.HTTP.HTTPResponseListener;
-import mediaApp.HTTP.ProxyLoginTask;
+import mediaApp.HTTP.ProxyLoginTaskAlt;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -94,7 +94,7 @@ public class MainActivity extends BaseActivity implements
 		}
 		
 		showDialog(CONNECTING_DIALOG);
-		ProxyLoginTask plt = new ProxyLoginTask(this);
+		ProxyLoginTaskAlt plt = new ProxyLoginTaskAlt(this);
 		plt.execute("https://login.www.dbproxy.hu.nl/login",ETUser.getText().toString(), ETPass.getText().toString());					   
 	}
 

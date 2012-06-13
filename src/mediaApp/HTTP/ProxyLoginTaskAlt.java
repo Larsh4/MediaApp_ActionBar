@@ -19,7 +19,7 @@ import android.util.Log;
 
 public class ProxyLoginTaskAlt extends AsyncTask<String, Void, String>
 {
-	static final String TAG = "ProxyLoginTask2";
+	static final String TAG = "ProxyLoginTaskAlt";
 	private final HTTPResponseListener	listener;
 
 	public ProxyLoginTaskAlt(HTTPResponseListener list)
