@@ -90,6 +90,8 @@ public class ResultDetailActivity extends BaseActivity
 		emailBody += "Title of the document: " + result.getTitle();
 		if (result.getAuthor() != null)
 			emailBody += "\n\nAuthor: " + result.getAuthor();
+		if (result.getDate() != null)
+			emailBody += "\n\nDate published: " + result.getDate();
 		if (result.getIssn() != null)
 			emailBody += "\n\nISSN: " + result.getIssn();
 		if (result.getIsbn() != null)
