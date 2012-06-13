@@ -11,25 +11,28 @@
         android:layout_margin="10dp"
         android:text="@string/searchHeader"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/ETSearch"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:ems="10"
-        android:hint="@string/searchTerm"
-        android:inputType="textNoSuggestions" >
+        android:layout_height="wrap_content" >
 
-        <requestFocus />
-    </EditText>
+        <EditText
+            android:id="@+id/ETSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="6"
+            android:hint="@string/searchTerm"
+            android:inputType="textNoSuggestions" />
 
-    <Button
-        android:id="@+id/searchBut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:text="@string/menuSearch" />
+        <Button
+            android:id="@+id/searchBut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/menuSearch" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/searchFieldLayout"
