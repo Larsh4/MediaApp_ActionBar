@@ -19,6 +19,9 @@ public class LucasParser extends DefaultHandler
 	private static final String	URL		= "url";
 	private static final String	AUTHOR	= "creator";
 	private static final String	DATE	= "issued";
+	private static final String	ISSN	= "issn";
+	private static final String	ISBN	= "isbn";
+	private static final String	SOURCE	= "source";
 
 	private List<LucasResult>	results;
 	private LucasResult			currentResult;
@@ -71,11 +74,24 @@ public class LucasParser extends DefaultHandler
 			}
 			else if (localName.equalsIgnoreCase(AUTHOR))
 			{
-				currentResult.setAuthor(builder.toString());
+				if (currentResult.getAuthor() == null)
+					currentResult.setAuthor(builder.toString());
 			}
 			else if (localName.equalsIgnoreCase(DATE))
 			{
 				currentResult.setDate(builder.toString());
+			}
+			else if (localName.equalsIgnoreCase(ISSN))
+			{
+				currentResult.setIssn(builder.toString());
+			}
+			else if (localName.equalsIgnoreCase(ISBN))
+			{
+				currentResult.setIsbn(builder.toString());
+			}
+			else if (localName.equalsIgnoreCase(SOURCE))
+			{
+				currentResult.setSource(builder.toString());
 			}
 			else if (localName.equalsIgnoreCase(RECORD))
 			{

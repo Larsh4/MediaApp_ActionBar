@@ -12,7 +12,7 @@ public class LucasResult implements Comparable<LucasResult>
 	static final SimpleDateFormat	FORMATTER			= new SimpleDateFormat("yyyy-MM-dd");
 	static final SimpleDateFormat	YEAR_ONLY_FORMATTER	= new SimpleDateFormat("yyyy");
 
-	private String					author, title;
+	private String					author, title, issn, isbn, source;
 	private URL						url;
 	private Date					date;
 
@@ -105,6 +105,56 @@ public class LucasResult implements Comparable<LucasResult>
 		}
 		if (this.date.getTime() > new Date().getTime())
 			this.date = null;
+	}
+
+	/**
+	 * @return the issn
+	 */
+	public String getIssn()
+	{
+		return issn;
+	}
+
+	/**
+	 * @param issn
+	 *            the issn to set
+	 */
+	public void setIssn(String issn)
+	{
+		this.issn = issn;
+	}
+
+	/**
+	 * @return the isbn
+	 */
+	public String getIsbn()
+	{
+		return isbn;
+	}
+
+	/**
+	 * @param isbn
+	 *            the isbn to set
+	 */
+	public void setIsbn(String isbn)
+	{
+		this.isbn = isbn;
+	}
+
+	/**
+	 * @return the source
+	 */
+	public String getSource()
+	{
+		return source;
+	}
+
+	/**
+	 * @param source the source to set
+	 */
+	public void setSource(String source)
+	{
+		this.source = source;
 	}
 
 	public LucasResult copy()
