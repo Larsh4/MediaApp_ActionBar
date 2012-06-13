@@ -7,25 +7,18 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 
-public class SearchActivity extends BaseActivity implements
-		HTTPResponseListener,
-		OnClickListener,
-		OnItemClickListener,
-		OnItemSelectedListener
+public class SearchActivity extends BaseActivity implements HTTPResponseListener, OnClickListener, OnItemClickListener
 {
 
 	private static String	TAG	= "SearchAct";
@@ -43,12 +36,13 @@ public class SearchActivity extends BaseActivity implements
 		}
 
 		// search field part
-		Spinner S = (Spinner) findViewById(R.id.searchFieldSpinner);
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(	this, R.array.searchFieldArray,
-																				android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		S.setAdapter(adapter);
-		S.setOnItemSelectedListener(this);
+		// Spinner S = (Spinner) findViewById(R.id.searchFieldSpinner);
+		// ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource( this,
+		// R.array.searchFieldArray,
+		// android.R.layout.simple_spinner_item);
+		// adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// S.setAdapter(adapter);
+		// S.setOnItemSelectedListener(this);
 
 		// databases part
 		LV = (ListView) findViewById(R.id.databaseList);
@@ -101,10 +95,6 @@ public class SearchActivity extends BaseActivity implements
 
 		LucasParser lp = new LucasParser();
 		List<LucasResult> list = lp.parse(response);
-		for (LucasResult r : list)
-		{
-			Log.d(TAG, r.toString());
-		}
 
 		((MediaApplication) getApplication()).setResults(list);
 
@@ -143,19 +133,5 @@ public class SearchActivity extends BaseActivity implements
 		URL += "&query=" + searchField.getText().toString();
 
 		return URL;
-	}
-
-	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3)
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0)
-	{
-		// TODO Auto-generated method stub
-
 	}
 }
