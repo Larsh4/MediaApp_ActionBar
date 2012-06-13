@@ -12,20 +12,30 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-  -->
+-->
 
 <resources>
+
     <string name="appName">MediaApp</string>
-    <string name="menuSearch">Zoek</string><string name="menuNews">Nieuws</string><string name="menuContact">Contact</string><string name="menuSettings">Instellingen</string><string name="loginUser">Gebruikersnaam:</string>
-    <string name="loginUserHint">voornaam.achternaam@student.hu.nl</string><string name="loginPass">Wachtwoord:</string>
-    <string name="loginPassHint">*****</string><string name="loginRemember">Bewaar gegevens</string><string name="loginButton">Login</string><string name="searchLabel">LUCAS</string>
-        
-    
-    
-    
+    <string name="menuSearch">Zoek</string>
+    <string name="menuNews">Nieuws</string>
+    <string name="menuContact">Contact</string>
+    <string name="menuSettings">Instellingen</string>
+    <string name="loginUser">Gebruikersnaam:</string>
+    <string name="loginUserHint">voornaam.achternaam@student.hu.nl</string>
+    <string name="loginPass">Wachtwoord:</string>
+    <string name="loginPassHint">*****</string>
+    <string name="loginRemember">Bewaar gegevens</string>
+    <string name="loginButton">Login</string>
+    <string name="loginLoading">Inloggen&#8230;</string>
+    <string name="searchLabel">LUCAS</string>
     <string name="searchHeader">Zoek op LUCAS:</string>
     <string name="searchTerm">[zoek term]</string>
     <string name="searchField">Zoek Velden</string>
+    <string name="searchLoading">Zoeken&#8230;</string>
+    
+    <string name="resultDetailLoading">Pagina wordt geladen&#8230;</string>
+
     <string-array name="searchFieldArray">
         <item>Alle Velden</item>
         <item>Titel</item>
@@ -37,9 +47,11 @@
         <item>ISBN</item>
         <item>ISSN</item>
     </string-array>
+
     <string name="searchDatabases">Databases</string>
+
     <string-array name="searchDatabaseArray">
-        mediatheek@hu.nl<item>Alle Databases</item>
+        mediatheek@hu.nl        <item>Alle Databases</item>
         <item>Catalogi</item>
         <item>Communicatie &amp; Journalistiek</item>
         <item>Economie &amp; Managment</item>
@@ -51,11 +63,14 @@
         <item>Beeldmateriaal</item>
         <item>Nederalandstalig</item>
         <item>Engelstalig</item>
-        <item>Overige Databases</item>        
+        <item>Overige Databases</item>
     </string-array>
-    <string name="contactLabel">Contact</string><string name="contactCall">Bel</string>
+
+    <string name="contactLabel">Contact</string>
+    <string name="contactCall">Bel</string>
     <string name="contactEmail">Email</string>
-    <string name="contactLocation">Locatie</string><string name="contactFCJ">FCJ</string>
+    <string name="contactLocation">Locatie</string>
+    <string name="contactFCJ">FCJ</string>
     <string name="contactFE">FE</string>
     <string name="contactFEM">FEM</string>
     <string name="contactFG">FG</string>
@@ -65,17 +80,10 @@
     <string name="contactHUAmers">HU Amersfoort</string>
     <string name="contactAlgemeen">Mediatheek Algemeen</string>
     <string name="contactWebmaster">Webmaster</string>
-    
-    
-    
-    
-    
-    
     <string name="settingsLabel">Instellingen</string>
     <string name="settingsStartupHeader">Kies een scherm om te tonen na login:</string>
-    <string name="settingsSearch">LUCAS zoek</string><string name="settingsContact">Contact informatie</string>
-    
-    <string name="settingsNews">Nieuws RSS feed</string>    
-    
-    
+    <string name="settingsSearch">LUCAS zoek</string>
+    <string name="settingsContact">Contact informatie</string>
+    <string name="settingsNews">Nieuws RSS feed</string>
+
 </resources>

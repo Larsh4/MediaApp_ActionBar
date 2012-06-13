@@ -1,7 +1,6 @@
 package mediaApp.main;
 
 import java.util.List;
-
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import android.app.ProgressDialog;
@@ -29,8 +28,8 @@ public class SearchActivity extends BaseActivity implements
 		OnItemSelectedListener
 {
 
-	private static String	TAG			= "SearchAct";
-	//UI
+	private static String	TAG	= "SearchAct";
+	// UI
 	private ListView		LV;
 	private ProgressDialog	progressDialog;
 
@@ -87,7 +86,7 @@ public class SearchActivity extends BaseActivity implements
 			case R.id.searchBut:
 				progressDialog = new ProgressDialog(this);
 				progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-				progressDialog.setMessage("Zoeken...");
+				progressDialog.setMessage(getString(R.string.searchLoading));
 				progressDialog.setCancelable(false);
 				progressDialog.show();
 				new HTTPGetTask(this).execute(createURL());
@@ -116,14 +115,14 @@ public class SearchActivity extends BaseActivity implements
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
-		if (position == LV.getCount()-1 )
+		if (position == LV.getCount() - 1)
 		{ // select all item
 			boolean isChecked = LV.isItemChecked(position);
-			for (int i = 0; i < LV.getCount()-1; i++)
+			for (int i = 0; i < LV.getCount() - 1; i++)
 				LV.setItemChecked(i, isChecked);
 		}
 		else
-			LV.setItemChecked(LV.getCount()-1, false);
+			LV.setItemChecked(LV.getCount() - 1, false);
 	}
 
 	private String createURL()
