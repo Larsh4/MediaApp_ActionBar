@@ -3,6 +3,7 @@
 -clean up search results layout
 -show amount of results(if 0)
 -email/share search detail
+-make database values updatable
 
 
 

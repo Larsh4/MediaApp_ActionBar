@@ -1,6 +1,7 @@
 package mediaApp.main;
 
 import java.util.List;
+
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import android.app.ProgressDialog;
@@ -129,11 +130,11 @@ public class SearchActivity extends BaseActivity implements
 	{
 		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve&x-cs-categories=";
 
-		for (int i = 1; i < LV.getCount() - 1; i++) // one less because of 'Other Databases'
+		for (int i = 0; i < LV.getCount() - 2; i++) // two less because of 'Other Databases' and 'All Databases'
 		{
 			if (LV.isItemChecked(i))
 			{
-				URL += getResources().getIntArray(R.array.dbCodes)[i - 1];
+				URL += getResources().getIntArray(R.array.dbCodes)[i];
 				URL += ",";
 			}
 		}
