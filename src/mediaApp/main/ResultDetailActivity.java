@@ -98,7 +98,7 @@ public class ResultDetailActivity extends BaseActivity
 			emailBody += "\n\nISBN: " + result.getIsbn();
 		if (result.getSource() != null)
 			emailBody += "\n\nPublisher: " + result.getSource();
-		emailBody += "URL: " + result.getUrl().toString();
+		emailBody += "\n\nURL: " + result.getUrl().toString();
 		mailIntent.putExtra(Intent.EXTRA_TEXT, emailBody);
 
 		startActivity(Intent.createChooser(mailIntent, "Send mail..."));
