@@ -11,14 +11,15 @@
         android:layout_margin="10dp"
         android:text="@string/searchHeader"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
     <EditText
         android:id="@+id/ETSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:ems="10"
-        android:hint="@string/searchTerm" >
+        android:hint="@string/searchTerm"
+        android:inputType="textNoSuggestions" >
 
         <requestFocus />
     </EditText>
