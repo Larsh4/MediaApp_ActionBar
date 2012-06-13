@@ -14,7 +14,8 @@ import android.widget.Toast;
 public class ResultDetailActivity extends BaseActivity
 {
 
-	static final String	TAG	= "ResultDetailAct";
+	static final String			TAG	= "ResultDetailAct";
+	private static LucasResult	result;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -31,9 +32,10 @@ public class ResultDetailActivity extends BaseActivity
 		progressDialog.setCancelable(false);
 		progressDialog.show();
 
+		result = ((MediaApplication) getApplication()).getResults().get(getIntent().getIntExtra("id", 1));
+
 		WebView webView = (WebView) findViewById(R.id.WVResultDetail);
-		String url = getIntent().getStringExtra("url");
-		webView.loadUrl(url);
+		webView.loadUrl(result.getUrl().toString());
 		webView.setWebViewClient(new WebViewClient() {
 
 			@Override
@@ -63,6 +65,14 @@ public class ResultDetailActivity extends BaseActivity
 				Intent serverIntent = new Intent(this, SearchActivity.class);
 				serverIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(serverIntent);
+				return true;
+			case R.id.menu_mail:
+				Intent mailIntent = new Intent(Intent.ACTION_SEND);
+				mailIntent.setType("message/rfc822");
+				mailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { "recipient@example.com" });
+				mailIntent.putExtra(Intent.EXTRA_SUBJECT, result.getTitle());
+				mailIntent.putExtra(Intent.EXTRA_TEXT, result.getUrl().toString());
+				startActivity(Intent.createChooser(mailIntent, "Send mail..."));
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
