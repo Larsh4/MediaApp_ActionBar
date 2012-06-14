@@ -1,11 +1,14 @@
 package mediaApp.HTTP;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.ParseException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -33,12 +36,26 @@ public class HTTPGetTaskAlt extends AsyncTask<String, String, String>
 			response = httpclient.execute(httpGet);		
 			Log.i(TAG, "Response: "+response.toString());
 		}
-		catch (IOException e)
+		catch (SocketTimeoutException e)
 		{
-			e.printStackTrace();
+			Log.e(TAG, "doInBackground socket timed out", e);
 		}
-
-		return response.toString();
+		catch (Exception e)
+		{
+			Log.e(TAG, "Error in doInbackground: ", e);
+		}
+		Log.v(TAG, "done");
+		if (response != null){
+			try {
+				Log.v(TAG,"response received");
+				return EntityUtils.toString(response.getEntity());
+			} catch (ParseException e) {
+				return null;
+			} catch (IOException e) {
+				return null;
+			}
+		}
+		return null;
 	}
 
 	@Override

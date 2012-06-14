@@ -65,7 +65,7 @@ public class ProxyLoginTaskAlt extends AsyncTask<String, Void, String>
 		Log.v(TAG, "done");
 		if (response != null){
 			try {
-				Log.v(TAG,"Login response received");
+				Log.v(TAG,"response received");
 				return EntityUtils.toString(response.getEntity());
 			} catch (ParseException e) {
 				return null;
