@@ -28,7 +28,6 @@
     <string name="loginPassHint">*****</string>
     <string name="loginRemember">Bewaar gegevens</string>
     <string name="loginButton">Login</string>
-    <string name="loginLoading">Inloggen&#8230;</string>
     <string name="searchLabel">LUCAS</string>
     <string name="searchHeader">Zoek op LUCAS:</string>
     <string name="searchTerm">[zoek term]</string>
@@ -71,7 +70,7 @@
     <string name="contactCall">Bel</string>
     <string name="contactEmail">Email</string>
     <string name="contactLocation">Locatie</string>
-    <string name="contactFCJ">FCJ</string>
+    <string name="contactCallIntent">Bel...</string><string name="contactEmailIntent">Email...</string><string name="contactLocationIntent">Toon op kaart...</string><string name="contactFCJ">FCJ</string>
     <string name="contactFE">FE</string>
     <string name="contactFEM">FEM</string>
     <string name="contactFG">FG</string>
@@ -81,10 +80,18 @@
     <string name="contactHUAmers">HU Amersfoort</string>
     <string name="contactAlgemeen">Mediatheek Algemeen</string>
     <string name="contactWebmaster">Webmaster</string>
-    <string name="settingsLabel">Instellingen</string>
+    <string name="newsLabel">Nieuws</string><string name="settingsLabel">Instellingen</string>
     <string name="settingsStartupHeader">Kies een scherm om te tonen na login:</string>
     <string name="settingsSearch">LUCAS zoek</string>
     <string name="settingsContact">Contact informatie</string>
     <string name="settingsNews">Nieuws RSS feed</string>
+    
+    
+    
+    
+    <string name="settingsShowSearchFieldHeader">Toon zoek veld optie in LUCAS zoeken</string>
+    <string name="settingsCheckBoxShow">Toon</string>
+    <string name="dialogLoginUnsuccessful">Het inloggen is mislukt</string>
+    <string name="dialogLoggingIn">Inloggen...</string>
 
 </resources>

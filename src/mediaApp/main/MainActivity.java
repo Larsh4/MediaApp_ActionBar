@@ -71,13 +71,12 @@ public class MainActivity extends BaseActivity implements
 				progressDialog = new ProgressDialog(MainActivity.this);
 				progressDialog.setMessage(getString(R.string.dialogLoggingIn));
 				progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-				progressDialog.setMessage(getString(R.string.loginLoading));
 				progressDialog.setCancelable(false);
 				return progressDialog;
 			case UNSUCCESSFUL_DIALOG:
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(R.string.appName);
-				builder.setMessage(getString(R.string.dialogLoginUnsuccesful));
+				builder.setMessage(getString(R.string.dialogLoginUnsuccessful));
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 					builder.setIconAttribute(android.R.attr.alertDialogIcon);
 				else
