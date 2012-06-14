@@ -102,13 +102,14 @@ public class ContactActivity extends BaseActivity implements OnClickListener
 			//FCJ
 			case R.id.BCallFCJ:
 				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:088 481 35 83"));
-				startActivity(Intent.createChooser(intent, getString(R.string.contactCallIntent)));
+				startActivity(Intent.createChooser(intent, "Call..."));
 				break;
 			case R.id.BEmailFCJ:
 				intent = new Intent(android.content.Intent.ACTION_SEND);
-				intent.setType("message/rfc822");
+				intent.setType("plain/text");
+				intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "HU Mediatheek Android App");
 				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "mediatheek.fcj@hu.nl" });
-				startActivity(Intent.createChooser(intent, getString(R.string.contactEmailIntent)));
+				startActivity(Intent.createChooser(intent, "Send mail..."));
 				break;
 			case R.id.BLocationFCJ:
 				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=Padualaan 99, Utrecht"));

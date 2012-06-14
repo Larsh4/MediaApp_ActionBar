@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="DB_CATALOGUES" type="integer" format="integer">101486</item><item name="DB_COMM_JOUR" type="integer" format="integer">101487</item><item name="DB_ECON_MANA" type="integer" format="integer">101491</item><item name="DB_EDUCATION" type="integer" format="integer">101500</item><item name="DB_HEALTH" type="integer" format="integer">101506</item><item name="DB_SOCI_LAW" type="integer" format="integer">101519</item><item name="DB_NAT_TECH" type="integer" format="integer">101532</item><item name="DB_INTERNET" type="integer" format="integer">101515</item><item name="DB_VISUAL" type="integer" format="integer">101485</item><item name="DB_DUTCH" type="integer" format="integer">101537</item><item name="DB_ENGLISH" type="integer" format="integer">101505</item>
-    
+
+    <item name="DB_CATALOGUES" format="integer" type="integer">101486</item>
+    <item name="DB_COMM_JOUR" format="integer" type="integer">101487</item>
+    <item name="DB_ECON_MANA" format="integer" type="integer">101491</item>
+    <item name="DB_EDUCATION" format="integer" type="integer">101500</item>
+    <item name="DB_HEALTH" format="integer" type="integer">101506</item>
+    <item name="DB_SOCI_LAW" format="integer" type="integer">101519</item>
+    <item name="DB_NAT_TECH" format="integer" type="integer">101532</item>
+    <item name="DB_INTERNET" format="integer" type="integer">101515</item>
+    <item name="DB_VISUAL" format="integer" type="integer">101485</item>
+    <item name="DB_DUTCH" format="integer" type="integer">101537</item>
+    <item name="DB_ENGLISH" format="integer" type="integer">101505</item>
+
 </resources>
