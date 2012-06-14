@@ -92,6 +92,18 @@ public class SearchActivity extends BaseActivity implements
 		Button button = (Button) findViewById(R.id.searchBut);
 		button.setOnClickListener(this);
 	}
+	
+	@Override
+	protected void onResume() {
+		View searchField = findViewById(R.id.searchFieldLayout);
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		int show = sharedPreferences.getInt(SettingsActivity.SHOW_KEY, 0);
+		if (show == 1)
+			searchField.setVisibility(View.VISIBLE);
+		else
+			searchField.setVisibility(View.GONE);
+		super.onResume();
+	}
 
 	@Override
 	protected void onDestroy()
