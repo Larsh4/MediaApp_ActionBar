@@ -54,19 +54,19 @@
             android1:text="@string/settingsContact" />
 
     </RadioGroup>
-
+
     <TextView
         android1:id="@+id/textView1"
         android1:layout_width="wrap_content"
         android1:layout_height="wrap_content"
         android1:layout_marginTop="10dp"
-        android1:text="Show search field option in LUCAS Search:"
+        android1:text="@string/settingsShowSearchFieldHeader"
         android1:textAppearance="?android:attr/textAppearanceMedium" />
-
+
     <CheckBox
         android1:id="@+id/CBShowSearch"
         android1:layout_width="wrap_content"
         android1:layout_height="wrap_content"
-        android1:text="Show" />
+        android1:text="@string/settingsCheckBoxShow" />
 
 </LinearLayout>

@@ -71,7 +71,7 @@
     <string name="contactCall">Call</string>
     <string name="contactEmail">Email</string>
     <string name="contactLocation">Location</string>
-    <string name="contactFCJ">FCJ</string>
+    <string name="contactCallIntent">Call...</string><string name="contactEmailIntent">Email...</string><string name="contactLocationIntent">Show on map...</string><string name="contactFCJ">FCJ</string>
     <string name="contactFE">FE</string>
     <string name="contactFEM">FEM</string>
     <string name="contactFG">FG</string>
@@ -86,6 +86,13 @@
     <string name="settingsStartupHeader">Choose a screen to show after login:</string>
     <string name="settingsSearch">LUCAS search</string>
     <string name="settingsContact">Contact information</string>
-    <string name="settingsNews">News RSS feed</string>
+    <string name="settingsNews">News RSS feed</string><string name="settingsShowSearchFieldHeader">Show search field option in LUCAS Search:</string>
+    
+    
+    
+    <string name="settingsCheckBoxShow">Show</string><string name="dialogLoginUnsuccesful">Login was unsuccessful</string>
+    <string name="dialogLoggingIn">Logging in...</string>
+    
+    
 
 </resources>

@@ -69,6 +69,7 @@ public class MainActivity extends BaseActivity implements
 		{
 			case LOGGING_IN_DIALOG:
 				progressDialog = new ProgressDialog(MainActivity.this);
+				progressDialog.setMessage(getString(R.string.dialogLoggingIn));
 				progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 				progressDialog.setMessage(getString(R.string.loginLoading));
 				progressDialog.setCancelable(false);
@@ -76,27 +77,16 @@ public class MainActivity extends BaseActivity implements
 			case UNSUCCESSFUL_DIALOG:
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(R.string.appName);
-				builder.setMessage("Login was unsuccessful");
+				builder.setMessage(getString(R.string.dialogLoginUnsuccesful));
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-				{
 					builder.setIconAttribute(android.R.attr.alertDialogIcon);
-				}				
+				else
+					builder.setIcon(R.drawable.ic_dialog_alert_holo_light);
 				builder.setNeutralButton("OK",  this);				       
 				alertDialog = builder.create();
 				return alertDialog;
 			default:
 				return null;
-		}
-	}
-
-	@Override
-	protected void onPrepareDialog(int id, Dialog dialog)
-	{
-		switch (id)
-		{
-			case LOGGING_IN_DIALOG:
-				progressDialog.setMessage("Logging in...");
-				break;
 		}
 	}
 
@@ -142,7 +132,7 @@ public class MainActivity extends BaseActivity implements
 		removeDialog(LOGGING_IN_DIALOG);
 		
 		if(response!=null &&response.startsWith("<html>\n<head>\n<title>Database Menu</title>")){
-			Log.i(TAG,"Login Succesful");
+			Log.d(TAG,"Login Succesful");
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 			int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
 			Intent serverIntent;
@@ -163,7 +153,7 @@ public class MainActivity extends BaseActivity implements
 			}
 			startActivity(serverIntent);
 		}else{
-			Log.i(TAG,"Login Unsuccesful");
+			Log.d(TAG,"Login Unsuccesful");
 			showDialog(UNSUCCESSFUL_DIALOG);			
 		}		
 	}

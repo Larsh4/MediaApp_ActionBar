@@ -11,7 +11,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 public class ResultDetailActivity extends BaseActivity
 {
@@ -63,8 +62,7 @@ public class ResultDetailActivity extends BaseActivity
 		switch (item.getItemId())
 		{
 			case android.R.id.home:
-				Toast.makeText(this, "Tapped home", Toast.LENGTH_SHORT).show();
-				Intent serverIntent = new Intent(this, SearchActivity.class);
+				Intent serverIntent = new Intent(this, SearchResultActivity.class);
 				serverIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(serverIntent);
 				return true;
@@ -101,6 +99,6 @@ public class ResultDetailActivity extends BaseActivity
 		emailBody += "\n\nURL: " + result.getUrl().toString();
 		mailIntent.putExtra(Intent.EXTRA_TEXT, emailBody);
 
-		startActivity(Intent.createChooser(mailIntent, "Send mail..."));
+		startActivity(Intent.createChooser(mailIntent, getString(R.string.contactEmailIntent)));
 	}
 }

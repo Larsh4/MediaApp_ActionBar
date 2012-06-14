@@ -30,7 +30,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class NewsActivity extends ActionBarListActivity
 {
@@ -69,7 +68,6 @@ public class NewsActivity extends ActionBarListActivity
 		switch (item.getItemId())
 		{
 			case android.R.id.home:
-				Toast.makeText(this, "Tapped home", Toast.LENGTH_SHORT).show();
 				Intent serverIntent = new Intent(this, MainActivity.class);
 				serverIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(serverIntent);
