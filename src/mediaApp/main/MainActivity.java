@@ -19,8 +19,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-public class MainActivity extends BaseActivity implements 
-		HTTPResponseListener, OnClickListener, android.content.DialogInterface.OnClickListener
+public class MainActivity extends BaseActivity implements
+		HTTPResponseListener,
+		OnClickListener,
+		android.content.DialogInterface.OnClickListener
 {
 
 	static final String	TAG					= "MainAct";
@@ -81,7 +83,7 @@ public class MainActivity extends BaseActivity implements
 					builder.setIconAttribute(android.R.attr.alertDialogIcon);
 				else
 					builder.setIcon(R.drawable.ic_dialog_alert_holo_light);
-				builder.setNeutralButton("OK",  this);				       
+				builder.setNeutralButton("OK", this);
 				alertDialog = builder.create();
 				return alertDialog;
 			default:
@@ -92,24 +94,26 @@ public class MainActivity extends BaseActivity implements
 	@Override
 	public void onClick(View v)
 	{
-		switch(v.getId()){
-		case R.id.BLogin:		
-			SaveIntPreferences(REMEMBER_KEY, CHRemember.isChecked() ? 1 : 0);
-			if (CHRemember.isChecked())
-			{
-				SaveStringPreferences(USER_KEY, ETUser.getText().toString());
-				SaveStringPreferences(PASS_KEY, ETPass.getText().toString());
-			}
-			else
-			{
-				SaveStringPreferences(USER_KEY, "");
-				SaveStringPreferences(PASS_KEY, "");
-			}
-	
-			showDialog(LOGGING_IN_DIALOG);
-			ProxyLoginTaskAlt plt = new ProxyLoginTaskAlt(this, (MediaApplication)getApplication());
-			plt.execute("https://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), ETPass.getText().toString());
-			break;
+		switch (v.getId())
+		{
+			case R.id.BLogin:
+				SaveIntPreferences(REMEMBER_KEY, CHRemember.isChecked() ? 1 : 0);
+				if (CHRemember.isChecked())
+				{
+					SaveStringPreferences(USER_KEY, ETUser.getText().toString());
+					SaveStringPreferences(PASS_KEY, ETPass.getText().toString());
+				}
+				else
+				{
+					SaveStringPreferences(USER_KEY, "");
+					SaveStringPreferences(PASS_KEY, "");
+				}
+
+				showDialog(LOGGING_IN_DIALOG);
+				ProxyLoginTaskAlt plt = new ProxyLoginTaskAlt(this, (MediaApplication) getApplication());
+				plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), ETPass.getText()
+						.toString());
+				break;
 		}
 	}
 
@@ -129,9 +133,10 @@ public class MainActivity extends BaseActivity implements
 	{
 		Log.v(TAG, "onResponseReceived");
 		removeDialog(LOGGING_IN_DIALOG);
-		
-		if(response!=null &&response.startsWith("<html>\n<head>\n<title>Database Menu</title>")){
-			Log.d(TAG,"Login Succesful");
+
+		if (response != null && response.startsWith("<html>\n<head>\n<title>Database Menu</title>"))
+		{
+			Log.d(TAG, "Login Succesful");
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 			int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
 			Intent serverIntent;
@@ -151,20 +156,25 @@ public class MainActivity extends BaseActivity implements
 					break;
 			}
 			startActivity(serverIntent);
-		}else{
-			Log.d(TAG,"Login Unsuccesful");
-			showDialog(UNSUCCESSFUL_DIALOG);			
-		}		
+		}
+		else
+		{
+			Log.d(TAG, "Login Unsuccesful");
+			showDialog(UNSUCCESSFUL_DIALOG);
+		}
 	}
 
 	@Override
-	public void onClick(DialogInterface dialog, int which) {
-		if(dialog.equals(alertDialog)){
+	public void onClick(DialogInterface dialog, int which)
+	{
+		if (dialog.equals(alertDialog))
+		{
 			removeDialog(UNSUCCESSFUL_DIALOG);
 		}
-		if(dialog.equals(progressDialog)){
+		if (dialog.equals(progressDialog))
+		{
 			removeDialog(LOGGING_IN_DIALOG);
-		}				
+		}
 	}
 
 }
