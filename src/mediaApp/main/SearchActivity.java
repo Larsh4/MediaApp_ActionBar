@@ -156,7 +156,7 @@ public class SearchActivity extends BaseActivity implements
 					showDialog(NO_SEARCH_TERM_DIALOG);
 					return;
 				}
-				else if (LV.getCheckedItemCount() == 0)
+				else if (LV.getCheckItemIds() == null ||LV.getCheckItemIds().length==0)
 				{
 					showDialog(NO_DB_SELECTED_DIALOG);
 					return;
