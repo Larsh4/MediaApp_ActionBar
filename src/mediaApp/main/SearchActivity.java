@@ -2,9 +2,12 @@ package mediaApp.main;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mediaApp.HTTP.HTTPGetTaskAlt;
 import mediaApp.HTTP.HTTPResponseListener;
+
 import org.apache.http.NameValuePair;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -161,7 +164,7 @@ public class SearchActivity extends BaseActivity implements
 				else
 				{
 					showDialog(SEARCHING_DIALOG);
-					new HTTPGetTaskAlt(this).execute(createURL());
+					new HTTPGetTaskAlt(this, (MediaApplication) getApplication()).execute(createURL());
 				}
 				break;
 		}

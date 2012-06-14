@@ -107,7 +107,7 @@ public class MainActivity extends BaseActivity implements
 			}
 	
 			showDialog(LOGGING_IN_DIALOG);
-			ProxyLoginTaskAlt plt = new ProxyLoginTaskAlt(this);
+			ProxyLoginTaskAlt plt = new ProxyLoginTaskAlt(this, (MediaApplication)getApplication());
 			plt.execute("https://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), ETPass.getText().toString());
 			break;
 		}
