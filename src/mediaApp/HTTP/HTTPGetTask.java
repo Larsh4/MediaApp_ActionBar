@@ -5,7 +5,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
+
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class HTTPGetTask extends AsyncTask<String, String, String>
 {
@@ -36,6 +38,8 @@ public class HTTPGetTask extends AsyncTask<String, String, String>
 			{
 				response += inStream.nextLine();
 			}
+			
+			Log.i(TAG, "Response: "+response);
 
 			inStream.close();
 			httpConn.disconnect();
