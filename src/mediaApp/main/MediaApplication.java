@@ -5,7 +5,6 @@ import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import org.apache.http.NameValuePair;
 import android.app.Application;
-import android.util.Log;
 
 public class MediaApplication extends Application implements HTTPResponseListener
 {
@@ -25,8 +24,6 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	@Override
 	public void onResponseReceived(String response)
 	{
-		Log.d(TAG, "Response: " + response);
-
 		setCategories(new CategoryParser().parse(response));
 	}
 
@@ -56,7 +53,8 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	}
 
 	/**
-	 * @param categories the categories to set
+	 * @param categories
+	 *            the categories to set
 	 */
 	public void setCategories(List<NameValuePair> categories)
 	{
