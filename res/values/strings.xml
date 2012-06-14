@@ -28,7 +28,6 @@
     <string name="loginPassHint">*****</string>
     <string name="loginRemember">Remember login</string>
     <string name="loginButton">Login</string>
-    <string name="loginLoading">Logging in&#8230;</string>
     <string name="searchLabel">LUCAS</string>
     <string name="searchHeader">Search on LUCAS:</string>
     <string name="searchTerm">[search term]</string>
@@ -90,7 +89,7 @@
     
     
     
-    <string name="settingsCheckBoxShow">Show</string><string name="dialogLoginUnsuccesful">Login was unsuccessful</string>
+    <string name="settingsCheckBoxShow">Show</string><string name="dialogLoginUnsuccessful">Login was unsuccessful</string>
     <string name="dialogLoggingIn">Logging in...</string>
     
     
