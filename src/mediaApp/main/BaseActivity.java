@@ -5,17 +5,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public abstract class BaseActivity extends ActionBarActivity
 {
 
 	protected MediaApplication	mediaApp;
-	
-	static final String TAG		="BaseAct";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -39,12 +37,23 @@ public abstract class BaseActivity extends ActionBarActivity
 		switch (item.getItemId())
 		{
 			case android.R.id.home:
+				Toast.makeText(this, "Tapped home", Toast.LENGTH_SHORT).show();
 				Intent serverIntent = new Intent(this, MainActivity.class);
 				serverIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 				startActivity(serverIntent);
 				break;
 
 			case R.id.menu_news:
+				// Toast.makeText(this, "Fake refreshing...", Toast.LENGTH_SHORT).show();
+				getActionBarHelper().setRefreshActionItemState(true);
+				getWindow().getDecorView().postDelayed(new Runnable() {
+
+					@Override
+					public void run()
+					{
+						getActionBarHelper().setRefreshActionItemState(false);
+					}
+				}, 1000);
 				final Intent news = new Intent(this, NewsActivity.class);
 				startActivity(news);
 				break;
@@ -69,7 +78,6 @@ public abstract class BaseActivity extends ActionBarActivity
 
 	protected void SaveStringPreferences(String key, String value)
 	{
-		Log.d(TAG, "key:"+key+" - value:"+value);
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		SharedPreferences.Editor editor = sharedPreferences.edit();
 		editor.putString(key, value);
@@ -78,7 +86,6 @@ public abstract class BaseActivity extends ActionBarActivity
 
 	protected void SaveIntPreferences(String key, int value)
 	{
-		Log.d(TAG, "key:"+key+" - value:"+value);
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		SharedPreferences.Editor editor = sharedPreferences.edit();
 		editor.putInt(key, value);

@@ -1,9 +1,10 @@
 package mediaApp.main;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import mediaApp.HTTP.HTTPGetTaskAlt;
 import mediaApp.HTTP.HTTPResponseListener;
+import org.apache.http.NameValuePair;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -27,20 +28,25 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-public class SearchActivity extends BaseActivity implements 
-		HTTPResponseListener, OnClickListener, OnItemClickListener, OnItemSelectedListener, android.content.DialogInterface.OnClickListener
+public class SearchActivity extends BaseActivity implements
+		HTTPResponseListener,
+		OnClickListener,
+		OnItemClickListener,
+		OnItemSelectedListener,
+		android.content.DialogInterface.OnClickListener
 {
 
-	private static String	TAG	= "SearchAct";
+	private static String				TAG						= "SearchAct";
 	// UI
-	private ListView		LV;
-	private EditText 		ETSearchField;
+	private ListView					LV;
+	private EditText					ETSearchField;
 	// Dialogs
-	static final int	SEARCHING_DIALOG	= 1;
-	ProgressDialog	 	progressDialog;
-	static final int	NO_SEARCH_TERM_DIALOG	= 2;
-	static final int	NO_DB_SELECTED_DIALOG	= 3;
-	AlertDialog			alertDialog;
+	static final int					SEARCHING_DIALOG		= 1;
+	static final int					NO_SEARCH_TERM_DIALOG	= 2;
+	static final int					NO_DB_SELECTED_DIALOG	= 3;
+	AlertDialog							alertDialog;
+	ProgressDialog						progressDialog;
+	private static List<NameValuePair>	categories;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -52,15 +58,16 @@ public class SearchActivity extends BaseActivity implements
 		}
 
 		// search field part
-		View searchField =  findViewById(R.id.searchFieldLayout);
+		View searchField = findViewById(R.id.searchFieldLayout);
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		int show = sharedPreferences.getInt(SettingsActivity.SHOW_KEY, 0);
-		if(show==1)	searchField.setVisibility(View.VISIBLE);
-		else		searchField.setVisibility(View.GONE);		
+		if (show == 1)
+			searchField.setVisibility(View.VISIBLE);
+		else
+			searchField.setVisibility(View.GONE);
 		Spinner S = (Spinner) findViewById(R.id.searchFieldSpinner);
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource( this,
-		R.array.searchFieldArray,
-		android.R.layout.simple_spinner_item);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(	this, R.array.searchFieldArray,
+																				android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		S.setAdapter(adapter);
 		S.setOnItemSelectedListener(this);
@@ -68,12 +75,15 @@ public class SearchActivity extends BaseActivity implements
 		// databases part
 		LV = (ListView) findViewById(R.id.databaseList);
 		LV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-		String[] databases = getResources().getStringArray(R.array.searchDatabaseArray);
+		List<String> databases = new ArrayList<String>();
+		for (NameValuePair nvp : mediaApp.getCategories())
+			databases.add(nvp.getName());
+		databases.add("All databases");
+
 		LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, databases));
 		LV.setOnItemClickListener(this);
-		
-		
-		ETSearchField = (EditText) findViewById(R.id.ETSearch); 
+
+		ETSearchField = (EditText) findViewById(R.id.ETSearch);
 		// button part
 		Button button = (Button) findViewById(R.id.searchBut);
 		button.setOnClickListener(this);
@@ -94,8 +104,7 @@ public class SearchActivity extends BaseActivity implements
 		menuInflater.inflate(R.menu.search, menu);
 		return true;// super.onCreateOptionsMenu(menu);
 	}
-	
-	
+
 	protected Dialog onCreateDialog(int id)
 	{
 		switch (id)
@@ -113,8 +122,8 @@ public class SearchActivity extends BaseActivity implements
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 				{
 					builder.setIconAttribute(android.R.attr.alertDialogIcon);
-				}				
-				builder.setNeutralButton("OK",  this);				       
+				}
+				builder.setNeutralButton("OK", this);
 				alertDialog = builder.create();
 				return alertDialog;
 			case NO_DB_SELECTED_DIALOG:
@@ -124,8 +133,8 @@ public class SearchActivity extends BaseActivity implements
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 				{
 					builder2.setIconAttribute(android.R.attr.alertDialogIcon);
-				}				
-				builder2.setNeutralButton("OK",  this);				       
+				}
+				builder2.setNeutralButton("OK", this);
 				alertDialog = builder2.create();
 				return alertDialog;
 			default:
@@ -139,18 +148,21 @@ public class SearchActivity extends BaseActivity implements
 		switch (v.getId())
 		{
 			case R.id.searchBut:
-				if(ETSearchField.length()==0){
+				if (ETSearchField.length() == 0)
+				{
 					showDialog(NO_SEARCH_TERM_DIALOG);
 					return;
 				}
-				else if(LV.getCheckedItemCount()==0){
+				else if (LV.getCheckedItemCount() == 0)
+				{
 					showDialog(NO_DB_SELECTED_DIALOG);
 					return;
 				}
-				else{
+				else
+				{
 					showDialog(SEARCHING_DIALOG);
-					new HTTPGetTaskAlt(this).execute(createURL());	
-				}				
+					new HTTPGetTaskAlt(this).execute(createURL());
+				}
 				break;
 		}
 	}
@@ -158,7 +170,7 @@ public class SearchActivity extends BaseActivity implements
 	@Override
 	public void onResponseReceived(String response)
 	{
-		Log.i(TAG, "response: "+response);
+		Log.i(TAG, "response: " + response);
 		removeDialog(SEARCHING_DIALOG);
 		LucasParser lp = new LucasParser();
 		List<LucasResult> list = lp.parse(response);
@@ -183,14 +195,15 @@ public class SearchActivity extends BaseActivity implements
 	}
 
 	private String createURL()
-	{								 //added: [serialssolutions.com].www.dbproxy.hu.nl[/sru]
+	{ // added: [serialssolutions.com].www.dbproxy.hu.nl[/sru]
 		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve&x-cs-categories=";
 
-		for (int i = 0; i < LV.getCount() - 2; i++) // two less because of 'Other Databases' and 'All Databases'
+		for (int i = 0; i < LV.getCount() - 2; i++) // two less because of 'Other Databases' and 'All
+													// Databases'
 		{
 			if (LV.isItemChecked(i))
 			{
-				URL += getResources().getIntArray(R.array.dbCodes)[i];
+				URL += categories.get(i).getValue();
 				URL += ",";
 			}
 		}
@@ -202,25 +215,29 @@ public class SearchActivity extends BaseActivity implements
 	}
 
 	@Override
-	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
-			long arg3) {
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3)
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		
+	public void onNothingSelected(AdapterView<?> arg0)
+	{
+
 	}
 
 	@Override
-	public void onClick(DialogInterface dialog, int arg1) {
-		if(dialog.equals(alertDialog)){
+	public void onClick(DialogInterface dialog, int arg1)
+	{
+		if (dialog.equals(alertDialog))
+		{
 			removeDialog(NO_DB_SELECTED_DIALOG);
 			removeDialog(NO_SEARCH_TERM_DIALOG);
 		}
-		if(dialog.equals(progressDialog)){
+		if (dialog.equals(progressDialog))
+		{
 			removeDialog(SEARCHING_DIALOG);
-		}				
+		}
 	}
 }

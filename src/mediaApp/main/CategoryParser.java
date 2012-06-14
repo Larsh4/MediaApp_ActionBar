@@ -59,11 +59,11 @@ public class CategoryParser extends DefaultHandler
 
 		if (localName.equalsIgnoreCase(NAME))
 		{
-			currentName = builder.toString();
+			currentName = builder.toString().trim();
 		}
 		else if (localName.equalsIgnoreCase(ID))
 		{
-			currentId = builder.toString();
+			currentId = builder.toString().trim();
 		}
 		else if (localName.equalsIgnoreCase(CATEGORY))
 		{
