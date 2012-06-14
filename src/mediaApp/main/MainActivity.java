@@ -19,13 +19,14 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-public class MainActivity extends BaseActivity implements HTTPResponseListener, OnClickListener, android.content.DialogInterface.OnClickListener
+public class MainActivity extends BaseActivity implements 
+		HTTPResponseListener, OnClickListener, android.content.DialogInterface.OnClickListener
 {
 
 	static final String	TAG					= "MainAct";
 
 	// Dialogs
-	static final int	CONNECTING_DIALOG	= 1;
+	static final int	LOGGING_IN_DIALOG	= 1;
 	ProgressDialog		progressDialog;
 	static final int	UNSUCCESSFUL_DIALOG	= 2;
 	AlertDialog			alertDialog;
@@ -66,7 +67,7 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 	{
 		switch (id)
 		{
-			case CONNECTING_DIALOG:
+			case LOGGING_IN_DIALOG:
 				progressDialog = new ProgressDialog(MainActivity.this);
 				progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 				progressDialog.setMessage(getString(R.string.loginLoading));
@@ -93,7 +94,7 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 	{
 		switch (id)
 		{
-			case CONNECTING_DIALOG:
+			case LOGGING_IN_DIALOG:
 				progressDialog.setMessage("Logging in...");
 				break;
 		}
@@ -116,7 +117,7 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 				SaveStringPreferences(PASS_KEY, "");
 			}
 	
-			showDialog(CONNECTING_DIALOG);
+			showDialog(LOGGING_IN_DIALOG);
 			ProxyLoginTaskAlt plt = new ProxyLoginTaskAlt(this);
 			plt.execute("https://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), ETPass.getText().toString());
 			break;
@@ -138,7 +139,7 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 	public void onResponseReceived(String response)
 	{
 		Log.v(TAG, "onResponseReceived");
-		removeDialog(CONNECTING_DIALOG);
+		removeDialog(LOGGING_IN_DIALOG);
 		
 		if(response!=null &&response.startsWith("<html>\n<head>\n<title>Database Menu</title>")){
 			Log.i(TAG,"Login Succesful");
@@ -173,7 +174,7 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 			removeDialog(UNSUCCESSFUL_DIALOG);
 		}
 		if(dialog.equals(progressDialog)){
-			removeDialog(CONNECTING_DIALOG);
+			removeDialog(LOGGING_IN_DIALOG);
 		}				
 	}
 

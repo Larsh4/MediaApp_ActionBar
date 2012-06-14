@@ -4,7 +4,10 @@ import java.util.List;
 
 import mediaApp.HTTP.HTTPGetTaskAlt;
 import mediaApp.HTTP.HTTPResponseListener;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -25,13 +28,19 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 public class SearchActivity extends BaseActivity implements 
-		HTTPResponseListener, OnClickListener, OnItemClickListener, OnItemSelectedListener
+		HTTPResponseListener, OnClickListener, OnItemClickListener, OnItemSelectedListener, android.content.DialogInterface.OnClickListener
 {
 
 	private static String	TAG	= "SearchAct";
 	// UI
 	private ListView		LV;
-	private ProgressDialog	progressDialog;
+	private EditText 		ETSearchField;
+	// Dialogs
+	static final int	SEARCHING_DIALOG	= 1;
+	ProgressDialog	 	progressDialog;
+	static final int	NO_SEARCH_TERM_DIALOG	= 2;
+	static final int	NO_DB_SELECTED_DIALOG	= 3;
+	AlertDialog			alertDialog;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -62,7 +71,9 @@ public class SearchActivity extends BaseActivity implements
 		String[] databases = getResources().getStringArray(R.array.searchDatabaseArray);
 		LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, databases));
 		LV.setOnItemClickListener(this);
-
+		
+		
+		ETSearchField = (EditText) findViewById(R.id.ETSearch); 
 		// button part
 		Button button = (Button) findViewById(R.id.searchBut);
 		button.setOnClickListener(this);
@@ -83,6 +94,44 @@ public class SearchActivity extends BaseActivity implements
 		menuInflater.inflate(R.menu.search, menu);
 		return true;// super.onCreateOptionsMenu(menu);
 	}
+	
+	
+	protected Dialog onCreateDialog(int id)
+	{
+		switch (id)
+		{
+			case SEARCHING_DIALOG:
+				progressDialog = new ProgressDialog(SearchActivity.this);
+				progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+				progressDialog.setMessage(getString(R.string.searchLoading));
+				progressDialog.setCancelable(false);
+				return progressDialog;
+			case NO_SEARCH_TERM_DIALOG:
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setTitle(R.string.appName);
+				builder.setMessage("No search term was provided");
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+				{
+					builder.setIconAttribute(android.R.attr.alertDialogIcon);
+				}				
+				builder.setNeutralButton("OK",  this);				       
+				alertDialog = builder.create();
+				return alertDialog;
+			case NO_DB_SELECTED_DIALOG:
+				AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+				builder2.setTitle(R.string.appName);
+				builder2.setMessage("No Category was selected");
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+				{
+					builder2.setIconAttribute(android.R.attr.alertDialogIcon);
+				}				
+				builder2.setNeutralButton("OK",  this);				       
+				alertDialog = builder2.create();
+				return alertDialog;
+			default:
+				return null;
+		}
+	}
 
 	@Override
 	public void onClick(View v)
@@ -90,12 +139,18 @@ public class SearchActivity extends BaseActivity implements
 		switch (v.getId())
 		{
 			case R.id.searchBut:
-				progressDialog = new ProgressDialog(this);
-				progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-				progressDialog.setMessage(getString(R.string.searchLoading));
-				progressDialog.setCancelable(false);
-				progressDialog.show();
-				new HTTPGetTaskAlt(this).execute(createURL());
+				if(ETSearchField.length()==0){
+					showDialog(NO_SEARCH_TERM_DIALOG);
+					return;
+				}
+				else if(LV.getCheckedItemCount()==0){
+					showDialog(NO_DB_SELECTED_DIALOG);
+					return;
+				}
+				else{
+					showDialog(SEARCHING_DIALOG);
+					new HTTPGetTaskAlt(this).execute(createURL());	
+				}				
 				break;
 		}
 	}
@@ -104,7 +159,7 @@ public class SearchActivity extends BaseActivity implements
 	public void onResponseReceived(String response)
 	{
 		Log.i(TAG, "response: "+response);
-		progressDialog.dismiss();
+		removeDialog(SEARCHING_DIALOG);
 		LucasParser lp = new LucasParser();
 		List<LucasResult> list = lp.parse(response);
 
@@ -141,8 +196,7 @@ public class SearchActivity extends BaseActivity implements
 		}
 		URL = URL.substring(0, URL.length() - 1);
 
-		EditText searchField = (EditText) findViewById(R.id.ETSearch);
-		URL += "&query=" + searchField.getText().toString();
+		URL += "&query=" + ETSearchField.getText().toString();
 
 		return URL;
 	}
@@ -157,5 +211,16 @@ public class SearchActivity extends BaseActivity implements
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		
+	}
+
+	@Override
+	public void onClick(DialogInterface dialog, int arg1) {
+		if(dialog.equals(alertDialog)){
+			removeDialog(NO_DB_SELECTED_DIALOG);
+			removeDialog(NO_SEARCH_TERM_DIALOG);
+		}
+		if(dialog.equals(progressDialog)){
+			removeDialog(SEARCHING_DIALOG);
+		}				
 	}
 }
