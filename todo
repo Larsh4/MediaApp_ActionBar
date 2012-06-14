@@ -1,8 +1,8 @@
 -fix proxy login
--show login success/failed
+-show login success/failed			x
 -clean up search results layout		x
 -show amount of results(if 0)
--email/share search detail
+-email/share search detail			x
 -make database values updatable
 
 

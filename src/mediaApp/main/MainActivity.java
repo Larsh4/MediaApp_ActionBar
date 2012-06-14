@@ -141,6 +141,7 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 		removeDialog(CONNECTING_DIALOG);
 		
 		if(response!=null &&response.startsWith("<html>\n<head>\n<title>Database Menu</title>")){
+			Log.i(TAG,"Login Succesful");
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 			int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
 			Intent serverIntent;
@@ -161,6 +162,7 @@ public class MainActivity extends BaseActivity implements HTTPResponseListener, 
 			}
 			startActivity(serverIntent);
 		}else{
+			Log.i(TAG,"Login Unsuccesful");
 			showDialog(UNSUCCESSFUL_DIALOG);			
 		}		
 	}

@@ -20,11 +20,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android1:layout_marginTop="10dp"
         android:text="@string/settingsStartupHeader"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -53,5 +54,19 @@
             android1:text="@string/settingsContact" />
 
     </RadioGroup>
+
+    <TextView
+        android1:id="@+id/textView1"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_marginTop="10dp"
+        android1:text="Show search field option in LUCAS Search:"
+        android1:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <CheckBox
+        android1:id="@+id/CBShowSearch"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:text="Show" />
 
 </LinearLayout>
