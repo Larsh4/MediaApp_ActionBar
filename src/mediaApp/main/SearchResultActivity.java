@@ -31,8 +31,7 @@ public class SearchResultActivity extends BaseActivity implements OnItemClickLis
 		}
 
 		ListView resultList = (ListView) findViewById(R.id.LVResults);
-		MediaApplication app = (MediaApplication) getApplication();
-		results = app.getResults();
+		results = mediaApp.getResults();
 		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		resultList.setAdapter(new SearchResultAdapter(inflater, results));
 		resultList.setOnItemClickListener(this);

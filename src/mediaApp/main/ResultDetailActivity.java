@@ -34,7 +34,7 @@ public class ResultDetailActivity extends BaseActivity
 		progressDialog.setCancelable(false);
 		progressDialog.show();
 
-		result = ((MediaApplication) getApplication()).getResults().get(getIntent().getIntExtra("id", 1));
+		result = mediaApp.getResults().get(getIntent().getIntExtra("id", 1));
 
 		WebView webView = (WebView) findViewById(R.id.WVResultDetail);
 		webView.loadUrl(result.getUrl().toString());
