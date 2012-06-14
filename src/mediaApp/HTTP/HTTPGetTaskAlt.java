@@ -45,7 +45,6 @@ public class HTTPGetTaskAlt extends AsyncTask<String, String, String>
 			HttpContext httpContext = new BasicHttpContext();
 			httpContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
 			response = httpclient.execute(httpGet, httpContext);		
-			Log.i(TAG, "Response: "+response.toString());
 		}
 		catch (SocketTimeoutException e)
 		{
