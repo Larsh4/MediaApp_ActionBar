@@ -2,12 +2,9 @@ package mediaApp.main;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import mediaApp.HTTP.HTTPGetTaskAlt;
 import mediaApp.HTTP.HTTPResponseListener;
-
 import org.apache.http.NameValuePair;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -78,8 +75,9 @@ public class SearchActivity extends BaseActivity implements
 		// databases part
 		LV = (ListView) findViewById(R.id.databaseList);
 		LV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		categories = mediaApp.getCategories();
 		List<String> databases = new ArrayList<String>();
-		for (NameValuePair nvp : mediaApp.getCategories())
+		for (NameValuePair nvp : categories)
 			databases.add(nvp.getName());
 		databases.add("All databases");
 
@@ -156,7 +154,7 @@ public class SearchActivity extends BaseActivity implements
 					showDialog(NO_SEARCH_TERM_DIALOG);
 					return;
 				}
-				else if (LV.getCheckItemIds() == null ||LV.getCheckItemIds().length==0)
+				else if (LV.getCheckItemIds() == null || LV.getCheckItemIds().length == 0)
 				{
 					showDialog(NO_DB_SELECTED_DIALOG);
 					return;
