@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="mediaApp.main.MainActivity"
-            android:label="@string/appName" >
+            android:label="@string/appName" 
+             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,32 +28,38 @@
         
         <activity
             android:name="mediaApp.main.SearchActivity"
-            android:label="@string/searchLabel">
+            android:label="@string/searchLabel"
+             android:launchMode="singleTask">
         </activity>
         
         <activity
             android:name="mediaApp.main.NewsActivity"
-            android:label="@string/newsLabel">
+            android:label="@string/newsLabel"
+             android:launchMode="singleTask">
         </activity>
         
         <activity
             android:name="mediaApp.main.ContactActivity"
-            android:label="@string/contactLabel">
+            android:label="@string/contactLabel"
+             android:launchMode="singleTask">
         </activity>        
         
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/settingsLabel">
+            android:label="@string/settingsLabel"
+             android:launchMode="singleTask">
         </activity>
           
         <activity
             android:name="mediaApp.main.SearchResultActivity"
-            android:label="@string/searchLabel">
+            android:label="@string/searchLabel"
+             android:launchMode="singleTask">
         </activity>
         
         <activity
             android:name="mediaApp.main.ResultDetailActivity"
-            android:label="@string/searchLabel">
+            android:label="@string/searchLabel"
+             android:launchMode="singleTask">
         </activity>              
         
     </application>
