@@ -55,6 +55,10 @@ public class MainActivity extends BaseActivity implements
 		((Button) findViewById(R.id.BLogin)).setOnClickListener(this);
 
 		LoadPreferences();
+		
+		//auto login if remembered
+		if(CHRemember.isChecked())
+			login();		
 	}
 
 	@Override
@@ -97,23 +101,7 @@ public class MainActivity extends BaseActivity implements
 		switch (v.getId())
 		{
 			case R.id.BLogin:
-				SaveIntPreferences(REMEMBER_KEY, CHRemember.isChecked() ? 1 : 0);
-				if (CHRemember.isChecked())
-				{
-					SaveStringPreferences(USER_KEY, ETUser.getText().toString());
-					SaveStringPreferences(PASS_KEY, ETPass.getText().toString());
-				}
-				else
-				{
-					SaveStringPreferences(USER_KEY, "");
-					SaveStringPreferences(PASS_KEY, "");
-				}
-
-				showDialog(LOGGING_IN_DIALOG);
-				((MediaApplication)getApplication()).refreshHttp();
-				ProxyLoginTaskAlt plt = new ProxyLoginTaskAlt(this, (MediaApplication) getApplication());
-				plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString()
-						, ETPass.getText().toString());
+				login();
 				break;
 		}
 	}
@@ -176,5 +164,25 @@ public class MainActivity extends BaseActivity implements
 		{
 			removeDialog(LOGGING_IN_DIALOG);
 		}
+	}
+	
+	private void login(){
+		SaveIntPreferences(REMEMBER_KEY, CHRemember.isChecked() ? 1 : 0);
+		if (CHRemember.isChecked())
+		{
+			SaveStringPreferences(USER_KEY, ETUser.getText().toString());
+			SaveStringPreferences(PASS_KEY, ETPass.getText().toString());
+		}
+		else
+		{
+			SaveStringPreferences(USER_KEY, "");
+			SaveStringPreferences(PASS_KEY, "");
+		}
+
+		showDialog(LOGGING_IN_DIALOG);
+		((MediaApplication)getApplication()).refreshHttp();
+		ProxyLoginTaskAlt plt = new ProxyLoginTaskAlt(this, (MediaApplication) getApplication());
+		plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString()
+				, ETPass.getText().toString());		
 	}
 }

@@ -232,8 +232,7 @@ public class SearchActivity extends BaseActivity implements
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3)
 	{
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
