@@ -82,8 +82,7 @@ public class SearchActivity extends BaseActivity implements
 		List<String> databases = new ArrayList<String>();
 		for (NameValuePair nvp : categories)
 			databases.add(nvp.getName());
-		databases.add("All databases");
-
+		//databases.add("All databases");
 		LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, databases));
 		LV.setOnItemClickListener(this);
 
@@ -136,9 +135,9 @@ public class SearchActivity extends BaseActivity implements
 				builder.setTitle(R.string.appName);
 				builder.setMessage("No search term was provided");
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-				{
 					builder.setIconAttribute(android.R.attr.alertDialogIcon);
-				}
+				else
+					builder.setIcon(R.drawable.ic_dialog_alert_holo_light);
 				builder.setNeutralButton("OK", this);
 				alertDialog = builder.create();
 				return alertDialog;
@@ -147,9 +146,9 @@ public class SearchActivity extends BaseActivity implements
 				builder2.setTitle(R.string.appName);
 				builder2.setMessage("No Category was selected");
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
-				{
 					builder2.setIconAttribute(android.R.attr.alertDialogIcon);
-				}
+				else
+					builder2.setIcon(R.drawable.ic_dialog_alert_holo_light);
 				builder2.setNeutralButton("OK", this);
 				alertDialog = builder2.create();
 				return alertDialog;
@@ -200,7 +199,7 @@ public class SearchActivity extends BaseActivity implements
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
-		if (position == LV.getCount() - 1)
+		/*if (position == LV.getCount() - 1)
 		{ // select all item
 			boolean isChecked = LV.isItemChecked(position);
 			for (int i = 0; i < LV.getCount() - 1; i++)
@@ -208,14 +207,14 @@ public class SearchActivity extends BaseActivity implements
 		}
 		else
 			LV.setItemChecked(LV.getCount() - 1, false);
+		*/	
 	}
 
 	private String createURL()
-	{ // added: [serialssolutions.com].www.dbproxy.hu.nl[/sru]
-		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve&x-cs-categories=";
+	{ 
+		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com.www.dbproxy.hu.nl/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve&x-cs-categories=";
 
-		for (int i = 0; i < LV.getCount() - 2; i++) // two less because of 'Other Databases' and 'All
-													// Databases'
+		for (int i = 0; i < LV.getCount(); i++) 												
 		{
 			if (LV.isItemChecked(i))
 			{

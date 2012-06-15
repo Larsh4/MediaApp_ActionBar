@@ -6,8 +6,13 @@ import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.protocol.ClientContext;
+import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 
 import android.app.Application;
 
@@ -18,17 +23,29 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	private List<LucasResult>	results;
 	private List<NameValuePair>	categories;
 	private HttpClient httpClient;
+	private HttpContext httpContext;
 
 	@Override
 	public void onCreate()
 	{
 		super.onCreate();
-		httpClient = new DefaultHttpClient();
+		refreshHttp();
 		new HTTPGetTask(this).execute("http://dev.mediatheek.hu.nl/apps/android/Lucas_cat.xml");
 	}
 	
 	public HttpClient getHttpClient(){
 		return httpClient;		
+	}
+	
+	public HttpContext getHttpContext(){
+		return httpContext;		
+	}
+	
+	public void refreshHttp(){
+		httpClient = new DefaultHttpClient();
+		CookieStore cookieStore = new BasicCookieStore();
+		httpContext = new BasicHttpContext();
+		httpContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
 	}
 
 	@Override
