@@ -72,7 +72,7 @@ public class SettingsActivity extends BaseActivity implements
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		MenuInflater menuInflater = getMenuInflater();
-		//menuInflater.inflate(R.menu.settings, menu);
+		menuInflater.inflate(R.menu.settings, menu);
 		return true;// super.onCreateOptionsMenu(menu);
 	}
 
