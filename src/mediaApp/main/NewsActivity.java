@@ -3,17 +3,13 @@ package mediaApp.main;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
 import mediaApp.RSS.RSSItem;
 import mediaApp.RSS.RSSParser;
 import mediaApp.compatible.ActionBarListActivity;
-
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -33,8 +29,8 @@ import android.widget.TextView;
 
 public class NewsActivity extends ActionBarListActivity
 {
-	
-	static final String TAG 				= "NewsAct";
+
+	static final String			TAG			= "NewsAct";
 
 	private ArrayList<RSSItem>	itemlist	= null;
 	private RSSListAdapter		rssadapter	= null;
@@ -50,6 +46,12 @@ public class NewsActivity extends ActionBarListActivity
 		}
 
 		itemlist = new ArrayList<RSSItem>();
+	}
+
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
 
 		new RetrieveRSSFeeds().execute();
 	}
@@ -59,7 +61,7 @@ public class NewsActivity extends ActionBarListActivity
 	{
 		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.news, menu);
-		return true;//super.onCreateOptionsMenu(menu);
+		return true;// super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
@@ -74,8 +76,7 @@ public class NewsActivity extends ActionBarListActivity
 				break;
 
 			case R.id.menu_news:
-				final Intent news = new Intent(this, NewsActivity.class);
-				startActivity(news);
+				new RetrieveRSSFeeds().execute();
 				break;
 
 			case R.id.menu_search:
