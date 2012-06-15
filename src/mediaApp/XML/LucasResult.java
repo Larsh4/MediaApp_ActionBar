@@ -1,4 +1,4 @@
-package mediaApp.main;
+package mediaApp.XML;
 
 import java.net.MalformedURLException;
 import java.net.URL;

@@ -1,6 +1,8 @@
 package mediaApp.main;
 
 import java.util.List;
+
+import mediaApp.XML.LucasResult;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;

@@ -1,6 +1,8 @@
 package mediaApp.main;
 
 import java.util.List;
+
+import mediaApp.XML.LucasResult;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

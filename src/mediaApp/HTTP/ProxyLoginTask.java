@@ -1,22 +1,35 @@
 package mediaApp.HTTP;
 
-import java.io.PrintWriter;
-import java.net.HttpURLConnection;
+import java.io.IOException;
 import java.net.SocketTimeoutException;
-import java.net.URL;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+
+import mediaApp.main.MediaApplication;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.ParseException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
 public class ProxyLoginTask extends AsyncTask<String, Void, String>
 {
-	static final String TAG = "ProxyLoginTask";
-	private final HTTPResponseListener	listener;
 
-	public ProxyLoginTask(HTTPResponseListener list)
+	static final String					TAG	= "ProxyLoginTaskAlt";
+	private final HTTPResponseListener	listener;
+	private MediaApplication			application;
+
+	public ProxyLoginTask(HTTPResponseListener list, MediaApplication app)
 	{
 		listener = list;
+		application = app;
 	}
 
 	/**
@@ -32,63 +45,44 @@ public class ProxyLoginTask extends AsyncTask<String, Void, String>
 	@Override
 	protected String doInBackground(String... args)
 	{
-		String response = "";
+		HttpResponse response = null;
 
 		try
 		{
-			URL url = new URL(args[0]);
-
-			String postParams = "user=" + args[1] + "&pass=" + args[2];
-
-			HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
-			httpConn.setDoOutput(true);
-			httpConn.setRequestMethod("POST");
-			httpConn.setFixedLengthStreamingMode(postParams.getBytes().length);
-
-			// This is where we actually add the POST parameters to the connection
-			Log.v(TAG,"getOutputStream");
-			PrintWriter out = new PrintWriter(httpConn.getOutputStream());
-			out.print(postParams);
-			out.close();
-			
-			Log.v(TAG,"getInputStream");	
-			Scanner inStream = new Scanner(httpConn.getInputStream());
-			Log.v(TAG,"while hasNextLine");
-			while (inStream.hasNextLine())
-			{
-				if (isCancelled())
-				{
-					inStream.close();
-					httpConn.disconnect();
-					return null;
-				}
-				Log.v(TAG,"getNextLine");
-				response += (inStream.nextLine());
-			}
-			Log.i(TAG,"Closing/Disconnecting");
-			inStream.close();
-			httpConn.disconnect();
+			HttpClient httpclient = application.getHttpClient();
+			HttpPost httppost = new HttpPost(args[0]);//url		
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			nameValuePairs.add(new BasicNameValuePair("user", args[1]));
+			nameValuePairs.add(new BasicNameValuePair("pass", args[2]));
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			response = httpclient.execute(httppost, application.getHttpContext());
 		}
 		catch (SocketTimeoutException e)
 		{
-			 Log.e(TAG, "doInBackground socket timed out", e);
+			Log.e(TAG, "doInBackground socket timed out", e);
 		}
 		catch (Exception e)
 		{
-			 Log.e(TAG, "Error in doInbackground: ", e);
+			Log.e(TAG, "Error in doInbackground: ", e);
 		}
-		Log.v(TAG,"done");
-		return response;
+		Log.v(TAG, "done");
+		if (response != null){
+			try {
+				Log.v(TAG,"response received");
+				return EntityUtils.toString(response.getEntity());
+			} catch (ParseException e) {
+				return null;
+			} catch (IOException e) {
+				return null;
+			}
+		}
+		return null;
 	}
 
 	@Override
 	protected void onPostExecute(String result)
 	{
-		Log.v(TAG,"onPostExecute");
-		if (listener != null && result != null)
-		{
+		if (listener != null)
 			listener.onResponseReceived(result);
-		}
 	}
-
 }

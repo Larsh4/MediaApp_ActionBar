@@ -4,6 +4,8 @@ import java.util.List;
 
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
+import mediaApp.XML.CategoryParser;
+import mediaApp.XML.LucasResult;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
@@ -30,7 +32,7 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	{
 		super.onCreate();
 		refreshHttp();
-		new HTTPGetTask(this).execute("http://dev.mediatheek.hu.nl/apps/android/Lucas_cat.xml");
+		new HTTPGetTask(this, this).execute("http://dev.mediatheek.hu.nl/apps/android/Lucas_cat.xml");
 	}
 	
 	public HttpClient getHttpClient(){

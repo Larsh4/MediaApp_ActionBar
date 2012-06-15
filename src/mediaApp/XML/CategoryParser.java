@@ -1,4 +1,4 @@
-package mediaApp.main;
+package mediaApp.XML;
 
 import java.io.StringReader;
 import java.util.ArrayList;

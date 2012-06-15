@@ -3,8 +3,10 @@ package mediaApp.main;
 import java.util.ArrayList;
 import java.util.List;
 
-import mediaApp.HTTP.HTTPGetTaskAlt;
+import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
+import mediaApp.XML.LucasParser;
+import mediaApp.XML.LucasResult;
 
 import org.apache.http.NameValuePair;
 
@@ -176,7 +178,7 @@ public class SearchActivity extends BaseActivity implements
 				else
 				{
 					showDialog(SEARCHING_DIALOG);
-					new HTTPGetTaskAlt(this, (MediaApplication) getApplication()).execute(createURL());
+					new HTTPGetTask(this, (MediaApplication) getApplication()).execute(createURL());
 				}
 				break;
 		}

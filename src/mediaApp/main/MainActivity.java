@@ -1,7 +1,7 @@
 package mediaApp.main;
 
 import mediaApp.HTTP.HTTPResponseListener;
-import mediaApp.HTTP.ProxyLoginTaskAlt;
+import mediaApp.HTTP.ProxyLoginTask;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -53,10 +53,6 @@ public class MainActivity extends BaseActivity implements
 		ETPass = (EditText) findViewById(R.id.ETLoginPass);
 		CHRemember = (CheckBox) findViewById(R.id.CHLoginRemember);
 		((Button) findViewById(R.id.BLogin)).setOnClickListener(this);
-
-		// auto login if remembered
-		if (CHRemember.isChecked())
-			login();
 	}
 
 	@Override
@@ -64,6 +60,9 @@ public class MainActivity extends BaseActivity implements
 	{
 		super.onResume();
 		LoadPreferences();
+		// auto login if remembered
+		if (CHRemember.isChecked())
+			login();		
 	}
 
 	@Override
@@ -188,7 +187,7 @@ public class MainActivity extends BaseActivity implements
 
 		showDialog(LOGGING_IN_DIALOG);
 		((MediaApplication) getApplication()).refreshHttp();
-		ProxyLoginTaskAlt plt = new ProxyLoginTaskAlt(this, (MediaApplication) getApplication());
+		ProxyLoginTask plt = new ProxyLoginTask(this, (MediaApplication) getApplication());
 		plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), ETPass.getText().toString());
 	}
 }

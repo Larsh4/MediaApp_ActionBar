@@ -1,5 +1,6 @@
 package mediaApp.main;
 
+import mediaApp.XML.LucasResult;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
