@@ -10,11 +10,9 @@ import mediaApp.main.MediaApplication;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
-import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
@@ -52,8 +50,7 @@ public class ProxyLoginTaskAlt extends AsyncTask<String, Void, String>
 		try
 		{
 			HttpClient httpclient = application.getHttpClient();
-			HttpPost httppost = new HttpPost(args[0]);//url
-			CookieStore cookieStore = new BasicCookieStore();			
+			HttpPost httppost = new HttpPost(args[0]);//url		
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			nameValuePairs.add(new BasicNameValuePair("user", args[1]));
 			nameValuePairs.add(new BasicNameValuePair("pass", args[2]));
@@ -86,8 +83,6 @@ public class ProxyLoginTaskAlt extends AsyncTask<String, Void, String>
 	protected void onPostExecute(String result)
 	{
 		if (listener != null)
-		{
 			listener.onResponseReceived(result);
-		}
 	}
 }

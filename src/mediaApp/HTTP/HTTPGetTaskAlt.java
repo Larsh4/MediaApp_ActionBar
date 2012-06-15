@@ -64,11 +64,7 @@ public class HTTPGetTaskAlt extends AsyncTask<String, String, String>
 	protected void onPostExecute(String result)
 	{
 		super.onPostExecute(result);
-		// Do anything with response..
 		if (result != null)
-		{
-			// Log.d(TAG, result);
 			listener.onResponseReceived(result);
-		}
 	}
 }
