@@ -5,8 +5,9 @@
 -email/share search detail			x
 -make database values updatable		x
 -fix up button						x
--fix icon size(rss?)
+-fix icon size(rss?)				x
 -setting is scrollview
+-fix crash on non-xml search result 
 
 
 
