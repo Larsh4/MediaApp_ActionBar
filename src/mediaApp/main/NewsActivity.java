@@ -26,6 +26,7 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -70,6 +71,55 @@ public class NewsActivity extends ActionBarListActivity
 		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.news, menu);
 		return true;// super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+			case android.R.id.home:
+				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+				int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
+				Intent intent;
+				switch (StartUpSelection)
+				{
+					case R.id.RBSearch:
+						intent = new Intent(this, SearchActivity.class);
+						break;
+					case R.id.RBNews:
+						intent = new Intent(this, NewsActivity.class);
+						break;
+					case R.id.RBContact:
+						intent = new Intent(this, ContactActivity.class);
+						break;
+					default:
+						intent = new Intent(this, NewsActivity.class);
+						break;
+				}
+				startActivity(intent);
+				break;
+
+			case R.id.menu_news:
+				new RetrieveRSSFeeds().execute();
+				break;
+
+			case R.id.menu_search:
+				final Intent search = new Intent(this, SearchActivity.class);
+				startActivity(search);
+				break;
+
+			case R.id.menu_contact:
+				final Intent contact = new Intent(this, ContactActivity.class);
+				startActivity(contact);
+				break;
+
+			case R.id.menu_settings:
+				final Intent settings = new Intent(this, SettingsActivity.class);
+				startActivity(settings);
+				break;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
