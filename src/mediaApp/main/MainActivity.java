@@ -54,11 +54,16 @@ public class MainActivity extends BaseActivity implements
 		CHRemember = (CheckBox) findViewById(R.id.CHLoginRemember);
 		((Button) findViewById(R.id.BLogin)).setOnClickListener(this);
 
+		// auto login if remembered
+		if (CHRemember.isChecked())
+			login();
+	}
+
+	@Override
+	protected void onResume()
+	{
+		super.onResume();
 		LoadPreferences();
-		
-		//auto login if remembered
-		if(CHRemember.isChecked())
-			login();		
 	}
 
 	@Override
@@ -145,6 +150,7 @@ public class MainActivity extends BaseActivity implements
 					break;
 			}
 			startActivity(intent);
+			finish();
 		}
 		else
 		{
@@ -165,8 +171,9 @@ public class MainActivity extends BaseActivity implements
 			removeDialog(LOGGING_IN_DIALOG);
 		}
 	}
-	
-	private void login(){
+
+	private void login()
+	{
 		SaveIntPreferences(REMEMBER_KEY, CHRemember.isChecked() ? 1 : 0);
 		if (CHRemember.isChecked())
 		{
@@ -180,9 +187,8 @@ public class MainActivity extends BaseActivity implements
 		}
 
 		showDialog(LOGGING_IN_DIALOG);
-		((MediaApplication)getApplication()).refreshHttp();
+		((MediaApplication) getApplication()).refreshHttp();
 		ProxyLoginTaskAlt plt = new ProxyLoginTaskAlt(this, (MediaApplication) getApplication());
-		plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString()
-				, ETPass.getText().toString());		
+		plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), ETPass.getText().toString());
 	}
 }
