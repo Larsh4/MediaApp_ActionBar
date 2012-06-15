@@ -14,11 +14,8 @@ import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
 import android.os.AsyncTask;
@@ -56,14 +53,12 @@ public class ProxyLoginTaskAlt extends AsyncTask<String, Void, String>
 		{
 			HttpClient httpclient = application.getHttpClient();
 			HttpPost httppost = new HttpPost(args[0]);//url
-			CookieStore cookieStore = new BasicCookieStore();
-			HttpContext httpContext = new BasicHttpContext();
-			httpContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+			CookieStore cookieStore = new BasicCookieStore();			
 			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 			nameValuePairs.add(new BasicNameValuePair("user", args[1]));
 			nameValuePairs.add(new BasicNameValuePair("pass", args[2]));
 			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-			response = httpclient.execute(httppost, httpContext);
+			response = httpclient.execute(httppost, application.getHttpContext());
 		}
 		catch (SocketTimeoutException e)
 		{

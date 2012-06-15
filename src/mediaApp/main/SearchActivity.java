@@ -212,7 +212,7 @@ public class SearchActivity extends BaseActivity implements
 
 	private String createURL()
 	{ // added: [serialssolutions.com].www.dbproxy.hu.nl[/sru]
-		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve&x-cs-categories=";
+		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com.www.dbproxy.hu.nl/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve&x-cs-categories=";
 
 		for (int i = 0; i < LV.getCount() - 2; i++) // two less because of 'Other Databases' and 'All
 													// Databases'

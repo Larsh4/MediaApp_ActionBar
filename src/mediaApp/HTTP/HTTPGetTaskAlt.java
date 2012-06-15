@@ -7,13 +7,8 @@ import mediaApp.main.MediaApplication;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
-import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.protocol.ClientContext;
-import org.apache.http.impl.client.BasicCookieStore;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
 import android.os.AsyncTask;
@@ -40,11 +35,8 @@ public class HTTPGetTaskAlt extends AsyncTask<String, String, String>
 		try
 		{
 			HttpClient httpclient = application.getHttpClient();
-			HttpGet httpGet = new HttpGet(args[0]);//url
-			CookieStore cookieStore = new BasicCookieStore();
-			HttpContext httpContext = new BasicHttpContext();
-			httpContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
-			response = httpclient.execute(httpGet, httpContext);		
+			HttpGet httpGet = new HttpGet(args[0]);//url			
+			response = httpclient.execute(httpGet, application.getHttpContext());
 		}
 		catch (SocketTimeoutException e)
 		{
