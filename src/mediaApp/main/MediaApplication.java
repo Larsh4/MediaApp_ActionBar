@@ -29,10 +29,7 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	public void onCreate()
 	{
 		super.onCreate();
-		httpClient = new DefaultHttpClient();
-		CookieStore cookieStore = new BasicCookieStore();
-		httpContext = new BasicHttpContext();
-		httpContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+		refreshHttp();
 		new HTTPGetTask(this).execute("http://dev.mediatheek.hu.nl/apps/android/Lucas_cat.xml");
 	}
 	
@@ -42,6 +39,13 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	
 	public HttpContext getHttpContext(){
 		return httpContext;		
+	}
+	
+	public void refreshHttp(){
+		httpClient = new DefaultHttpClient();
+		CookieStore cookieStore = new BasicCookieStore();
+		httpContext = new BasicHttpContext();
+		httpContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
 	}
 
 	@Override

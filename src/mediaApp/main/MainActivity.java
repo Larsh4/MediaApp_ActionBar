@@ -110,9 +110,10 @@ public class MainActivity extends BaseActivity implements
 				}
 
 				showDialog(LOGGING_IN_DIALOG);
+				((MediaApplication)getApplication()).refreshHttp();
 				ProxyLoginTaskAlt plt = new ProxyLoginTaskAlt(this, (MediaApplication) getApplication());
-				plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), ETPass.getText()
-						.toString());
+				plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString()
+						, ETPass.getText().toString());
 				break;
 		}
 	}
@@ -139,23 +140,23 @@ public class MainActivity extends BaseActivity implements
 			Log.d(TAG, "Login Succesful");
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 			int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
-			Intent serverIntent;
+			Intent intent;
 			switch (StartUpSelection)
 			{
 				case R.id.RBSearch:
-					serverIntent = new Intent(this, SearchActivity.class);
+					intent = new Intent(this, SearchActivity.class);
 					break;
 				case R.id.RBNews:
-					serverIntent = new Intent(this, NewsActivity.class);
+					intent = new Intent(this, NewsActivity.class);
 					break;
 				case R.id.RBContact:
-					serverIntent = new Intent(this, ContactActivity.class);
+					intent = new Intent(this, ContactActivity.class);
 					break;
 				default:
-					serverIntent = new Intent(this, NewsActivity.class);
+					intent = new Intent(this, NewsActivity.class);
 					break;
 			}
-			startActivity(serverIntent);
+			startActivity(intent);
 		}
 		else
 		{
@@ -176,5 +177,4 @@ public class MainActivity extends BaseActivity implements
 			removeDialog(LOGGING_IN_DIALOG);
 		}
 	}
-
 }
