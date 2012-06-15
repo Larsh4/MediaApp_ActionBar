@@ -150,6 +150,7 @@ public class MainActivity extends BaseActivity implements
 					break;
 			}
 			startActivity(intent);
+			finish();
 		}
 		else
 		{
