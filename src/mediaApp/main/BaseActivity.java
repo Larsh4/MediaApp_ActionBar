@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -21,14 +19,6 @@ public abstract class BaseActivity extends ActionBarActivity
 		super.onCreate(savedInstanceState);
 
 		mediaApp = (MediaApplication) getApplication();
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		MenuInflater menuInflater = getMenuInflater();
-		menuInflater.inflate(R.menu.main, menu);
-		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override

@@ -14,13 +14,12 @@
   limitations under the License.
   -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_search" android:title="@string/menuSearch" android:icon="@drawable/ic_action_search" android:orderInCategory="0" android:showAsAction="always" android:enabled="true" android:visible="false"/><item android:id="@+id/menu_news"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"><item android:id="@+id/menu_news"
         android:title="@string/menuNews"
         android:icon="@drawable/ic_action_news"
-        android:orderInCategory="1"
+        android:orderInCategory="0"
         android:showAsAction="always" />
     
-    <item android:id="@+id/menu_contact" android:orderInCategory="2" android:title="@string/menuContact" android:icon="@drawable/ic_action_contact" android:showAsAction="ifRoom"></item>
-    <item android:id="@+id/menu_settings" android:orderInCategory="3" android:title="@string/menuSettings" android:icon="@drawable/ic_action_settings" android:showAsAction="ifRoom"></item>
+    <item android:id="@+id/menu_contact" android:orderInCategory="1" android:title="@string/menuContact" android:icon="@drawable/ic_action_contact" android:showAsAction="ifRoom"></item>
+    <item android:id="@+id/menu_settings" android:orderInCategory="2" android:title="@string/menuSettings" android:icon="@drawable/ic_action_settings" android:showAsAction="ifRoom"></item>
 </menu>

@@ -20,7 +20,5 @@
         android:icon="@drawable/ic_action_news"
         android:orderInCategory="1"
         android:showAsAction="always" />
-    
-    <item android:id="@+id/menu_contact" android:orderInCategory="2" android:title="@string/menuContact" android:icon="@drawable/ic_action_contact" android:showAsAction="ifRoom" android:enabled="true" android:visible="false"></item>
-    <item android:id="@+id/menu_settings" android:orderInCategory="3" android:title="@string/menuSettings" android:icon="@drawable/ic_action_settings" android:showAsAction="ifRoom"></item>
+    <item android:id="@+id/menu_settings" android:orderInCategory="2" android:title="@string/menuSettings" android:icon="@drawable/ic_action_settings" android:showAsAction="ifRoom"></item>
 </menu>
