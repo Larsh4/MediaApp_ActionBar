@@ -1,9 +1,11 @@
 package mediaApp.main;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -20,7 +22,10 @@ public class ContactActivity extends BaseActivity implements OnClickListener
 		setContentView(R.layout.contact);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 		{
-			this.getActionBar().setDisplayHomeAsUpEnabled(true);
+			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+			int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
+			if(StartUpSelection!=R.id.RBContact)
+				this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 		//FCJ
 		Button but = (Button) findViewById(R.id.BEmailFCJ);

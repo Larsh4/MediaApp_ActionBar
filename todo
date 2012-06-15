@@ -1,13 +1,14 @@
--fix proxy login
+-fix proxy login					x
 -show login success/failed			x
 -clean up search results layout		x
 -show amount of results(if 0)
 -email/share search detail			x
--make database values updatable
+-make database values updatable		x
+-fix up button
+-fix icon size(rss?)
+-setting is scrollview
 
 
 
 optional:
--select multiple results to share
--tablet layout
--zoom search detail
+-tablet layout						maandag

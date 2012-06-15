@@ -3,24 +3,29 @@ package mediaApp.main;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+
 import mediaApp.RSS.RSSItem;
 import mediaApp.RSS.RSSParser;
 import mediaApp.compatible.ActionBarListActivity;
+
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -42,7 +47,10 @@ public class NewsActivity extends ActionBarListActivity
 		setContentView(R.layout.news);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 		{
-			this.getActionBar().setDisplayHomeAsUpEnabled(true);
+			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+			int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
+			if(StartUpSelection!=R.id.RBNews)
+				this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 
 		itemlist = new ArrayList<RSSItem>();
@@ -62,39 +70,6 @@ public class NewsActivity extends ActionBarListActivity
 		MenuInflater menuInflater = getMenuInflater();
 		menuInflater.inflate(R.menu.news, menu);
 		return true;// super.onCreateOptionsMenu(menu);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		switch (item.getItemId())
-		{
-			case android.R.id.home:
-				Intent serverIntent = new Intent(this, MainActivity.class);
-				serverIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(serverIntent);
-				break;
-
-			case R.id.menu_news:
-				new RetrieveRSSFeeds().execute();
-				break;
-
-			case R.id.menu_search:
-				final Intent search = new Intent(this, SearchActivity.class);
-				startActivity(search);
-				break;
-
-			case R.id.menu_contact:
-				final Intent contact = new Intent(this, ContactActivity.class);
-				startActivity(contact);
-				break;
-
-			case R.id.menu_settings:
-				final Intent settings = new Intent(this, SettingsActivity.class);
-				startActivity(settings);
-				break;
-		}
-		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

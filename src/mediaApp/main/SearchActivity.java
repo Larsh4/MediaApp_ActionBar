@@ -59,7 +59,10 @@ public class SearchActivity extends BaseActivity implements
 		setContentView(R.layout.search);
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 		{
-			this.getActionBar().setDisplayHomeAsUpEnabled(true);
+			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+			int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
+			if(StartUpSelection!=R.id.RBSearch)
+				this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 
 		// search field part

@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public abstract class BaseActivity extends ActionBarActivity
 {
@@ -27,10 +26,25 @@ public abstract class BaseActivity extends ActionBarActivity
 		switch (item.getItemId())
 		{
 			case android.R.id.home:
-				Toast.makeText(this, "Tapped home", Toast.LENGTH_SHORT).show();
-				Intent serverIntent = new Intent(this, MainActivity.class);
-				serverIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(serverIntent);
+				SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+				int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
+				Intent intent;
+				switch (StartUpSelection)
+				{
+					case R.id.RBSearch:
+						intent = new Intent(this, SearchActivity.class);
+						break;
+					case R.id.RBNews:
+						intent = new Intent(this, NewsActivity.class);
+						break;
+					case R.id.RBContact:
+						intent = new Intent(this, ContactActivity.class);
+						break;
+					default:
+						intent = new Intent(this, NewsActivity.class);
+						break;
+				}
+				startActivity(intent);
 				break;
 
 			case R.id.menu_news:
