@@ -34,6 +34,8 @@
     <string name="searchField">Zoek Velden</string>
     <string name="searchLoading">Zoeken&#8230;</string>
     
+    <string name="settingsLogout">Uitloggen</string>
+    
     <string name="resultDetailLoading">Pagina wordt geladen&#8230;</string>
 
     <string-array name="searchFieldArray">

@@ -91,6 +91,7 @@
     
     <string name="settingsCheckBoxShow">Show</string><string name="dialogLoginUnsuccessful">Login was unsuccessful</string>
     <string name="dialogLoggingIn">Logging in...</string>
+    <string name="settingsLogout">Logout</string>
     
     
 
