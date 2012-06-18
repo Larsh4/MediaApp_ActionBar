@@ -1,17 +1,20 @@
 -fix proxy login					x
 -show login success/failed			x
 -clean up search results layout		x
--show amount of results(if 0)
 -email/share search detail			x
 -make database values updatable		x
 -fix up button						x
 -fix icon size(rss?)				x
--setting is scrollview
+-setting is scrollview				x
+-set amount of results				x
+-show amount of results(if 0)
+-add next page button in results	
 -fix crash on non-xml search result 
--add about page(made by?)
--link to LUCAS website?
+
 
 
 
 optional:
 -tablet layout						maandag
+-add about page(made by?)
+-link to LUCAS website?

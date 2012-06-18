@@ -76,6 +76,13 @@
     <string name="settingsLogout">Logout</string>
     <string name="searchBySubject">Subject</string>
     <string name="searchByDatabase">Database</string>
+    <string name="settingsAmountOfResultsHeader">Set the amount of results to show per page:</string>
+    <string-array name="settingsAmountOfResultsArray">
+        <item >25</item>
+        <item >50</item>
+        <item >75</item>
+        <item >100</item>
+    </string-array>
     
     
 
