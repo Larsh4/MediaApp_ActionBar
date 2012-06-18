@@ -9,6 +9,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class HTTPGetTask extends AsyncTask<String, String, String>
 {
@@ -57,6 +58,7 @@ public class HTTPGetTask extends AsyncTask<String, String, String>
 				return null;
 			}
 		}
+		Log.d(TAG, "Response null");
 		return null;
 	}
 
@@ -66,5 +68,7 @@ public class HTTPGetTask extends AsyncTask<String, String, String>
 		super.onPostExecute(result);
 		if (result != null)
 			listener.onResponseReceived(result);
+		else
+			listener.onNullResponseReceived();
 	}
 }

@@ -127,4 +127,14 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	{
 		this.databases = databases;
 	}
+
+	@Override
+	public void onNullResponseReceived()
+	{
+		if (categories == null)
+			new HTTPGetTask(this, this).execute("http://dev.mediatheek.hu.nl/apps/android/Lucas_cat.xml");
+		else
+			new HTTPGetTask(this, this).execute("http://dev.mediatheek.hu.nl/apps/android/Lucas_dbs.xml");
+
+	}
 }

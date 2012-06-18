@@ -190,4 +190,9 @@ public class MainActivity extends BaseActivity implements
 		ProxyLoginTask plt = new ProxyLoginTask(this, (MediaApplication) getApplication());
 		plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), ETPass.getText().toString());
 	}
+
+	@Override
+	public void onNullResponseReceived()
+	{
+	}
 }

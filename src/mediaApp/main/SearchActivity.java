@@ -2,14 +2,11 @@ package mediaApp.main;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import mediaApp.XML.LucasParser;
 import mediaApp.XML.LucasResult;
-
 import org.apache.http.NameValuePair;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -46,17 +43,17 @@ public class SearchActivity extends BaseActivity implements
 		OnCheckedChangeListener
 {
 
-	private static String		TAG						= "SearchAct";
+	private static String	TAG						= "SearchAct";
 	// UI
-	private ListView			LV;
-	private EditText			ETSearchField;
-	private RadioGroup 			RGSearchBy;
+	private ListView		LV;
+	private EditText		ETSearchField;
+	private RadioGroup		RGSearchBy;
 	// Dialogs
-	static final int			SEARCHING_DIALOG		= 1;
-	static final int			NO_SEARCH_TERM_DIALOG	= 2;
-	static final int			NO_DB_SELECTED_DIALOG	= 3;
-	AlertDialog					alertDialog;
-	ProgressDialog				progressDialog;
+	static final int		SEARCHING_DIALOG		= 1;
+	static final int		NO_SEARCH_TERM_DIALOG	= 2;
+	static final int		NO_DB_SELECTED_DIALOG	= 3;
+	AlertDialog				alertDialog;
+	ProgressDialog			progressDialog;
 	private static List<NameValuePair>	categories, databases;
 
 	public void onCreate(Bundle savedInstanceState)
@@ -239,19 +236,21 @@ public class SearchActivity extends BaseActivity implements
 	{
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com.www.dbproxy.hu.nl/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve";
-		
-		if(startRecord>0){
-			URL += "&startRecord=" ;
+
+		if (startRecord > 0)
+		{
+			URL += "&startRecord=";
 			URL += startRecord;
 		}
-		
-		URL += "&maximumRecords=";	
+
+		URL += "&maximumRecords=";
 		int AmountOfResultPos = sharedPreferences.getInt(SettingsActivity.AMOUNT_KEY, 0);
-		URL += (getResources().getStringArray(R.array.settingsAmountOfResultsArray))[AmountOfResultPos];		
-		
-		switch(RGSearchBy.getCheckedRadioButtonId()){
+		URL += (getResources().getStringArray(R.array.settingsAmountOfResultsArray))[AmountOfResultPos];
+
+		switch (RGSearchBy.getCheckedRadioButtonId())
+		{
 			case R.id.RBSearchBySubject:
-				URL +="&x-cs-categories=";		
+				URL += "&x-cs-categories=";
 				for (int i = 0; i < LV.getCount(); i++)
 				{
 					if (LV.isItemChecked(i))
@@ -262,9 +261,9 @@ public class SearchActivity extends BaseActivity implements
 				}
 				URL = URL.substring(0, URL.length() - 1);
 				break;
-				
+
 			case R.id.RBSearchByDatabase:
-				URL +="&x-cs-databases=";		
+				URL += "&x-cs-databases=";
 				for (int i = 0; i < LV.getCount(); i++)
 				{
 					if (LV.isItemChecked(i))
@@ -276,8 +275,8 @@ public class SearchActivity extends BaseActivity implements
 				URL = URL.substring(0, URL.length() - 1);
 				break;
 		}
-		
-		URL += "&query="; 
+
+		URL += "&query=";
 		URL += ETSearchField.getText().toString();
 		Log.i(TAG, URL);
 		return URL;
@@ -350,5 +349,10 @@ public class SearchActivity extends BaseActivity implements
 
 		if (dbs.size() > 0)
 			LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dbs));
+	}
+
+	@Override
+	public void onNullResponseReceived()
+	{
 	}
 }
