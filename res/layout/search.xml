@@ -57,12 +57,14 @@
             android:layout_margin="10dp"
             android:layout_weight="1" />
     </LinearLayout>
-
+
     <RadioGroup
         android:id="@+id/RGSearchBy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/searchFieldLayout" >
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/searchFieldLayout" android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/RBSearchBySubject"

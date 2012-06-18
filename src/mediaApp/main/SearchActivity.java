@@ -29,6 +29,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 
 public class SearchActivity extends BaseActivity implements
@@ -37,21 +39,22 @@ public class SearchActivity extends BaseActivity implements
 		OnItemClickListener,
 		OnItemSelectedListener,
 		android.content.DialogInterface.OnClickListener,
-		CategoryListener
+		CategoryListener,
+		OnCheckedChangeListener
 {
 
-	private static String				TAG						= "SearchAct";
+	private static String		TAG						= "SearchAct";
 	// UI
-	private ListView					LV;
-	private EditText					ETSearchField;
+	private ListView			LV;
+	private EditText			ETSearchField;
 	// Dialogs
-	static final int					SEARCHING_DIALOG		= 1;
-	static final int					NO_SEARCH_TERM_DIALOG	= 2;
-	static final int					NO_DB_SELECTED_DIALOG	= 3;
-	private static final int			MAX_RECORDS				= 50;
-	AlertDialog							alertDialog;
-	ProgressDialog						progressDialog;
-	private static List<NameValuePair>	categories;
+	static final int			SEARCHING_DIALOG		= 1;
+	static final int			NO_SEARCH_TERM_DIALOG	= 2;
+	static final int			NO_DB_SELECTED_DIALOG	= 3;
+	private static final int	MAX_RECORDS				= 50;
+	AlertDialog					alertDialog;
+	ProgressDialog				progressDialog;
+	private static List<NameValuePair>	categories, databases;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -86,12 +89,14 @@ public class SearchActivity extends BaseActivity implements
 		{
 			LV = (ListView) findViewById(R.id.LSearchBy);
 			LV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-			List<String> databases = new ArrayList<String>();
+			List<String> dbs = new ArrayList<String>();
 			for (NameValuePair nvp : categories)
-				databases.add(nvp.getName());
+				dbs.add(nvp.getName());
 			// databases.add("All databases");
-			LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, databases));
+			LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dbs));
 			LV.setOnItemClickListener(this);
+
+			databases = mediaApp.getDatabases();
 		}
 		else
 		{
@@ -107,6 +112,9 @@ public class SearchActivity extends BaseActivity implements
 		// button part
 		Button button = (Button) findViewById(R.id.searchBut);
 		button.setOnClickListener(this);
+
+		RadioGroup rgDbs = (RadioGroup) findViewById(R.id.RGSearchBy);
+		rgDbs.setOnCheckedChangeListener(this);
 	}
 
 	@Override
@@ -275,15 +283,41 @@ public class SearchActivity extends BaseActivity implements
 	{
 		LV = (ListView) findViewById(R.id.LSearchBy);
 		LV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-		List<String> databases = new ArrayList<String>();
+		List<String> dbs = new ArrayList<String>();
 		for (NameValuePair nvp : categories)
-			databases.add(nvp.getName());
+			dbs.add(nvp.getName());
 		// databases.add("All databases");
-		LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, databases));
+		LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dbs));
 		LV.setOnItemClickListener(this);
 		LV.setVisibility(View.VISIBLE);
 
 		ProgressBar pbLoading = (ProgressBar) findViewById(R.id.PBLoading);
 		pbLoading.setVisibility(View.GONE);
+
+		if (databases == null)
+			databases = mediaApp.getDatabases();
+	}
+
+	@Override
+	public void onCheckedChanged(RadioGroup group, int checkedId)
+	{
+		List<String> dbs = new ArrayList<String>();
+
+		switch (checkedId)
+		{
+			case R.id.RBSearchBySubject:
+				for (NameValuePair nvp : categories)
+					dbs.add(nvp.getName());
+				break;
+			case R.id.RBSearchByDatabase:
+				if (databases == null)
+					databases = mediaApp.getDatabases();
+				for (NameValuePair nvp : databases)
+					dbs.add(nvp.getName());
+				break;
+		}
+
+		if (dbs.size() > 0)
+			LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dbs));
 	}
 }
