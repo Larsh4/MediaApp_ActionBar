@@ -10,7 +10,7 @@
         android:layout_margin="10dp"
         android:text="@string/searchHeader"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
     <LinearLayout
         android:id="@+id/SearchLayout"
         android:layout_width="match_parent"
@@ -19,19 +19,18 @@
 
         <EditText
             android:id="@+id/ETSearch"
-            android:layout_width="0dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_weight="6"
             android:hint="@string/searchTerm"
             android:inputType="textNoSuggestions" />
-
+
         <Button
             android:id="@+id/searchBut"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/menuSearch" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -40,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/SearchLayout"
         android:layout_marginBottom="5dp"
-        android:visibility="gone" >
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/channel"
@@ -57,49 +56,54 @@
             android:layout_margin="10dp"
             android:layout_weight="1" />
     </LinearLayout>
-
-    <RadioGroup
-        android:id="@+id/RGSearchBy"
+
+    <LinearLayout
+        android:id="@+id/SearchByLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/searchFieldLayout" 
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/RBSearchBySubject"
+        android:layout_below="@+id/searchFieldLayout" >
+
+        <RadioGroup
+            android:id="@+id/RGSearchBy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/searchBySubject" />
+            android:layout_marginRight="25dp"
+            android:orientation="vertical" >
 
-        <RadioButton
-            android:id="@+id/RBSearchByDatabase"
-            android:layout_width="wrap_content"
+            <RadioButton
+                android:id="@+id/RBSearchBySubject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/searchBySubject" />
+
+            <RadioButton
+                android:id="@+id/RBSearchByDatabase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/searchByDatabase" />
+        </RadioGroup>
+
+        <ListView
+            android:id="@+id/LSearchBy"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/searchByDatabase" />
-    </RadioGroup>
+            android:layout_weight="1"
+            android:dividerHeight="2dp"
+            android:drawSelectorOnTop="false"
+            android:smoothScrollbar="true" >
+        </ListView>
 
-    <ListView
-        android:id="@+id/LSearchBy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/RGSearchBy"
-        android:dividerHeight="2dp"
-        android:drawSelectorOnTop="false"
-        android:smoothScrollbar="true" >
-
-        <!-- Preview: listitem=@android:layout/simple_list_item_checked -->
-
-    </ListView>
-
+    </LinearLayout>
+
     <ProgressBar
         android:id="@+id/PBLoading"
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" android:visibility="gone"/>
+        android:indeterminate="false"
+        android:visibility="gone" />
 
 </RelativeLayout>

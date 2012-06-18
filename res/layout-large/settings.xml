@@ -18,10 +18,12 @@
     android:id="@+id/SV"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
-
+
     <LinearLayout
         android1:layout_width="match_parent"
         android1:layout_height="wrap_content"
+        android1:layout_marginLeft="25dp"
+        android1:layout_marginRight="25dp"
         android1:orientation="vertical" >
 
         <TextView
@@ -90,7 +92,7 @@
 
         <Button
             android1:id="@+id/BLogout"
-            android1:layout_width="200dp"
+            android1:layout_width="250dp"
             android1:layout_height="wrap_content"
             android1:layout_gravity="center_horizontal"
             android1:layout_marginTop="25dp"
