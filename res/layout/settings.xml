@@ -11,68 +11,88 @@
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
-  limitations under the License.
+  limitations under the License.
 -->
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:android1="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LinearLayout1"
+    android:id="@+id/SV"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android1:layout_marginTop="10dp"
-        android:text="@string/settingsStartupHeader"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+    android:layout_height="fill_parent" >
 
-    <RadioGroup
-        android1:id="@+id/RBGStart"
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content" >
-
-        <RadioButton
-            android1:id="@+id/RBSearch"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:checked="true"
-            android1:text="@string/settingsSearch" />
-
-        <RadioButton
-            android1:id="@+id/RBNews"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:text="@string/settingsNews" />
-
-        <RadioButton
-            android1:id="@+id/RBContact"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:text="@string/settingsContact" />
-
-    </RadioGroup>
-
-    <TextView
-        android1:id="@+id/textView1"
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content"
-        android1:layout_marginTop="10dp"
-        android1:text="Show search field option in LUCAS Search:"
-        android1:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <CheckBox
-        android1:id="@+id/CBShowSearch"
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content"
-        android1:text="Show" />
-
-    <Button
-        android1:id="@+id/BLogout"
+    <LinearLayout
         android1:layout_width="match_parent"
         android1:layout_height="wrap_content"
-        android1:text="@string/settingsLogout" />
+        android1:orientation="vertical" >
 
-</LinearLayout>
+        <TextView
+            android1:id="@+id/TV0"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:layout_marginTop="10dp"
+            android1:text="@string/settingsStartupHeader"
+            android1:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RadioGroup
+            android1:id="@+id/RBGStart"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:layout_marginLeft="15dp" >
+
+            <RadioButton
+                android1:id="@+id/RBSearch"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:checked="true"
+                android1:text="@string/settingsSearch" />
+
+            <RadioButton
+                android1:id="@+id/RBNews"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:text="@string/settingsNews" />
+
+            <RadioButton
+                android1:id="@+id/RBContact"
+                android1:layout_width="wrap_content"
+                android1:layout_height="wrap_content"
+                android1:text="@string/settingsContact" />
+        </RadioGroup>
+
+        <TextView
+            android1:id="@+id/TV1"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:layout_marginTop="10dp"
+            android1:text="@string/settingsAmountOfResultsHeader"
+            android1:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Spinner
+            android1:id="@+id/SAmountOfResults"
+            android1:layout_width="150dp"
+            android1:layout_height="wrap_content"
+            android1:layout_marginLeft="15dp"
+            android1:entries="@array/settingsAmountOfResultsArray" />
+
+        <TextView
+            android1:id="@+id/TV2"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:layout_marginTop="10dp"
+            android1:text="Show search field option in LUCAS Search:"
+            android1:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <CheckBox
+            android1:id="@+id/CBShowSearch"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:layout_marginLeft="15dp"
+            android1:text="Show" />
+
+        <Button
+            android1:id="@+id/BLogout"
+            android1:layout_width="match_parent"
+            android1:layout_height="wrap_content"
+            android1:text="@string/settingsLogout" />
+    </LinearLayout>
+
+</ScrollView>

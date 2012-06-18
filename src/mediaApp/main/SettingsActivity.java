@@ -10,27 +10,33 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.Spinner;
 
 public class SettingsActivity extends BaseActivity implements
 		OnCheckedChangeListener,
 		android.widget.CompoundButton.OnCheckedChangeListener,
-		OnClickListener
+		OnClickListener,
+		OnItemSelectedListener
 {
 
 	static final String	TAG				= "SettingsAct";
 
 	// UI
-	RadioGroup			RGStartup;
-	CheckBox			CBShowSearch;
+	private RadioGroup			RGStartup;
+	private CheckBox			CBShowSearch;
+	private Spinner				SAmount;
+	private Button				BLogout;
 	// Preference Keys
 	static final String	SELECTION_KEY	= "RGStartupSel";
+	static final String	AMOUNT_KEY		= "SAmountOfResults";
 	static final String	SHOW_KEY		= "CHShowSearch";
-	private Button		logoutButton;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -43,18 +49,21 @@ public class SettingsActivity extends BaseActivity implements
 
 		RGStartup = (RadioGroup) findViewById(R.id.RBGStart);
 		CBShowSearch = (CheckBox) findViewById(R.id.CBShowSearch);
+		SAmount = (Spinner) findViewById(R.id.SAmountOfResults);
+		BLogout = (Button) findViewById(R.id.BLogout);
+		
 		LoadPreferences();
+		
 		RGStartup.setOnCheckedChangeListener(this);
 		CBShowSearch.setOnCheckedChangeListener(this);
-
-		logoutButton = (Button) findViewById(R.id.BLogout);
-		logoutButton.setOnClickListener(this);
+		SAmount.setOnItemSelectedListener(this);
+		BLogout.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(View v)
 	{
-		if (v == logoutButton)
+		if (v == BLogout)
 		{
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 			Editor editor = prefs.edit();
@@ -84,6 +93,8 @@ public class SettingsActivity extends BaseActivity implements
 		int CheckBoxState = sharedPreferences.getInt(SHOW_KEY, 0);
 		if (CheckBoxState == 1)
 			CBShowSearch.setChecked(true);
+		int SpinnerPos = sharedPreferences.getInt(AMOUNT_KEY, 0);
+		SAmount.setSelection(SpinnerPos);
 	}
 
 	@Override
@@ -101,5 +112,15 @@ public class SettingsActivity extends BaseActivity implements
 		else
 			i = 0;
 		SaveIntPreferences(SHOW_KEY, i);
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+			long arg3) {
+		SaveIntPreferences(AMOUNT_KEY, arg2);		
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
 	}
 }
