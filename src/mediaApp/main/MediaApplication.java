@@ -105,7 +105,10 @@ public class MediaApplication extends Application implements HTTPResponseListene
 
 	public void setCategoryListener(CategoryListener cList)
 	{
-		catListener = cList;
+		if (categories == null)
+			catListener = cList;
+		else
+			cList.categoriesLoaded();
 	}
 
 	/**
