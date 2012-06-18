@@ -9,8 +9,9 @@ import java.util.Date;
 public class LucasResult implements Comparable<LucasResult>
 {
 
-	static final SimpleDateFormat	FORMATTER			= new SimpleDateFormat("yyyy-MM-dd");
-	static final SimpleDateFormat	YEAR_ONLY_FORMATTER	= new SimpleDateFormat("yyyy");
+	static final SimpleDateFormat	FORMATTER				= new SimpleDateFormat("yyyy-MM-dd");
+	static final SimpleDateFormat	MONTH_YEAR_FORMATTER	= new SimpleDateFormat("MMMM-yyyy");
+	static final SimpleDateFormat	YEAR_ONLY_FORMATTER		= new SimpleDateFormat("yyyy");
 
 	private String					author, title, issn, isbn, source;
 	private URL						url;
@@ -100,7 +101,14 @@ public class LucasResult implements Comparable<LucasResult>
 			}
 			catch (ParseException e2)
 			{
-				throw new RuntimeException(e2);
+				try
+				{
+					this.date = MONTH_YEAR_FORMATTER.parse(date.trim());
+				}
+				catch (ParseException e3)
+				{
+					this.date = null;
+				}
 			}
 		}
 		if (this.date.getTime() > new Date().getTime())
