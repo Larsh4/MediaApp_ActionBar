@@ -41,6 +41,7 @@
         android:layout_below="@+id/SearchHeader"
         android:layout_toRightOf="@id/SearchLayout"
         android:visibility="gone" >
+        
 
         <TextView
             android:id="@+id/channel"
@@ -54,8 +55,7 @@
             android:id="@+id/searchFieldSpinner"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="1" />
+            android:layout_margin="10dp" />
     </LinearLayout>
 
     <ProgressBar
