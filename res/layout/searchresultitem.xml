@@ -20,6 +20,13 @@
         android:layout_width="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@id/TVResultTitle" android:textStyle="italic"/>
-    
+
+    <TextView
+        android:id="@+id/TVResultSource"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/TVResultAuthor"
+        android:textStyle="italic" />
 
 </RelativeLayout>

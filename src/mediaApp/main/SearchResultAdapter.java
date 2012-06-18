@@ -41,6 +41,9 @@ public class SearchResultAdapter extends BaseAdapter
 
 			textView = (TextView) view.findViewById(R.id.TVResultDate);
 			textView.setText(curResult.getDate());
+			
+			textView = (TextView) view.findViewById(R.id.TVResultSource);
+			textView.setText("Source : "+curResult.getSource());
 		}
 		else
 			view = convertView;
