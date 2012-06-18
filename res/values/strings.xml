@@ -33,6 +33,7 @@
     <string name="searchTerm">[search term]</string>
     <string name="searchField">Search Field</string>
     <string name="searchLoading">Searching&#8230;</string>
+    <string name="resultsNoResults">No results were found.</string>
     
     <string name="resultDetailLoading">Loading page&#8230;</string>
 

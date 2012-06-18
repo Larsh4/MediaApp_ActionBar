@@ -1,7 +1,6 @@
 package mediaApp.main;
 
 import java.util.List;
-
 import mediaApp.XML.LucasResult;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SearchResultActivity extends BaseActivity implements OnItemClickListener
@@ -34,9 +34,19 @@ public class SearchResultActivity extends BaseActivity implements OnItemClickLis
 
 		ListView resultList = (ListView) findViewById(R.id.LVResults);
 		results = mediaApp.getResults();
-		LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		resultList.setAdapter(new SearchResultAdapter(inflater, results));
-		resultList.setOnItemClickListener(this);
+		if (results != null && results.size() > 0)
+		{
+			LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			resultList.setAdapter(new SearchResultAdapter(inflater, results));
+			resultList.setOnItemClickListener(this);
+		}
+		else
+		{
+			resultList.setVisibility(View.GONE);
+			TextView noResultsText = (TextView) findViewById(R.id.TVNoResults);
+			noResultsText.setVisibility(View.VISIBLE);
+		}
+
 	}
 
 	@Override
