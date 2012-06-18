@@ -1,7 +1,6 @@
 package mediaApp.main;
 
 import java.util.List;
-
 import mediaApp.XML.LucasResult;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,26 +26,39 @@ public class SearchResultAdapter extends BaseAdapter
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
 		View view = null;
+
 		if (convertView == null)
-		{
-			LucasResult curResult = results.get(position);
-
 			view = inflater.inflate(R.layout.searchresultitem, parent, false);
-
-			TextView textView = (TextView) view.findViewById(R.id.TVResultTitle);
-			textView.setText(curResult.getTitle());
-
-			textView = (TextView) view.findViewById(R.id.TVResultAuthor);
-			textView.setText(curResult.getAuthor());
-
-			textView = (TextView) view.findViewById(R.id.TVResultDate);
-			textView.setText(curResult.getDate());
-			
-			textView = (TextView) view.findViewById(R.id.TVResultSource);
-			textView.setText("Source : "+curResult.getSource());
-		}
 		else
 			view = convertView;
+
+		LucasResult curResult = results.get(position);
+
+		TextView textView = (TextView) view.findViewById(R.id.TVResultTitle);
+		textView.setText(curResult.getTitle());
+
+		String text = curResult.getAuthor();
+		textView = (TextView) view.findViewById(R.id.TVResultAuthor);
+		if (text != null)
+			textView.setText(text);
+		else
+			textView.setVisibility(View.GONE);
+
+		text = curResult.getDate();
+		textView = (TextView) view.findViewById(R.id.TVResultDate);
+
+		if (text != null)
+			textView.setText(curResult.getDate());
+		else
+			textView.setVisibility(View.GONE);
+
+		text = curResult.getSource();
+		textView = (TextView) view.findViewById(R.id.TVResultSource);
+
+		if (text != null)
+			textView.setText("Source : " + curResult.getSource());
+		else
+			textView.setVisibility(View.GONE);
 
 		return view;
 	}
