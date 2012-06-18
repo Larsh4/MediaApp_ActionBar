@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
-
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -23,7 +21,7 @@ public class LucasParser extends DefaultHandler
 	private static final String	DATE	= "issued";
 	private static final String	ISSN	= "issn";
 	private static final String	ISBN	= "isbn";
-	private static final String	SOURCE	= "source";
+	private static final String	SOURCE	= "datebasename";
 
 	private List<LucasResult>	results;
 	private LucasResult			currentResult;
