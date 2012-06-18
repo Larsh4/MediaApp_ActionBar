@@ -111,7 +111,7 @@ public class LucasResult implements Comparable<LucasResult>
 				}
 			}
 		}
-		if (this.date.getTime() > new Date().getTime())
+		if (this.date != null && this.date.getTime() > new Date().getTime())
 			this.date = null;
 	}
 
