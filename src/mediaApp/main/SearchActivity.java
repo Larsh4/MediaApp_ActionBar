@@ -2,11 +2,14 @@ package mediaApp.main;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import mediaApp.XML.LucasParser;
 import mediaApp.XML.LucasResult;
+
 import org.apache.http.NameValuePair;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -48,7 +51,6 @@ public class SearchActivity extends BaseActivity implements
 	static final int					SEARCHING_DIALOG		= 1;
 	static final int					NO_SEARCH_TERM_DIALOG	= 2;
 	static final int					NO_DB_SELECTED_DIALOG	= 3;
-	private static final int			MAX_RECORDS				= 50;
 	AlertDialog							alertDialog;
 	ProgressDialog						progressDialog;
 	private static List<NameValuePair>	categories;
@@ -194,7 +196,7 @@ public class SearchActivity extends BaseActivity implements
 				else
 				{
 					showDialog(SEARCHING_DIALOG);
-					new HTTPGetTask(this, (MediaApplication) getApplication()).execute(createURL());
+					new HTTPGetTask(this, (MediaApplication) getApplication()).execute(createURL(0));
 				}
 				break;
 		}
@@ -224,11 +226,19 @@ public class SearchActivity extends BaseActivity implements
 		 */
 	}
 
-	private String createURL()
+	private String createURL(int startRecord)
 	{
-		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com.www.dbproxy.hu.nl/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve&maximumRecords="
-			+ MAX_RECORDS + "&x-cs-categories=";
-
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com.www.dbproxy.hu.nl/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve";
+		
+		URL += "&startRecord=" ;
+		URL += startRecord;
+		
+		URL += "&maximumRecords=";	
+		int AmountOfResultPos = sharedPreferences.getInt(SettingsActivity.AMOUNT_KEY, 0);
+		URL += (getResources().getStringArray(R.array.settingsAmountOfResultsArray))[AmountOfResultPos];		
+		
+		URL +="&x-cs-categories=";		
 		for (int i = 0; i < LV.getCount(); i++)
 		{
 			if (LV.isItemChecked(i))
@@ -239,7 +249,8 @@ public class SearchActivity extends BaseActivity implements
 		}
 		URL = URL.substring(0, URL.length() - 1);
 
-		URL += "&query=" + ETSearchField.getText().toString();
+		URL += "&query="; 
+		URL += ETSearchField.getText().toString();
 
 		return URL;
 	}

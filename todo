@@ -2,7 +2,8 @@
 -show login success/failed			x
 -clean up search results layout		x
 -email/share search detail			x
--make database values updatable		x
+-make database values updatable		
+-make subject values updatable		x
 -fix up button						x
 -fix icon size(rss?)				x
 -setting is scrollview				x
