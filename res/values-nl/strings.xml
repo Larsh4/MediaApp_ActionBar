@@ -33,6 +33,7 @@
     <string name="searchTerm">[zoek term]</string>
     <string name="searchField">Zoek Velden</string>
     <string name="searchLoading">Zoeken&#8230;</string>
+    <string name="resultsNoResults">Geen resultaten gevonden.</string>
     
     <string name="settingsLogout">Uitloggen</string>
     
