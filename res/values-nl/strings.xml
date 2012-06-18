@@ -50,24 +50,6 @@
         <item>ISSN</item>
     </string-array>
 
-    <string name="searchDatabases">Databases</string>
-
-    <string-array name="searchDatabaseArray">
-        mediatheek@hu.nl        <item>Alle Databases</item>
-        <item>Catalogi</item>
-        <item>Communicatie &amp; Journalistiek</item>
-        <item>Economie &amp; Managment</item>
-        <item>Educatie</item>
-        <item>Gezondheidzorg</item>
-        <item>Maatschappij &amp; Recht</item>
-        <item>Natuur &amp; Techniek</item>
-        <item>Internetbronnen</item>
-        <item>Beeldmateriaal</item>
-        <item>Nederalandstalig</item>
-        <item>Engelstalig</item>
-        <item>Overige Databases</item>
-    </string-array>
-
     <string name="contactLabel">Contact</string>
     <string name="contactCall">Bel</string>
     <string name="contactEmail">Email</string>
@@ -95,5 +77,7 @@
     <string name="settingsCheckBoxShow">Toon</string>
     <string name="dialogLoginUnsuccessful">Het inloggen is mislukt</string>
     <string name="dialogLoggingIn">Inloggen...</string>
+    <string name="searchBySubject">Onderwerp</string>
+    <string name="searchByDatabase">Database</string>
 
 </resources>

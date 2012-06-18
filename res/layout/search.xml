@@ -31,7 +31,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/menuSearch" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -55,10 +54,31 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"/>
-    </LinearLayout>
 
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/RGSearchBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/RBSearchBySubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/searchBySubject" />
+
+        <RadioButton
+            android:id="@+id/RBSearchByDatabase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/searchByDatabase" />
+
+    </RadioGroup>
+
     <ListView
-        android:id="@+id/databaseList"
+        android:id="@+id/LSearchBy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:dividerHeight="2dp"

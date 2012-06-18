@@ -48,24 +48,6 @@
         <item>ISSN</item>
     </string-array>
 
-    <string name="searchDatabases">Databases</string>
-
-    <string-array name="searchDatabaseArray">
-        <item>Catalogues</item>
-        <item>Communication &amp; Journalism</item>
-        <item>Economy &amp; Managment</item>
-        <item>Education</item>
-        <item>Health Care</item>
-        <item>Society &amp; Law</item>
-        <item>Nature &amp; Technology</item>
-        <item>Internet resources</item>
-        <item>Visual material</item>
-        <item>Dutch databases</item>
-        <item>English databases</item>
-        <item>Other databases</item>
-        <item>Select All</item>
-    </string-array>
-
     <string name="contactLabel">Contact</string>
     <string name="contactCall">Call</string>
     <string name="contactEmail">Email</string>
@@ -92,6 +74,8 @@
     <string name="settingsCheckBoxShow">Show</string><string name="dialogLoginUnsuccessful">Login was unsuccessful</string>
     <string name="dialogLoggingIn">Logging in...</string>
     <string name="settingsLogout">Logout</string>
+    <string name="searchBySubject">Subject</string>
+    <string name="searchByDatabase">Database</string>
     
     
 
