@@ -150,7 +150,8 @@ public class LucasResult implements Comparable<LucasResult>
 	}
 
 	/**
-	 * @param source the source to set
+	 * @param source
+	 *            the source to set
 	 */
 	public void setSource(String source)
 	{
@@ -164,6 +165,9 @@ public class LucasResult implements Comparable<LucasResult>
 		copy.url = url;
 		copy.author = author;
 		copy.date = date;
+		copy.isbn = isbn;
+		copy.issn = issn;
+		copy.source = source;
 		return copy;
 	}
 

@@ -2,14 +2,11 @@ package mediaApp.main;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import mediaApp.XML.LucasParser;
 import mediaApp.XML.LucasResult;
-
 import org.apache.http.NameValuePair;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -49,6 +46,7 @@ public class SearchActivity extends BaseActivity implements
 	static final int					SEARCHING_DIALOG		= 1;
 	static final int					NO_SEARCH_TERM_DIALOG	= 2;
 	static final int					NO_DB_SELECTED_DIALOG	= 3;
+	private static final int			MAX_RECORDS				= 50;
 	AlertDialog							alertDialog;
 	ProgressDialog						progressDialog;
 	private static List<NameValuePair>	categories;
@@ -61,7 +59,7 @@ public class SearchActivity extends BaseActivity implements
 		{
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 			int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
-			if(StartUpSelection!=R.id.RBSearch)
+			if (StartUpSelection != R.id.RBSearch)
 				this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 
@@ -87,7 +85,7 @@ public class SearchActivity extends BaseActivity implements
 		List<String> databases = new ArrayList<String>();
 		for (NameValuePair nvp : categories)
 			databases.add(nvp.getName());
-		//databases.add("All databases");
+		// databases.add("All databases");
 		LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, databases));
 		LV.setOnItemClickListener(this);
 
@@ -96,9 +94,10 @@ public class SearchActivity extends BaseActivity implements
 		Button button = (Button) findViewById(R.id.searchBut);
 		button.setOnClickListener(this);
 	}
-	
+
 	@Override
-	protected void onResume() {
+	protected void onResume()
+	{
 		View searchField = findViewById(R.id.searchFieldLayout);
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 		int show = sharedPreferences.getInt(SettingsActivity.SHOW_KEY, 0);
@@ -204,22 +203,19 @@ public class SearchActivity extends BaseActivity implements
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
-		/*if (position == LV.getCount() - 1)
-		{ // select all item
-			boolean isChecked = LV.isItemChecked(position);
-			for (int i = 0; i < LV.getCount() - 1; i++)
-				LV.setItemChecked(i, isChecked);
-		}
-		else
-			LV.setItemChecked(LV.getCount() - 1, false);
-		*/	
+		/*
+		 * if (position == LV.getCount() - 1) { // select all item boolean isChecked =
+		 * LV.isItemChecked(position); for (int i = 0; i < LV.getCount() - 1; i++) LV.setItemChecked(i,
+		 * isChecked); } else LV.setItemChecked(LV.getCount() - 1, false);
+		 */
 	}
 
 	private String createURL()
-	{ 
-		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com.www.dbproxy.hu.nl/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve&x-cs-categories=";
+	{
+		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com.www.dbproxy.hu.nl/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve&maximumRecords="
+			+ MAX_RECORDS + "&x-cs-categories=";
 
-		for (int i = 0; i < LV.getCount(); i++) 												
+		for (int i = 0; i < LV.getCount(); i++)
 		{
 			if (LV.isItemChecked(i))
 			{
@@ -237,7 +233,7 @@ public class SearchActivity extends BaseActivity implements
 	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3)
 	{
-		
+
 	}
 
 	@Override
