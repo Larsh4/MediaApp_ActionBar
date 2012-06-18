@@ -2,11 +2,14 @@ package mediaApp.main;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import mediaApp.XML.LucasParser;
 import mediaApp.XML.LucasResult;
+
 import org.apache.http.NameValuePair;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -29,8 +32,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RadioGroup;
-import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 
 public class SearchActivity extends BaseActivity implements
@@ -39,22 +40,20 @@ public class SearchActivity extends BaseActivity implements
 		OnItemClickListener,
 		OnItemSelectedListener,
 		android.content.DialogInterface.OnClickListener,
-		CategoryListener,
-		OnCheckedChangeListener
+		CategoryListener
 {
 
-	private static String		TAG						= "SearchAct";
+	private static String				TAG						= "SearchAct";
 	// UI
-	private ListView			LV;
-	private EditText			ETSearchField;
+	private ListView					LV;
+	private EditText					ETSearchField;
 	// Dialogs
-	static final int			SEARCHING_DIALOG		= 1;
-	static final int			NO_SEARCH_TERM_DIALOG	= 2;
-	static final int			NO_DB_SELECTED_DIALOG	= 3;
-	private static final int	MAX_RECORDS				= 50;
-	AlertDialog					alertDialog;
-	ProgressDialog				progressDialog;
-	private static List<NameValuePair>	categories, databases;
+	static final int					SEARCHING_DIALOG		= 1;
+	static final int					NO_SEARCH_TERM_DIALOG	= 2;
+	static final int					NO_DB_SELECTED_DIALOG	= 3;
+	AlertDialog							alertDialog;
+	ProgressDialog						progressDialog;
+	private static List<NameValuePair>	categories;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -89,14 +88,12 @@ public class SearchActivity extends BaseActivity implements
 		{
 			LV = (ListView) findViewById(R.id.LSearchBy);
 			LV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-			List<String> dbs = new ArrayList<String>();
+			List<String> databases = new ArrayList<String>();
 			for (NameValuePair nvp : categories)
-				dbs.add(nvp.getName());
+				databases.add(nvp.getName());
 			// databases.add("All databases");
-			LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dbs));
+			LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, databases));
 			LV.setOnItemClickListener(this);
-
-			databases = mediaApp.getDatabases();
 		}
 		else
 		{
@@ -112,9 +109,6 @@ public class SearchActivity extends BaseActivity implements
 		// button part
 		Button button = (Button) findViewById(R.id.searchBut);
 		button.setOnClickListener(this);
-
-		RadioGroup rgDbs = (RadioGroup) findViewById(R.id.RGSearchBy);
-		rgDbs.setOnCheckedChangeListener(this);
 	}
 
 	@Override
@@ -202,7 +196,7 @@ public class SearchActivity extends BaseActivity implements
 				else
 				{
 					showDialog(SEARCHING_DIALOG);
-					new HTTPGetTask(this, (MediaApplication) getApplication()).execute(createURL());
+					new HTTPGetTask(this, (MediaApplication) getApplication()).execute(createURL(0));
 				}
 				break;
 		}
@@ -232,11 +226,19 @@ public class SearchActivity extends BaseActivity implements
 		 */
 	}
 
-	private String createURL()
+	private String createURL(int startRecord)
 	{
-		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com.www.dbproxy.hu.nl/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve&maximumRecords="
-			+ MAX_RECORDS + "&x-cs-categories=";
-
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+		String URL = "http://yd3wb8fs2g.cs.xml.serialssolutions.com.www.dbproxy.hu.nl/sru?version=1.1&recordSchema=cs1.2&operation=searchRetrieve";
+		
+		URL += "&startRecord=" ;
+		URL += startRecord;
+		
+		URL += "&maximumRecords=";	
+		int AmountOfResultPos = sharedPreferences.getInt(SettingsActivity.AMOUNT_KEY, 0);
+		URL += (getResources().getStringArray(R.array.settingsAmountOfResultsArray))[AmountOfResultPos];		
+		
+		URL +="&x-cs-categories=";		
 		for (int i = 0; i < LV.getCount(); i++)
 		{
 			if (LV.isItemChecked(i))
@@ -247,7 +249,8 @@ public class SearchActivity extends BaseActivity implements
 		}
 		URL = URL.substring(0, URL.length() - 1);
 
-		URL += "&query=" + ETSearchField.getText().toString();
+		URL += "&query="; 
+		URL += ETSearchField.getText().toString();
 
 		return URL;
 	}
@@ -283,41 +286,15 @@ public class SearchActivity extends BaseActivity implements
 	{
 		LV = (ListView) findViewById(R.id.LSearchBy);
 		LV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-		List<String> dbs = new ArrayList<String>();
+		List<String> databases = new ArrayList<String>();
 		for (NameValuePair nvp : categories)
-			dbs.add(nvp.getName());
+			databases.add(nvp.getName());
 		// databases.add("All databases");
-		LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dbs));
+		LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, databases));
 		LV.setOnItemClickListener(this);
 		LV.setVisibility(View.VISIBLE);
 
 		ProgressBar pbLoading = (ProgressBar) findViewById(R.id.PBLoading);
 		pbLoading.setVisibility(View.GONE);
-
-		if (databases == null)
-			databases = mediaApp.getDatabases();
-	}
-
-	@Override
-	public void onCheckedChanged(RadioGroup group, int checkedId)
-	{
-		List<String> dbs = new ArrayList<String>();
-
-		switch (checkedId)
-		{
-			case R.id.RBSearchBySubject:
-				for (NameValuePair nvp : categories)
-					dbs.add(nvp.getName());
-				break;
-			case R.id.RBSearchByDatabase:
-				if (databases == null)
-					databases = mediaApp.getDatabases();
-				for (NameValuePair nvp : databases)
-					dbs.add(nvp.getName());
-				break;
-		}
-
-		if (dbs.size() > 0)
-			LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dbs));
 	}
 }
