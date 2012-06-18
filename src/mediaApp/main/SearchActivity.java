@@ -79,7 +79,7 @@ public class SearchActivity extends BaseActivity implements
 		S.setOnItemSelectedListener(this);
 
 		// databases part
-		LV = (ListView) findViewById(R.id.databaseList);
+		LV = (ListView) findViewById(R.id.LSearchBy);
 		LV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		categories = mediaApp.getCategories();
 		List<String> databases = new ArrayList<String>();
