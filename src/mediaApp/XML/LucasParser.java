@@ -21,7 +21,7 @@ public class LucasParser extends DefaultHandler
 	private static final String	DATE	= "issued";
 	private static final String	ISSN	= "issn";
 	private static final String	ISBN	= "isbn";
-	private static final String	SOURCE	= "datebasename";
+	private static final String	SOURCE	= "databaseName";
 
 	private List<LucasResult>	results;
 	private LucasResult			currentResult;
