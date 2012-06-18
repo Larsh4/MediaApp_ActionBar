@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity implements
 		LoadPreferences();
 		// auto login if remembered
 		if (CHRemember.isChecked())
-			login();		
+			login();
 	}
 
 	@Override
@@ -124,7 +124,7 @@ public class MainActivity extends BaseActivity implements
 	@Override
 	public void onResponseReceived(String response)
 	{
-		Log.v(TAG, "onResponseReceived");
+		Log.v(TAG, "Response: " + response);
 		removeDialog(LOGGING_IN_DIALOG);
 
 		if (response != null && response.startsWith("<html>\n<head>\n<title>Database Menu</title>"))

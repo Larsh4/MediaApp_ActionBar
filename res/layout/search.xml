@@ -1,8 +1,7 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LinearLayout1"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent" >
 
     <TextView
         android:id="@+id/SearchHeader"
@@ -13,8 +12,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <LinearLayout
+        android:id="@+id/LinearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SearchHeader" >
 
         <EditText
             android:id="@+id/ETSearch"
@@ -37,8 +38,9 @@
         android:id="@+id/searchFieldLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp" 
-        android:visibility="gone">
+        android:layout_below="@+id/LinearLayout2"
+        android:layout_marginBottom="5dp"
+        android:visibility="gone" >
 
         <TextView
             android:id="@+id/channel"
@@ -46,41 +48,41 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="@string/searchField"
-            android:textAppearance="?android:attr/textAppearanceMedium"/>
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Spinner
             android:id="@+id/searchFieldSpinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_weight="1"/>
-
+            android:layout_weight="1" />
     </LinearLayout>
-
+
     <RadioGroup
         android:id="@+id/RGSearchBy"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchFieldLayout" >
+
         <RadioButton
             android:id="@+id/RBSearchBySubject"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
             android:text="@string/searchBySubject" />
-
+
         <RadioButton
             android:id="@+id/RBSearchByDatabase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/searchByDatabase" />
-
     </RadioGroup>
-
+
     <ListView
         android:id="@+id/LSearchBy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/RGSearchBy"
         android:dividerHeight="2dp"
         android:drawSelectorOnTop="false"
         android:smoothScrollbar="true" >
@@ -89,4 +91,12 @@
 
     </ListView>
 
-</LinearLayout>
+    <ProgressBar
+        android:id="@+id/PBLoading"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" android:visibility="gone"/>
+
+</RelativeLayout>

@@ -1,12 +1,10 @@
 package mediaApp.main;
 
 import java.util.List;
-
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import mediaApp.XML.CategoryParser;
 import mediaApp.XML.LucasResult;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
@@ -15,7 +13,6 @@ import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
-
 import android.app.Application;
 
 public class MediaApplication extends Application implements HTTPResponseListener
@@ -24,8 +21,9 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	private static final String	TAG	= "MediaApp";
 	private List<LucasResult>	results;
 	private List<NameValuePair>	categories;
-	private HttpClient httpClient;
-	private HttpContext httpContext;
+	private HttpClient			httpClient;
+	private HttpContext			httpContext;
+	private CategoryListener	catListener;
 
 	@Override
 	public void onCreate()
@@ -34,16 +32,19 @@ public class MediaApplication extends Application implements HTTPResponseListene
 		refreshHttp();
 		new HTTPGetTask(this, this).execute("http://dev.mediatheek.hu.nl/apps/android/Lucas_cat.xml");
 	}
-	
-	public HttpClient getHttpClient(){
-		return httpClient;		
+
+	public HttpClient getHttpClient()
+	{
+		return httpClient;
 	}
-	
-	public HttpContext getHttpContext(){
-		return httpContext;		
+
+	public HttpContext getHttpContext()
+	{
+		return httpContext;
 	}
-	
-	public void refreshHttp(){
+
+	public void refreshHttp()
+	{
 		httpClient = new DefaultHttpClient();
 		CookieStore cookieStore = new BasicCookieStore();
 		httpContext = new BasicHttpContext();
@@ -88,5 +89,15 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	public void setCategories(List<NameValuePair> categories)
 	{
 		this.categories = categories;
+		if (catListener != null)
+		{
+			catListener.categoriesLoaded();
+			catListener = null;
+		}
+	}
+
+	public void setCategoryListener(CategoryListener cList)
+	{
+		catListener = cList;
 	}
 }

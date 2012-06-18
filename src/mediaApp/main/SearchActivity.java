@@ -28,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
 public class SearchActivity extends BaseActivity implements
@@ -35,7 +36,8 @@ public class SearchActivity extends BaseActivity implements
 		OnClickListener,
 		OnItemClickListener,
 		OnItemSelectedListener,
-		android.content.DialogInterface.OnClickListener
+		android.content.DialogInterface.OnClickListener,
+		CategoryListener
 {
 
 	private static String				TAG						= "SearchAct";
@@ -79,15 +81,27 @@ public class SearchActivity extends BaseActivity implements
 		S.setOnItemSelectedListener(this);
 
 		// databases part
-		LV = (ListView) findViewById(R.id.LSearchBy);
-		LV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		categories = mediaApp.getCategories();
-		List<String> databases = new ArrayList<String>();
-		for (NameValuePair nvp : categories)
-			databases.add(nvp.getName());
-		// databases.add("All databases");
-		LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, databases));
-		LV.setOnItemClickListener(this);
+		if (categories != null)
+		{
+			LV = (ListView) findViewById(R.id.LSearchBy);
+			LV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+			List<String> databases = new ArrayList<String>();
+			for (NameValuePair nvp : categories)
+				databases.add(nvp.getName());
+			// databases.add("All databases");
+			LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, databases));
+			LV.setOnItemClickListener(this);
+		}
+		else
+		{
+			mediaApp.setCategoryListener(this);
+			LV = (ListView) findViewById(R.id.LSearchBy);
+			LV.setVisibility(View.GONE);
+
+			ProgressBar pbLoading = (ProgressBar) findViewById(R.id.PBLoading);
+			pbLoading.setVisibility(View.VISIBLE);
+		}
 
 		ETSearchField = (EditText) findViewById(R.id.ETSearch);
 		// button part
@@ -254,5 +268,22 @@ public class SearchActivity extends BaseActivity implements
 		{
 			removeDialog(SEARCHING_DIALOG);
 		}
+	}
+
+	@Override
+	public void categoriesLoaded()
+	{
+		LV = (ListView) findViewById(R.id.LSearchBy);
+		LV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+		List<String> databases = new ArrayList<String>();
+		for (NameValuePair nvp : categories)
+			databases.add(nvp.getName());
+		// databases.add("All databases");
+		LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, databases));
+		LV.setOnItemClickListener(this);
+		LV.setVisibility(View.VISIBLE);
+
+		ProgressBar pbLoading = (ProgressBar) findViewById(R.id.PBLoading);
+		pbLoading.setVisibility(View.GONE);
 	}
 }
