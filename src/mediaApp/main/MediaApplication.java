@@ -4,6 +4,7 @@ import java.util.List;
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import mediaApp.XML.CategoryParser;
+import mediaApp.XML.DatabaseParser;
 import mediaApp.XML.LucasResult;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
@@ -20,7 +21,7 @@ public class MediaApplication extends Application implements HTTPResponseListene
 
 	private static final String	TAG	= "MediaApp";
 	private List<LucasResult>	results;
-	private List<NameValuePair>	categories;
+	private List<NameValuePair>	categories, databases;
 	private HttpClient			httpClient;
 	private HttpContext			httpContext;
 	private CategoryListener	catListener;
@@ -54,7 +55,13 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	@Override
 	public void onResponseReceived(String response)
 	{
-		setCategories(new CategoryParser().parse(response));
+		if (categories == null)
+		{
+			setCategories(new CategoryParser().parse(response));
+			new HTTPGetTask(this, this).execute("http://dev.mediatheek.hu.nl/apps/android/Lucas_dbs.xml");
+		}
+		else
+			setDatabases(new DatabaseParser().parse(response));
 	}
 
 	/**
@@ -99,5 +106,22 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	public void setCategoryListener(CategoryListener cList)
 	{
 		catListener = cList;
+	}
+
+	/**
+	 * @return the databases
+	 */
+	public List<NameValuePair> getDatabases()
+	{
+		return databases;
+	}
+
+	/**
+	 * @param databases
+	 *            the databases to set
+	 */
+	public void setDatabases(List<NameValuePair> databases)
+	{
+		this.databases = databases;
 	}
 }
