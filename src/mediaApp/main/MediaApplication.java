@@ -16,17 +16,19 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import android.app.Application;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class MediaApplication extends Application implements HTTPResponseListener
 {
 
-	private static final String	TAG	= "MediaApp";
-	private List<LucasResult>	results;
-	private List<Database>		databases;
-	private List<Category>		categories;
-	private HttpClient			httpClient;
-	private HttpContext			httpContext;
-	private CategoryListener	catListener;
+	private static final String		TAG	= "MediaApp";
+	private List<LucasResult>		results;
+	private List<Database>			databases;
+	private List<Category>			categories;
+	private HttpClient				httpClient;
+	private HttpContext				httpContext;
+	private CategoryListener		catListener;
+	private GoogleAnalyticsTracker	tracker;
 
 	@Override
 	public void onCreate()
@@ -34,6 +36,9 @@ public class MediaApplication extends Application implements HTTPResponseListene
 		super.onCreate();
 		refreshHttp();
 		new HTTPGetTask(this, this).execute("http://dev.mediatheek.hu.nl/apps/android/Lucas_cat.xml");
+
+		tracker = GoogleAnalyticsTracker.getInstance();
+		tracker.startNewSession("UA-32745076-1", this);
 	}
 
 	public HttpClient getHttpClient()
@@ -138,5 +143,13 @@ public class MediaApplication extends Application implements HTTPResponseListene
 		else
 			new HTTPGetTask(this, this).execute("http://dev.mediatheek.hu.nl/apps/android/Lucas_dbs.xml");
 
+	}
+
+	/**
+	 * @return the tracker
+	 */
+	public GoogleAnalyticsTracker getTracker()
+	{
+		return tracker;
 	}
 }

@@ -18,6 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class MainActivity extends BaseActivity implements
 		HTTPResponseListener,
@@ -189,6 +190,10 @@ public class MainActivity extends BaseActivity implements
 		((MediaApplication) getApplication()).refreshHttp();
 		ProxyLoginTask plt = new ProxyLoginTask(this, (MediaApplication) getApplication());
 		plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), ETPass.getText().toString());
+
+		GoogleAnalyticsTracker tracker = ((MediaApplication) getApplication()).getTracker();
+		tracker.trackEvent("Android", "proxy", "login", 0);
+		tracker.dispatch();
 	}
 
 	@Override

@@ -3,17 +3,13 @@ package mediaApp.main;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
 import mediaApp.RSS.RSSItem;
 import mediaApp.RSS.RSSParser;
 import mediaApp.compatible.ActionBarListActivity;
-
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -32,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class NewsActivity extends ActionBarListActivity
 {
@@ -50,7 +47,7 @@ public class NewsActivity extends ActionBarListActivity
 		{
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 			int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
-			if(StartUpSelection!=R.id.RBNews)
+			if (StartUpSelection != R.id.RBNews)
 				this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 
@@ -63,6 +60,10 @@ public class NewsActivity extends ActionBarListActivity
 		super.onResume();
 
 		new RetrieveRSSFeeds().execute();
+
+		GoogleAnalyticsTracker tracker = ((MediaApplication) getApplication()).getTracker();
+		tracker.trackPageView("android/news");
+		tracker.dispatch();
 	}
 
 	@Override

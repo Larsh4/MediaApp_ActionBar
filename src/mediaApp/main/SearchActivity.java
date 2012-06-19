@@ -33,6 +33,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class SearchActivity extends BaseActivity implements
 		HTTPResponseListener,
@@ -129,6 +130,11 @@ public class SearchActivity extends BaseActivity implements
 			searchField.setVisibility(View.VISIBLE);
 		else
 			searchField.setVisibility(View.GONE);
+
+		GoogleAnalyticsTracker tracker = ((MediaApplication) getApplication()).getTracker();
+		tracker.trackPageView("android/search");
+		tracker.dispatch();
+
 		super.onResume();
 	}
 
@@ -205,6 +211,10 @@ public class SearchActivity extends BaseActivity implements
 				{
 					showDialog(SEARCHING_DIALOG);
 					new HTTPGetTask(this, (MediaApplication) getApplication()).execute(createURL(0));
+
+					GoogleAnalyticsTracker tracker = ((MediaApplication) getApplication()).getTracker();
+					tracker.trackEvent("Android", "LUCAS", "search", 0);
+					tracker.dispatch();
 				}
 				break;
 		}
