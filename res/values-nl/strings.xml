@@ -53,9 +53,9 @@
     <string name="contactCall">Bel</string>
     <string name="contactEmail">Email</string>
     <string name="contactLocation">Locatie</string>
-    <string name="contactCallIntent">Bel...</string>
-    <string name="contactEmailIntent">Email...</string>
-    <string name="contactLocationIntent">Toon op kaart...</string>
+    <string name="contactCallIntent">Bel&#8230;</string>
+    <string name="contactEmailIntent">Email&#8230;</string>
+    <string name="contactLocationIntent">Toon op kaart&#8230;</string>
     <string name="contactAlgemeen">Mediatheek Algemeen</string>
     
     <string name="newsLabel">Nieuws</string>         
@@ -71,8 +71,8 @@
     <string name="settingsCheckBoxShow">Toon</string>
   
     <string name="dialogLoginUnsuccessful">Het inloggen is mislukt</string>
-    <string name="dialogLoggingIn">Inloggen...</string> 
-    <string name="dialogLoadingResultDetail">Pagina laden...</string>
+    <string name="dialogLoggingIn">Inloggen&#8230;</string> 
+    <string name="dialogLoadingResultDetail">Pagina laden&#8230;</string>
     <string name="dialogSearching">Zoeken&#8230;</string>  
     <string name="dialogNoTerm">Er is geen zoek term opgegeven</string>
     <string name="dialogNoDatabase">Er is geen database geselecteerd</string>  

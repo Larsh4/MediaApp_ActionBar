@@ -53,9 +53,9 @@
     <string name="contactCall">Call</string>
     <string name="contactEmail">Email</string>
     <string name="contactLocation">Location</string>
-    <string name="contactCallIntent">Call...</string>
-    <string name="contactEmailIntent">Email...</string>
-    <string name="contactLocationIntent">Show on map...</string>
+    <string name="contactCallIntent">Call&#8230;</string>
+    <string name="contactEmailIntent">Email&#8230;</string>
+    <string name="contactLocationIntent">Show on map&#8230;</string>
     
     <string name="contactFCJ">FCJ</string>
     <string name="contactFCJ_call">088 481 35 83</string>
@@ -122,8 +122,8 @@
     <string name="settingsCheckBoxShow">Show</string>
     
     <string name="dialogLoginUnsuccessful">Login was unsuccessful</string>    
-    <string name="dialogLoggingIn">Logging in...</string>
-    <string name="dialogLoadingResultDetail">Loading page...</string>
+    <string name="dialogLoggingIn">Logging in&#8230;</string>
+    <string name="dialogLoadingResultDetail">Loading page&#8230;</string>
     <string name="ialogSearching">Searching&#8230;</string>
     <string name="dialogNoTerm">No search term was given</string>
     <string name="dialogNoDatabase">No database was selected</string>
