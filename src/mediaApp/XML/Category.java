@@ -14,7 +14,7 @@ public class Category
 
 	public String getURL()
 	{
-		if (subId != null & subId.length() > 0)
+		if (subId != null && subId.length() > 0)
 			return groupId + "," + subId;
 		else
 			return groupId;
