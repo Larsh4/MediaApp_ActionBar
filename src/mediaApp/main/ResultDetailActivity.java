@@ -1,5 +1,6 @@
 package mediaApp.main;
 
+import mediaApp.XML.Database;
 import mediaApp.XML.LucasResult;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -35,6 +36,20 @@ public class ResultDetailActivity extends BaseActivity
 		progressDialog.show();
 
 		result = mediaApp.getResults().get(getIntent().getIntExtra("id", 1));
+		String dbCode = result.getSourceId();
+		boolean needsProxy = false;
+		for (Database d : mediaApp.getDatabases())
+		{
+			if (d.getId().equalsIgnoreCase(dbCode))
+			{
+				needsProxy = true;
+				break;
+			}
+		}
+
+		String url = result.getUrl().toString();
+		if (needsProxy)
+			url = "http://www.dbproxy.hu.nl/login?url=" + url;
 
 		WebView webView = (WebView) findViewById(R.id.WVResultDetail);
 		webView.loadUrl(result.getUrl().toString());
