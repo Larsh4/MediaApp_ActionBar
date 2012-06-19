@@ -14,7 +14,7 @@
   limitations under the License.
 -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
     <string name="appName">MediaApp</string>
     <string name="menuSearch">Search</string>
@@ -124,7 +124,7 @@
     <string name="dialogLoginUnsuccessful">Login was unsuccessful</string>    
     <string name="dialogLoggingIn">Logging in&#8230;</string>
     <string name="dialogLoadingResultDetail">Loading page&#8230;</string>
-    <string name="ialogSearching">Searching&#8230;</string>
+    <string name="dialogSearching">Searching&#8230;</string>
     <string name="dialogNoTerm">No search term was given</string>
     <string name="dialogNoDatabase">No database was selected</string>
 </resources>

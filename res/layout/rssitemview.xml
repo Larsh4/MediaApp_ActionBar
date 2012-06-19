@@ -3,16 +3,16 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="10dip">
+        android:padding="10dip" xmlns:tools="http://schemas.android.com/tools" tools:ignore="HardcodedText">
   
         <TextView
-                android:id="@+id/txtTitle"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="20dip"
-                android:padding="5dip"
-                android:text="Title"/>
+            android:id="@+id/txtTitle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dip"
+            android:text="Title"
+            android:textSize="20dip"
+            android:textStyle="bold" />
         
         <TextView
                 android:id="@+id/txtDate"
