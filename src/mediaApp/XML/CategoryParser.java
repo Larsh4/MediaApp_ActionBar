@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -17,12 +15,13 @@ public class CategoryParser extends DefaultHandler
 	private static final String	CATEGORY	= "categorie";
 	private static final String	NAME		= "name";
 	private static final String	ID			= "catGroupID";
+	private static final String	SUB_ID		= "catID";
 
-	private List<NameValuePair>	categories;
+	private List<Category>		categories;
 	private StringBuilder		builder;
-	private String				currentName, currentId;
+	private String				currentName, currentId, currentSubId;
 
-	public List<NameValuePair> parse(String xml)
+	public List<Category> parse(String xml)
 	{
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try
@@ -40,7 +39,7 @@ public class CategoryParser extends DefaultHandler
 		}
 	}
 
-	public List<NameValuePair> getCategories()
+	public List<Category> getCategories()
 	{
 		return categories;
 	}
@@ -65,9 +64,17 @@ public class CategoryParser extends DefaultHandler
 		{
 			currentId = builder.toString().trim();
 		}
+		else if (localName.equalsIgnoreCase(SUB_ID))
+		{
+			if (currentSubId != null && currentSubId.length() > 0)
+				currentSubId += "," + builder.toString().trim();
+			else
+				currentSubId = builder.toString().trim();
+		}
 		else if (localName.equalsIgnoreCase(CATEGORY))
 		{
-			categories.add(new BasicNameValuePair(currentName, currentId));
+			categories.add(new Category(currentName, currentId, currentSubId));
+			currentSubId = "";
 		}
 		builder.setLength(0);
 	}
@@ -76,7 +83,7 @@ public class CategoryParser extends DefaultHandler
 	public void startDocument() throws SAXException
 	{
 		super.startDocument();
-		categories = new ArrayList<NameValuePair>();
+		categories = new ArrayList<Category>();
 		builder = new StringBuilder();
 	}
 }

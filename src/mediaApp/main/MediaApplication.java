@@ -3,10 +3,11 @@ package mediaApp.main;
 import java.util.List;
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
+import mediaApp.XML.Category;
 import mediaApp.XML.CategoryParser;
+import mediaApp.XML.Database;
 import mediaApp.XML.DatabaseParser;
 import mediaApp.XML.LucasResult;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.protocol.ClientContext;
@@ -21,7 +22,8 @@ public class MediaApplication extends Application implements HTTPResponseListene
 
 	private static final String	TAG	= "MediaApp";
 	private List<LucasResult>	results;
-	private List<NameValuePair>	categories, databases;
+	private List<Database>		databases;
+	private List<Category>		categories;
 	private HttpClient			httpClient;
 	private HttpContext			httpContext;
 	private CategoryListener	catListener;
@@ -84,7 +86,7 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	/**
 	 * @return the categories
 	 */
-	public List<NameValuePair> getCategories()
+	public List<Category> getCategories()
 	{
 		return categories;
 	}
@@ -93,7 +95,7 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	 * @param categories
 	 *            the categories to set
 	 */
-	public void setCategories(List<NameValuePair> categories)
+	public void setCategories(List<Category> categories)
 	{
 		this.categories = categories;
 		if (catListener != null)
@@ -114,7 +116,7 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	/**
 	 * @return the databases
 	 */
-	public List<NameValuePair> getDatabases()
+	public List<Database> getDatabases()
 	{
 		return databases;
 	}
@@ -123,7 +125,7 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	 * @param databases
 	 *            the databases to set
 	 */
-	public void setDatabases(List<NameValuePair> databases)
+	public void setDatabases(List<Database> databases)
 	{
 		this.databases = databases;
 	}
