@@ -37,19 +37,33 @@
                 android:layout_height="wrap_content"
                 android:text="@string/contactFCJ"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <LinearLayout
                 android:id="@+id/LinearLayout01"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-                <Button
-                    android:id="@+id/BEmailFCJ"
-                    style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="@string/contactEmail" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <Button
+                        android:id="@+id/BEmailFCJ"
+                        style="?android:attr/buttonStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="@string/contactEmail" />
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Medium Text"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/BCallFCJ"

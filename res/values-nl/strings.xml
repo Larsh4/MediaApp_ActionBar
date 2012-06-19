@@ -22,23 +22,22 @@
     <string name="menuContact">Contact</string>
     <string name="menuSettings">Instellingen</string>
     <string name="menuMail">Mail deze pagina naar mij</string>
+    
     <string name="loginUser">Gebruikersnaam:</string>
     <string name="loginUserHint">voornaam.achternaam@student.hu.nl</string>
     <string name="loginPass">Wachtwoord:</string>
     <string name="loginPassHint">*****</string>
     <string name="loginRemember">Bewaar gegevens</string>
     <string name="loginButton">Login</string>
+    
     <string name="searchLabel">LUCAS</string>
     <string name="searchHeader">Zoek op LUCAS:</string>
     <string name="searchTerm">[zoek term]</string>
     <string name="searchField">Zoek Velden</string>
-    <string name="searchLoading">Zoeken&#8230;</string>
-    <string name="resultsNoResults">Geen resultaten gevonden.</string>
-    
-    <string name="settingsLogout">Uitloggen</string>
-    
-    <string name="resultDetailLoading">Pagina wordt geladen&#8230;</string>
-
+    <string name="searchLoading">Zoeken&#8230;</string>  
+    <string name="searchBySubject">Onderwerp</string>
+    <string name="searchByDatabase">Database</string>
+    <string name="resultsNoResults">Er zijn geen resultaten gevonden.</string> 
     <string-array name="searchFieldArray">
         <item>Alle Velden</item>
         <item>Titel</item>
@@ -55,31 +54,26 @@
     <string name="contactCall">Bel</string>
     <string name="contactEmail">Email</string>
     <string name="contactLocation">Locatie</string>
-    <string name="contactCallIntent">Bel...</string><string name="contactEmailIntent">Email...</string><string name="contactLocationIntent">Toon op kaart...</string><string name="contactFCJ">FCJ</string>
-    <string name="contactFE">FE</string>
-    <string name="contactFEM">FEM</string>
-    <string name="contactFG">FG</string>
-    <string name="contactFMR">FMR</string>
-    <string name="contactFNTNN1">FNT Nijenoord 1</string>
-    <string name="contactFNTILC">FNT/ILC F.C.Dondersstr. 65</string>
-    <string name="contactHUAmers">HU Amersfoort</string>
+    <string name="contactCallIntent">Bel...</string>
+    <string name="contactEmailIntent">Email...</string>
+    <string name="contactLocationIntent">Toon op kaart...</string>
     <string name="contactAlgemeen">Mediatheek Algemeen</string>
-    <string name="contactWebmaster">Webmaster</string>
-    <string name="newsLabel">Nieuws</string><string name="settingsLabel">Instellingen</string>
+    
+    <string name="newsLabel">Nieuws</string>         
+    
+    <string name="settingsLabel">Instellingen</string>   
     <string name="settingsStartupHeader">Kies een scherm om te tonen na login:</string>
     <string name="settingsSearch">LUCAS zoek</string>
     <string name="settingsContact">Contact informatie</string>
-    <string name="settingsNews">Nieuws RSS feed</string>
-    
-    
-    
-    
-    <string name="settingsShowSearchFieldHeader">Toon zoek veld optie in LUCAS zoeken</string>
+    <string name="settingsNews">Nieuws RSS feed</string>    
+ 	<string name="settingsAmountOfResultsHeader">Geef aan hoeveel resultaten per pagina geladen moeten worden:</string>
+	<string name="settingsLogout">Uitloggen</string>
+	<string name="settingsShowSearchFieldHeader">Toon zoek veld optie in LUCAS zoeken</string>
     <string name="settingsCheckBoxShow">Toon</string>
+  
     <string name="dialogLoginUnsuccessful">Het inloggen is mislukt</string>
-    <string name="dialogLoggingIn">Inloggen...</string>
-    <string name="searchBySubject">Onderwerp</string>
-    <string name="searchByDatabase">Database</string>
-    <string name="settingsAmountOfResultsHeader">Geef aan hoeveel resultaten per pagina geladen moeten worden:</string>
-
+    <string name="dialogLoggingIn">Inloggen...</string> 
+    <string name="dialogLoadingResultDetail">Pagina laden...</string>
+    <string name="dialogNoTerm">Er is geen zoek term opgegeven</string>
+    <string name="dialogNoDatabase">Er is geen database geselecteerd</string>  
 </resources>

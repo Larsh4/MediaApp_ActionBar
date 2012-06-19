@@ -67,11 +67,12 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:visibility="gone" />
-
+
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:layout_below="@+id/SearchLayout">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SearchLayout"
+        android:layout_marginLeft="15dp" >
 
         <RadioGroup
             android:id="@+id/RGSearchBy"
@@ -96,7 +97,7 @@
 
         <ListView
             android:id="@+id/LSearchBy"
-            android:layout_width="500dp"
+            android:layout_width="650dp"
             android:layout_height="wrap_content"
             android:dividerHeight="2dp"
             android:drawSelectorOnTop="false"

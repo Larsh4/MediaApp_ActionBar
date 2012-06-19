@@ -30,7 +30,7 @@ public class ResultDetailActivity extends BaseActivity
 
 		final ProgressDialog progressDialog = new ProgressDialog(this);
 		progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		progressDialog.setMessage(getString(R.string.resultDetailLoading));
+		progressDialog.setMessage(getString(R.string.dialogLoadingResultDetail));
 		progressDialog.setCancelable(false);
 		progressDialog.show();
 
