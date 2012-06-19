@@ -31,7 +31,7 @@
 
     <EditText
         android:id="@+id/ETLoginUser"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
@@ -41,32 +41,34 @@
 
         <requestFocus />
     </EditText>
-
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/ETLoginUser"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:text="@string/loginPass"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
         android:id="@+id/ETLoginPass"
-        android:layout_width="300dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/textView2"
         android:ems="10"
         android:hint="@string/loginPassHint"
         android:inputType="textPassword" />
-
+
     <CheckBox
         android:id="@+id/CHLoginRemember"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ETLoginPass"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:text="@string/loginRemember" />
 
     <Button

@@ -42,6 +42,7 @@
         android:layout_toRightOf="@id/SearchLayout"
         android:visibility="gone" >
         
+        
 
         <TextView
             android:id="@+id/channel"
@@ -95,7 +96,7 @@
 
         <ListView
             android:id="@+id/LSearchBy"
-            android:layout_width="401dp"
+            android:layout_width="500dp"
             android:layout_height="wrap_content"
             android:dividerHeight="2dp"
             android:drawSelectorOnTop="false"

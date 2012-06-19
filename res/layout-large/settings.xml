@@ -22,8 +22,8 @@
     <LinearLayout
         android1:layout_width="match_parent"
         android1:layout_height="wrap_content"
-        android1:layout_marginLeft="25dp"
-        android1:layout_marginRight="25dp"
+        android1:layout_marginLeft="15dp"
+        android1:layout_marginRight="15dp"
         android1:orientation="vertical" >
 
         <TextView
@@ -81,14 +81,16 @@
             android1:layout_height="wrap_content"
             android1:layout_marginTop="10dp"
             android1:text="Show search field option in LUCAS Search:"
-            android1:textAppearance="?android:attr/textAppearanceMedium" />
+            android1:textAppearance="?android:attr/textAppearanceMedium" 
+            android:visibility="gone" />
 
         <CheckBox
             android1:id="@+id/CBShowSearch"
             android1:layout_width="wrap_content"
             android1:layout_height="wrap_content"
             android1:layout_marginLeft="15dp"
-            android1:text="Show" />
+            android1:text="Show" 
+            android:visibility="gone" />
 
         <Button
             android1:id="@+id/BLogout"
