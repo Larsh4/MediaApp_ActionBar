@@ -14,91 +14,95 @@
   limitations under the License.
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:android1="http://schemas.android.com/apk/res/android"
     android:id="@+id/SV"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
     <LinearLayout
-        android1:layout_width="match_parent"
-        android1:layout_height="wrap_content"
-        android1:layout_marginLeft="5dp"
-        android1:layout_marginRight="5dp"
-        android1:orientation="vertical" android1:paddingLeft="5dp" android1:paddingRight="5dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="vertical" android:paddingLeft="5dp" android:paddingRight="5dp">
 
         <TextView
-            android1:id="@+id/TV0"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:layout_marginTop="10dp"
-            android1:text="@string/settingsStartupHeader"
-            android1:textAppearance="?android:attr/textAppearanceMedium" />
+            android:id="@+id/TV0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/settingsStartupHeader"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <RadioGroup
-            android1:id="@+id/RBGStart"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:layout_marginLeft="15dp" >
+            android:id="@+id/RBGStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp" >
 
             <RadioButton
-                android1:id="@+id/RBSearch"
-                android1:layout_width="wrap_content"
-                android1:layout_height="wrap_content"
-                android1:checked="true"
-                android1:text="@string/settingsSearch" />
+                android:id="@+id/RBSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/settingsSearch" />
 
             <RadioButton
-                android1:id="@+id/RBNews"
-                android1:layout_width="wrap_content"
-                android1:layout_height="wrap_content"
-                android1:text="@string/settingsNews" />
+                android:id="@+id/RBNews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settingsNews" />
 
             <RadioButton
-                android1:id="@+id/RBContact"
-                android1:layout_width="wrap_content"
-                android1:layout_height="wrap_content"
-                android1:text="@string/settingsContact" />
+                android:id="@+id/RBContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settingsContact" />
         </RadioGroup>
 
         <TextView
-            android1:id="@+id/TV1"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:layout_marginTop="10dp"
-            android1:text="@string/settingsAmountOfResultsHeader"
-            android1:textAppearance="?android:attr/textAppearanceMedium" />
+            android:id="@+id/TV1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/settingsAmountOfResultsHeader"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Spinner
-            android1:id="@+id/SAmountOfResults"
-            android1:layout_width="150dp"
-            android1:layout_height="wrap_content"
-            android1:layout_marginLeft="15dp"
-            android1:entries="@array/settingsAmountOfResultsArray" />
+            android:id="@+id/SAmountOfResults"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:entries="@array/settingsAmountOfResultsArray" />
 
         <TextView
-            android1:id="@+id/TV2"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:layout_marginTop="10dp"
-            android1:text="Show search field option in LUCAS Search:"
-            android1:textAppearance="?android:attr/textAppearanceMedium" 
+            android:id="@+id/TV2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Show search field option in LUCAS Search:"
+            android:textAppearance="?android:attr/textAppearanceMedium" 
             android:visibility="gone" />
 
         <CheckBox
-            android1:id="@+id/CBShowSearch"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:layout_marginLeft="15dp"
-            android1:text="Show" 
+            android:id="@+id/CBShowSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Show" 
             android:visibility="gone" />
-
+
         <Button
-            android1:id="@+id/BLogout"
-            android1:layout_width="200dp"
-            android1:layout_height="wrap_content"
-            android1:layout_gravity="center_horizontal"
-            android1:layout_marginTop="25dp"
-            android1:text="@string/settingsLogout" />
+            android:id="@+id/BLogout"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:text="@string/settingsLogout" />
+        
+         <Button
+             android:id="@+id/BAbout"
+             android:layout_width="200dp"
+             android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:layout_marginTop="5dp" android:text="@string/settingsAbout"/>
 
     </LinearLayout>
 
