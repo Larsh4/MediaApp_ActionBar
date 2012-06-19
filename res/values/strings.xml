@@ -33,8 +33,7 @@
     <string name="searchLabel">LUCAS</string>
     <string name="searchHeader">Search on LUCAS:</string>
     <string name="searchTerm">[search term]</string>
-    <string name="searchField">Search Field</string>
-    <string name="searchLoading">Searching&#8230;</string>
+    <string name="searchField">Search Field</string>    
     <string name="searchBySubject">Subject</string>
     <string name="searchByDatabase">Database</string>
     <string name="resultsNoResults">No results were found.</string>
@@ -54,9 +53,9 @@
     <string name="contactCall">Call</string>
     <string name="contactEmail">Email</string>
     <string name="contactLocation">Location</string>
-    <string name="contactCallIntent">Call...</string>
-    <string name="contactEmailIntent">Email...</string>
-    <string name="contactLocationIntent">Show on map...</string>
+    <string name="contactCallIntent">Call&#8230;</string>
+    <string name="contactEmailIntent">Email&#8230;</string>
+    <string name="contactLocationIntent">Show on map&#8230;</string>
     
     <string name="contactFCJ">FCJ</string>
     <string name="contactFCJ_call">088 481 35 83</string>
@@ -71,7 +70,7 @@
     <string name="contactFEM">FEM</string>
     <string name="contactFEM_call">088 481 64 33</string>
     <string name="contactFEM_email">mediatheek.fem@hu.nl</string>
-    <string name="contactFEM_location">adualaan 101, Utrecht</string>
+    <string name="contactFEM_location">Adualaan 101, Utrecht</string>
     
     <string name="contactFG">FG</string>
     <string name="contactFG_call">088 481 51 59</string>
@@ -123,8 +122,9 @@
     <string name="settingsCheckBoxShow">Show</string>
     
     <string name="dialogLoginUnsuccessful">Login was unsuccessful</string>    
-    <string name="dialogLoggingIn">Logging in...</string>
-    <string name="dialogLoadingResultDetail">Loading page...</string>
+    <string name="dialogLoggingIn">Logging in&#8230;</string>
+    <string name="dialogLoadingResultDetail">Loading page&#8230;</string>
+    <string name="ialogSearching">Searching&#8230;</string>
     <string name="dialogNoTerm">No search term was given</string>
     <string name="dialogNoDatabase">No database was selected</string>
 </resources>

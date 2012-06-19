@@ -2,6 +2,7 @@ package mediaApp.main;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import mediaApp.XML.Category;
@@ -33,6 +34,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
+
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class SearchActivity extends BaseActivity implements
@@ -161,13 +163,13 @@ public class SearchActivity extends BaseActivity implements
 			case SEARCHING_DIALOG:
 				progressDialog = new ProgressDialog(SearchActivity.this);
 				progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-				progressDialog.setMessage(getString(R.string.searchLoading));
+				progressDialog.setMessage(getString(R.string.dialogSearching));
 				progressDialog.setCancelable(false);
 				return progressDialog;
 			case NO_SEARCH_TERM_DIALOG:
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(R.string.appName);
-				builder.setMessage("No search term was provided");
+				builder.setMessage(getString(R.string.dialogNoTerm));
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 					builder.setIconAttribute(android.R.attr.alertDialogIcon);
 				else
@@ -178,7 +180,7 @@ public class SearchActivity extends BaseActivity implements
 			case NO_DB_SELECTED_DIALOG:
 				AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
 				builder2.setTitle(R.string.appName);
-				builder2.setMessage("No Category was selected");
+				builder2.setMessage(getString(R.string.dialogNoDatabase));
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 					builder2.setIconAttribute(android.R.attr.alertDialogIcon);
 				else
