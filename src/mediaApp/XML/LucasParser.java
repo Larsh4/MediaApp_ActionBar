@@ -13,15 +13,16 @@ import org.xml.sax.helpers.DefaultHandler;
 public class LucasParser extends DefaultHandler
 {
 
-	private static final String	TAG		= "LucasParser";
-	private static final String	RECORD	= "record";
-	private static final String	TITLE	= "title";
-	private static final String	URL		= "url";
-	private static final String	AUTHOR	= "creator";
-	private static final String	DATE	= "issued";
-	private static final String	ISSN	= "issn";
-	private static final String	ISBN	= "isbn";
-	private static final String	SOURCE	= "databaseName";
+	private static final String	TAG			= "LucasParser";
+	private static final String	RECORD		= "record";
+	private static final String	TITLE		= "title";
+	private static final String	URL			= "url";
+	private static final String	AUTHOR		= "creator";
+	private static final String	DATE		= "issued";
+	private static final String	ISSN		= "issn";
+	private static final String	ISBN		= "isbn";
+	private static final String	SOURCE		= "databaseName";
+	private static final String	SOURCE_ID	= "databaseId";
 
 	private List<LucasResult>	results;
 	private LucasResult			currentResult;
@@ -92,6 +93,10 @@ public class LucasParser extends DefaultHandler
 			else if (localName.equalsIgnoreCase(SOURCE))
 			{
 				currentResult.setSource(builder.toString());
+			}
+			else if (localName.equalsIgnoreCase(SOURCE_ID))
+			{
+				currentResult.setSourceId(builder.toString().trim());
 			}
 			else if (localName.equalsIgnoreCase(RECORD))
 			{

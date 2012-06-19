@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -17,12 +15,14 @@ public class DatabaseParser extends DefaultHandler
 	private static final String	DATABASE	= "databank";
 	private static final String	NAME		= "name";
 	private static final String	ID			= "dbID";
+	private static final String	PROXY		= "proxy";
 
-	private List<NameValuePair>	databases;
+	private List<Database>		databases;
 	private StringBuilder		builder;
 	private String				currentName, currentId;
+	private boolean				currentProxy;
 
-	public List<NameValuePair> parse(String xml)
+	public List<Database> parse(String xml)
 	{
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try
@@ -40,7 +40,7 @@ public class DatabaseParser extends DefaultHandler
 		}
 	}
 
-	public List<NameValuePair> getDatabases()
+	public List<Database> getDatabases()
 	{
 		return databases;
 	}
@@ -65,9 +65,13 @@ public class DatabaseParser extends DefaultHandler
 		{
 			currentId = builder.toString().trim();
 		}
+		else if (localName.equalsIgnoreCase(PROXY))
+		{
+			currentProxy = Boolean.parseBoolean(builder.toString().trim());
+		}
 		else if (localName.equalsIgnoreCase(DATABASE))
 		{
-			databases.add(new BasicNameValuePair(currentName, currentId));
+			databases.add(new Database(currentName, currentId, currentProxy));
 		}
 		builder.setLength(0);
 	}
@@ -76,7 +80,7 @@ public class DatabaseParser extends DefaultHandler
 	public void startDocument() throws SAXException
 	{
 		super.startDocument();
-		databases = new ArrayList<NameValuePair>();
+		databases = new ArrayList<Database>();
 		builder = new StringBuilder();
 	}
 }

@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
+import mediaApp.XML.Category;
+import mediaApp.XML.Database;
 import mediaApp.XML.LucasParser;
 import mediaApp.XML.LucasResult;
-import org.apache.http.NameValuePair;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -32,6 +33,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
+import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class SearchActivity extends BaseActivity implements
 		HTTPResponseListener,
@@ -43,18 +45,19 @@ public class SearchActivity extends BaseActivity implements
 		OnCheckedChangeListener
 {
 
-	private static String	TAG						= "SearchAct";
+	private static String			TAG						= "SearchAct";
 	// UI
-	private ListView		LV;
-	private EditText		ETSearchField;
-	private RadioGroup		RGSearchBy;
+	private ListView				LV;
+	private EditText				ETSearchField;
+	private RadioGroup				RGSearchBy;
 	// Dialogs
-	static final int		SEARCHING_DIALOG		= 1;
-	static final int		NO_SEARCH_TERM_DIALOG	= 2;
-	static final int		NO_DB_SELECTED_DIALOG	= 3;
-	AlertDialog				alertDialog;
-	ProgressDialog			progressDialog;
-	private static List<NameValuePair>	categories, databases;
+	static final int				SEARCHING_DIALOG		= 1;
+	static final int				NO_SEARCH_TERM_DIALOG	= 2;
+	static final int				NO_DB_SELECTED_DIALOG	= 3;
+	AlertDialog						alertDialog;
+	ProgressDialog					progressDialog;
+	private static List<Database>	databases;
+	private static List<Category>	categories;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -90,8 +93,8 @@ public class SearchActivity extends BaseActivity implements
 			LV = (ListView) findViewById(R.id.LSearchBy);
 			LV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 			List<String> dbs = new ArrayList<String>();
-			for (NameValuePair nvp : categories)
-				dbs.add(nvp.getName());
+			for (Category c : categories)
+				dbs.add(c.getName());
 			// databases.add("All databases");
 			LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dbs));
 			LV.setOnItemClickListener(this);
@@ -127,6 +130,11 @@ public class SearchActivity extends BaseActivity implements
 			searchField.setVisibility(View.VISIBLE);
 		else
 			searchField.setVisibility(View.GONE);
+
+		GoogleAnalyticsTracker tracker = ((MediaApplication) getApplication()).getTracker();
+		tracker.trackPageView("android/search");
+		tracker.dispatch();
+
 		super.onResume();
 	}
 
@@ -203,6 +211,10 @@ public class SearchActivity extends BaseActivity implements
 				{
 					showDialog(SEARCHING_DIALOG);
 					new HTTPGetTask(this, (MediaApplication) getApplication()).execute(createURL(0));
+
+					GoogleAnalyticsTracker tracker = ((MediaApplication) getApplication()).getTracker();
+					tracker.trackEvent("Android", "LUCAS", "search", 0);
+					tracker.dispatch();
 				}
 				break;
 		}
@@ -255,7 +267,7 @@ public class SearchActivity extends BaseActivity implements
 				{
 					if (LV.isItemChecked(i))
 					{
-						URL += categories.get(i).getValue();
+						URL += categories.get(i).getURL();
 						URL += ",";
 					}
 				}
@@ -268,7 +280,7 @@ public class SearchActivity extends BaseActivity implements
 				{
 					if (LV.isItemChecked(i))
 					{
-						URL += databases.get(i).getValue();
+						URL += databases.get(i).getId();
 						URL += ",";
 					}
 				}
@@ -314,8 +326,8 @@ public class SearchActivity extends BaseActivity implements
 		LV = (ListView) findViewById(R.id.LSearchBy);
 		LV.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 		List<String> dbs = new ArrayList<String>();
-		for (NameValuePair nvp : categories)
-			dbs.add(nvp.getName());
+		for (Category c : categories)
+			dbs.add(c.getName());
 		// databases.add("All databases");
 		LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dbs));
 		LV.setOnItemClickListener(this);
@@ -336,14 +348,14 @@ public class SearchActivity extends BaseActivity implements
 		switch (checkedId)
 		{
 			case R.id.RBSearchBySubject:
-				for (NameValuePair nvp : categories)
-					dbs.add(nvp.getName());
+				for (Category c : categories)
+					dbs.add(c.getName());
 				break;
 			case R.id.RBSearchByDatabase:
 				if (databases == null)
 					databases = mediaApp.getDatabases();
-				for (NameValuePair nvp : databases)
-					dbs.add(nvp.getName());
+				for (Database d : databases)
+					dbs.add(d.getName());
 				break;
 		}
 
