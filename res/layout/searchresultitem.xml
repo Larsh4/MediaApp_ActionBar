@@ -15,20 +15,20 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@id/TVResultTitle"/>
 
+     <TextView android:id="@+id/TVResultDate"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/TVResultAuthor" 
+        android:textStyle="italic" />
+    
     <TextView
         android:id="@+id/TVResultSource"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/TVResultAuthor"
-        android:textStyle="italic" />
+        android:layout_toLeftOf="@+id/TVResultDate"
+        android:textStyle="italic" android:layout_marginRight="10dp"/>
     
-    <TextView android:id="@+id/TVResultDate"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/TVResultAuthor" 
-        android:layout_toRightOf="@id/TVResultSource"
-        android:textStyle="italic" />
-
 </RelativeLayout>
