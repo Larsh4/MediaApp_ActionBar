@@ -33,8 +33,7 @@
     <string name="searchLabel">LUCAS</string>
     <string name="searchHeader">Zoek op LUCAS:</string>
     <string name="searchTerm">[zoek term]</string>
-    <string name="searchField">Zoek Velden</string>
-    <string name="searchLoading">Zoeken&#8230;</string>  
+    <string name="searchField">Zoek Velden</string>    
     <string name="searchBySubject">Onderwerp</string>
     <string name="searchByDatabase">Database</string>
     <string name="resultsNoResults">Er zijn geen resultaten gevonden.</string> 
@@ -74,6 +73,7 @@
     <string name="dialogLoginUnsuccessful">Het inloggen is mislukt</string>
     <string name="dialogLoggingIn">Inloggen...</string> 
     <string name="dialogLoadingResultDetail">Pagina laden...</string>
+    <string name="dialogSearching">Zoeken&#8230;</string>  
     <string name="dialogNoTerm">Er is geen zoek term opgegeven</string>
     <string name="dialogNoDatabase">Er is geen database geselecteerd</string>  
 </resources>

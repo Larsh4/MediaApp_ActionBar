@@ -33,8 +33,7 @@
     <string name="searchLabel">LUCAS</string>
     <string name="searchHeader">Search on LUCAS:</string>
     <string name="searchTerm">[search term]</string>
-    <string name="searchField">Search Field</string>
-    <string name="searchLoading">Searching&#8230;</string>
+    <string name="searchField">Search Field</string>    
     <string name="searchBySubject">Subject</string>
     <string name="searchByDatabase">Database</string>
     <string name="resultsNoResults">No results were found.</string>
@@ -125,6 +124,7 @@
     <string name="dialogLoginUnsuccessful">Login was unsuccessful</string>    
     <string name="dialogLoggingIn">Logging in...</string>
     <string name="dialogLoadingResultDetail">Loading page...</string>
+    <string name="ialogSearching">Searching&#8230;</string>
     <string name="dialogNoTerm">No search term was given</string>
     <string name="dialogNoDatabase">No database was selected</string>
 </resources>
