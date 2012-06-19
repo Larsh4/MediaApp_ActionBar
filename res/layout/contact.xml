@@ -17,7 +17,7 @@
     android:id="@+id/SVContact"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
-
+
     <LinearLayout
         android:id="@+id/LLContact"
         android:layout_width="match_parent"
@@ -28,6 +28,7 @@
             android:id="@+id/LLContactFCJ"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical" >
 
             <TextView
@@ -36,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/contactFCJ"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <LinearLayout
                 android:id="@+id/LinearLayout01"
                 android:layout_width="match_parent"
@@ -47,6 +48,7 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactEmail" />
 
                 <Button
@@ -54,31 +56,34 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactCall" />
-
+
                 <Button
                     android:id="@+id/BLocationFCJ"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactLocation" />
-
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/LLContactFE"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical" >
-
+
             <TextView
                 android:id="@+id/TextView02"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contactFE"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <LinearLayout
                 android:id="@+id/LinearLayout02"
                 android:layout_width="match_parent"
@@ -89,6 +94,7 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactEmail" />
 
                 <Button
@@ -96,31 +102,34 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactCall" />
-
+
                 <Button
                     android:id="@+id/BLocationFE"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactLocation" />
-
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/LLContactFEM"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical" >
-
+
             <TextView
                 android:id="@+id/TextView03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contactFEM"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <LinearLayout
                 android:id="@+id/LinearLayout03"
                 android:layout_width="match_parent"
@@ -131,6 +140,7 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactEmail" />
 
                 <Button
@@ -138,234 +148,257 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactCall" />
-
+
                 <Button
                     android:id="@+id/BLocationFEM"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactLocation" />
-
             </LinearLayout>
+
         </LinearLayout>
-
+
         <LinearLayout
             android:id="@+id/LLContactFG"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical" >
-
+
             <TextView
                 android:id="@+id/TextView08"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contactFG"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <LinearLayout
                 android:id="@+id/LinearLayout13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
-
+
                 <Button
                     android:id="@+id/BEmailFG"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactEmail" />
-
+
                 <Button
                     android:id="@+id/BCallFG"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactCall" />
-
+
                 <Button
                     android:id="@+id/BLocationFG"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactLocation" />
-
             </LinearLayout>
+
         </LinearLayout>
-
+
         <LinearLayout
             android:id="@+id/LLContactFMR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical" >
-
+
             <TextView
                 android:id="@+id/TextView07"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contactFMR"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <LinearLayout
                 android:id="@+id/LinearLayout11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
-
+
                 <Button
                     android:id="@+id/BEmailFMR"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactEmail" />
-
+
                 <Button
                     android:id="@+id/BCallFMR"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactCall" />
-
+
                 <Button
                     android:id="@+id/BLocationFMR"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactLocation" />
-
             </LinearLayout>
+
         </LinearLayout>
-
+
         <LinearLayout
             android:id="@+id/LLContactFNTNN1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical" >
-
+
             <TextView
                 android:id="@+id/TextView06"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contactFNTNN1"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <LinearLayout
                 android:id="@+id/LinearLayout09"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
-
+
                 <Button
                     android:id="@+id/BEmailFNTNN1"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactEmail" />
-
+
                 <Button
                     android:id="@+id/BCallFNTNN1"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactCall" />
-
+
                 <Button
                     android:id="@+id/BLocationFNTNN1"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactLocation" />
-
             </LinearLayout>
+
         </LinearLayout>
-
+
         <LinearLayout
             android:id="@+id/LLContactFNTILC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical" >
-
+
             <TextView
                 android:id="@+id/TextView05"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contactFNTILC"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <LinearLayout
                 android:id="@+id/LinearLayout07"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
-
+
                 <Button
                     android:id="@+id/BEmailFNTILC"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactEmail" />
-
+
                 <Button
                     android:id="@+id/BCallFNTILC"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactCall" />
-
+
                 <Button
                     android:id="@+id/BLocationFNTILC"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactLocation" />
-
             </LinearLayout>
+
         </LinearLayout>
-
+
         <LinearLayout
             android:id="@+id/LLContactHUAmers"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical" >
-
+
             <TextView
                 android:id="@+id/TextView04"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/contactHUAmers"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <LinearLayout
                 android:id="@+id/LinearLayout05"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
-
+
                 <Button
                     android:id="@+id/BEmailHUAmers"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactEmail" />
-
+
                 <Button
                     android:id="@+id/BCallHUAmers"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactCall" />
-
+
                 <Button
                     android:id="@+id/BLocationHUAmers"
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactLocation" />
-
             </LinearLayout>
+
         </LinearLayout>
-
+
         <LinearLayout
             android:id="@+id/LLContactAlgemeen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical" >
-
+
             <TextView
                 android:id="@+id/TextView09"
                 android:layout_width="wrap_content"
@@ -383,17 +416,19 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactEmail" />
 
             </LinearLayout>
         </LinearLayout>
-
+
         <LinearLayout
             android:id="@+id/LLContactWebmaster"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:orientation="vertical" >
-
+
             <TextView
                 android:id="@+id/TextView10"
                 android:layout_width="wrap_content"
@@ -411,11 +446,11 @@
                     style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:text="@string/contactEmail" />
 
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
 
 </ScrollView>

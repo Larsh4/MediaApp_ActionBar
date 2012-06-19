@@ -80,5 +80,6 @@
     <string name="dialogLoggingIn">Inloggen...</string>
     <string name="searchBySubject">Onderwerp</string>
     <string name="searchByDatabase">Database</string>
+    <string name="settingsAmountOfResultsHeader">Geef aan hoeveel resultaten per pagina geladen moeten worden:</string>
 
 </resources>
