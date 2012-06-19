@@ -28,7 +28,7 @@ public class LucasParser extends DefaultHandler
 	private LucasResult			currentResult;
 	private StringBuilder		builder;
 
-	public List<LucasResult> parse(String xml)
+	public List<LucasResult> parse(String xml) throws RuntimeException
 	{
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try
