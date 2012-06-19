@@ -24,7 +24,7 @@
         android1:layout_height="wrap_content"
         android1:layout_marginLeft="5dp"
         android1:layout_marginRight="5dp"
-        android1:orientation="vertical" >
+        android1:orientation="vertical" android1:paddingLeft="5dp" android1:paddingRight="5dp">
 
         <TextView
             android1:id="@+id/TV0"
