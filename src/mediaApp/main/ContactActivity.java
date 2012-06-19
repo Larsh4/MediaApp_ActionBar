@@ -2,6 +2,7 @@ package mediaApp.main;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ public class ContactActivity extends BaseActivity implements OnClickListener
 {
 	static final String TAG 			= "ContactAct";
 	
+	private Resources res;
+	
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -27,6 +30,7 @@ public class ContactActivity extends BaseActivity implements OnClickListener
 			if(StartUpSelection!=R.id.RBContact)
 				this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
+		res = getResources();
 		//FCJ
 		Button but = (Button) findViewById(R.id.BEmailFCJ);
 		but.setOnClickListener(this);
@@ -106,130 +110,129 @@ public class ContactActivity extends BaseActivity implements OnClickListener
 		{
 			//FCJ
 			case R.id.BCallFCJ:
-				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:088 481 35 83"));
+				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:"+res.getString(R.string.contactFCJ_call)));
 				startActivity(Intent.createChooser(intent, "Call..."));
 				break;
 			case R.id.BEmailFCJ:
 				intent = new Intent(android.content.Intent.ACTION_SEND);
 				intent.setType("plain/text");
-				intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "HU Mediatheek Android App");
-				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "mediatheek.fcj@hu.nl" });
+				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { res.getString(R.string.contactFCJ_email) });
 				startActivity(Intent.createChooser(intent, "Send mail..."));
 				break;
 			case R.id.BLocationFCJ:
-				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=Padualaan 99, Utrecht"));
+				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q="+res.getString(R.string.contactFCJ_location)));
 				startActivity(Intent.createChooser(intent, getString(R.string.contactLocationIntent)));
 				break;	
 			//FE	
 			case R.id.BCallFE:
-				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:088 481 71 25"));
-				startActivity(Intent.createChooser(intent, getString(R.string.contactCallIntent)));
+				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:"+res.getString(R.string.contactFE_call)));
+				startActivity(Intent.createChooser(intent, "Call..."));
 				break;
 			case R.id.BEmailFE:
 				intent = new Intent(android.content.Intent.ACTION_SEND);
-				intent.setType("message/rfc822");
-				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "mediatheek.fe@hu.nl" });
-				startActivity(Intent.createChooser(intent, getString(R.string.contactEmailIntent)));
+				intent.setType("plain/text");
+				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { res.getString(R.string.contactFE_email) });
+				startActivity(Intent.createChooser(intent, "Send mail..."));
 				break;
 			case R.id.BLocationFE:
-				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=Padualaan 97, Utrecht"));
+				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q="+res.getString(R.string.contactFE_location)));
 				startActivity(Intent.createChooser(intent, getString(R.string.contactLocationIntent)));
-				break;		
+				break;			
 			//FEM	
 			case R.id.BCallFEM:
-				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:088 481 64 33"));
-				startActivity(Intent.createChooser(intent, getString(R.string.contactCallIntent)));
+				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:"+res.getString(R.string.contactFEM_call)));
+				startActivity(Intent.createChooser(intent, "Call..."));
 				break;
 			case R.id.BEmailFEM:
 				intent = new Intent(android.content.Intent.ACTION_SEND);
-				intent.setType("message/rfc822");
-				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "mediatheek.fem@hu.nl" });
-				startActivity(Intent.createChooser(intent, getString(R.string.contactEmailIntent)));
+				intent.setType("plain/text");
+				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { res.getString(R.string.contactFEM_email) });
+				startActivity(Intent.createChooser(intent, "Send mail..."));
 				break;
 			case R.id.BLocationFEM:
-				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=Padualaan 101, Utrecht"));
+				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q="+res.getString(R.string.contactFEM_location)));
 				startActivity(Intent.createChooser(intent, getString(R.string.contactLocationIntent)));
-				break;	
+				break;		
 			//FG	
 			case R.id.BCallFG:
-				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:088 481 51 59"));
-				startActivity(Intent.createChooser(intent, getString(R.string.contactCallIntent)));
+				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:"+res.getString(R.string.contactFG_call)));
+				startActivity(Intent.createChooser(intent, "Call..."));
 				break;
 			case R.id.BEmailFG:
 				intent = new Intent(android.content.Intent.ACTION_SEND);
-				intent.setType("message/rfc822");
-				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "mediatheek.fg@hu.nl" });
-				startActivity(Intent.createChooser(intent, getString(R.string.contactEmailIntent)));
+				intent.setType("plain/text");
+				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { res.getString(R.string.contactFG_email) });
+				startActivity(Intent.createChooser(intent, "Send mail..."));
 				break;
 			case R.id.BLocationFG:
-				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=Bolognalaan 101, Utrecht"));
+				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q="+res.getString(R.string.contactFG_location)));
 				startActivity(Intent.createChooser(intent, getString(R.string.contactLocationIntent)));
-				break;		
+				break;			
 			//FMR	
 			case R.id.BCallFMR:
-				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:+31612345678"));
-				startActivity(Intent.createChooser(intent, getString(R.string.contactCallIntent)));
+				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:"+res.getString(R.string.contactFE_call)));
+				startActivity(Intent.createChooser(intent, "Call..."));
 				break;
 			case R.id.BEmailFMR:
 				intent = new Intent(android.content.Intent.ACTION_SEND);
-				intent.setType("message/rfc822");
-				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "mediatheek.fmr@hu.nl" });
-				startActivity(Intent.createChooser(intent, getString(R.string.contactEmailIntent)));
+				intent.setType("plain/text");
+				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { res.getString(R.string.contactFMR_email) });
+				startActivity(Intent.createChooser(intent, "Send mail..."));
 				break;
 			case R.id.BLocationFMR:
-				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=Heidelberglaan 7, Utrecht"));
+				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q="+res.getString(R.string.contactFMR_location)));
 				startActivity(Intent.createChooser(intent, getString(R.string.contactLocationIntent)));
 				break;	
 			//FNT NN1	
 			case R.id.BCallFNTNN1:
-				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:088 481 98 78"));
-				startActivity(Intent.createChooser(intent, getString(R.string.contactCallIntent)));
+				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:"+res.getString(R.string.contactFNTNN1_call)));
+				startActivity(Intent.createChooser(intent, "Call..."));
 				break;
 			case R.id.BEmailFNTNN1:
 				intent = new Intent(android.content.Intent.ACTION_SEND);
-				intent.setType("message/rfc822");
-				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "mediatheek.fnt@hu.nl" });
-				startActivity(Intent.createChooser(intent, getString(R.string.contactEmailIntent)));
+				intent.setType("plain/text");
+				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { res.getString(R.string.contactFNTNN1_email) });
+				startActivity(Intent.createChooser(intent, "Send mail..."));
 				break;
 			case R.id.BLocationFNTNN1:
-				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q= Nijenoord 1, Utrecht"));
+				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q="+res.getString(R.string.contactFNTNN1_location)));
 				startActivity(Intent.createChooser(intent, getString(R.string.contactLocationIntent)));
-				break;	
+				break;		
 			//FNT/ILC	
 			case R.id.BCallFNTILC:
-				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:088 481 81 88"));
-				startActivity(Intent.createChooser(intent, getString(R.string.contactCallIntent)));
+				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:"+res.getString(R.string.contactFNTILC_call)));
+				startActivity(Intent.createChooser(intent, "Call..."));
 				break;
 			case R.id.BEmailFNTILC:
 				intent = new Intent(android.content.Intent.ACTION_SEND);
-				intent.setType("message/rfc822");
-				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "mediatheek.ilc@hu.nl" });
-				startActivity(Intent.createChooser(intent, getString(R.string.contactEmailIntent)));
+				intent.setType("plain/text");
+				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { res.getString(R.string.contactFNTILC_email) });
+				startActivity(Intent.createChooser(intent, "Send mail..."));
 				break;
 			case R.id.BLocationFNTILC:
-				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q= F.C.Dondersstraat 65, Utrecht"));
+				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q="+res.getString(R.string.contactFNTILC_location)));
 				startActivity(Intent.createChooser(intent, getString(R.string.contactLocationIntent)));
 				break;	
 			//HU Amersfoort	
 			case R.id.BCallHUAmers:
-				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:088 481 88 61"));
-				startActivity(Intent.createChooser(intent, getString(R.string.contactCallIntent)));
+				intent = new Intent(android.content.Intent.ACTION_DIAL, Uri.parse("tel:"+res.getString(R.string.contactHUAmers_call)));
+				startActivity(Intent.createChooser(intent, "Call..."));
 				break;
 			case R.id.BEmailHUAmers:
 				intent = new Intent(android.content.Intent.ACTION_SEND);
-				intent.setType("message/rfc822");
-				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "mediatheek.amersfoort@hu.nl" });
-				startActivity(Intent.createChooser(intent, getString(R.string.contactEmailIntent)));
+				intent.setType("plain/text");
+				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { res.getString(R.string.contactHUAmers_email) });
+				startActivity(Intent.createChooser(intent, "Send mail..."));
 				break;
 			case R.id.BLocationHUAmers:
-				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=De Nieuwe Poort 21, Amersfoort"));
+				intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("geo:0,0?q="+res.getString(R.string.contactHUAmers_location)));
 				startActivity(Intent.createChooser(intent, getString(R.string.contactLocationIntent)));
-				break;	
+				break;		
 			//Mediatheek Algemeen	
 			case R.id.BEmailAlgemeen:
 				intent = new Intent(android.content.Intent.ACTION_SEND);
 				intent.setType("message/rfc822");
-				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "mediatheek@hu.nl" });
+				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { res.getString(R.string.contactAlgemeen_email) });
 				startActivity(Intent.createChooser(intent, getString(R.string.contactEmailIntent)));
 				break;	
 			//Webmaster	
@@ -237,7 +240,7 @@ public class ContactActivity extends BaseActivity implements OnClickListener
 				intent = new Intent(android.content.Intent.ACTION_SEND);
 				intent.setType("message/rfc822");
 				intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "HU Mediatheek Android App");
-				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { "harold.bakker@hu.nl" });
+				intent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] { res.getString(R.string.contactWebmaster_email) });
 				startActivity(Intent.createChooser(intent, getString(R.string.contactEmailIntent)));
 				break;	
 		}
