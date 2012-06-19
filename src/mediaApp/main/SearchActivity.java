@@ -2,7 +2,6 @@ package mediaApp.main;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import mediaApp.XML.Category;
@@ -34,7 +33,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
-
+import android.widget.Toast;
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class SearchActivity extends BaseActivity implements
@@ -228,12 +227,18 @@ public class SearchActivity extends BaseActivity implements
 		Log.i(TAG, "response: " + response);
 		removeDialog(SEARCHING_DIALOG);
 		LucasParser lp = new LucasParser();
-		List<LucasResult> list = lp.parse(response);
+		try
+		{
+			List<LucasResult> list = lp.parse(response);
+			((MediaApplication) getApplication()).setResults(list);
 
-		((MediaApplication) getApplication()).setResults(list);
-
-		Intent resultIntent = new Intent(this, SearchResultActivity.class);
-		startActivity(resultIntent);
+			Intent resultIntent = new Intent(this, SearchResultActivity.class);
+			startActivity(resultIntent);
+		}
+		catch (RuntimeException e)
+		{
+			Toast.makeText(this, "Bad response from server", Toast.LENGTH_SHORT).show();
+		}
 	}
 
 	@Override
