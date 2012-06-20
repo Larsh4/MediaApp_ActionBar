@@ -1,11 +1,15 @@
 package mediaApp.main;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -23,6 +27,7 @@ public class SettingsActivity extends BaseActivity implements
 		OnCheckedChangeListener,
 		android.widget.CompoundButton.OnCheckedChangeListener,
 		OnClickListener,
+		DialogInterface.OnClickListener,
 		OnItemSelectedListener
 {
 
@@ -33,6 +38,9 @@ public class SettingsActivity extends BaseActivity implements
 	private CheckBox			CBShowSearch;
 	private Spinner				SAmount;
 	private Button				BLogout;
+	private Button				BAbout;
+	static final int			ABOUT_DIALOG	= 1;
+	private AlertDialog			aboutDialog;
 	// Preference Keys
 	static final String	SELECTION_KEY	= "RGStartupSel";
 	static final String	AMOUNT_KEY		= "SAmountOfResults";
@@ -51,6 +59,7 @@ public class SettingsActivity extends BaseActivity implements
 		CBShowSearch = (CheckBox) findViewById(R.id.CBShowSearch);
 		SAmount = (Spinner) findViewById(R.id.SAmountOfResults);
 		BLogout = (Button) findViewById(R.id.BLogout);
+		BAbout  = (Button) findViewById(R.id.BAbout);
 		
 		LoadPreferences();
 		
@@ -58,6 +67,28 @@ public class SettingsActivity extends BaseActivity implements
 		CBShowSearch.setOnCheckedChangeListener(this);
 		SAmount.setOnItemSelectedListener(this);
 		BLogout.setOnClickListener(this);
+		BAbout.setOnClickListener(this);
+	}
+	
+	
+	protected Dialog onCreateDialog(int id)
+	{
+		switch (id)
+		{
+			case ABOUT_DIALOG:
+				Log.i(TAG, "about dialog creation");
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setTitle("About this app");
+				builder.setMessage("Deze app is gemaakt in opdracht van de mediatheek van\n\t\tHogeschool Utrecht\n" +
+						"\nDoor de studenten van \nTechinsche Informatica:\n\t\tMax Aalderink\n\t\tLars Hartmann");
+				
+				builder.setIcon(R.drawable.ic_home);
+				builder.setNeutralButton("OK", this);
+				aboutDialog = builder.create();
+				return aboutDialog;
+			default:
+				return null;
+		}
 	}
 
 	@Override
@@ -74,6 +105,10 @@ public class SettingsActivity extends BaseActivity implements
 
 			startActivity(new Intent(this, MainActivity.class));
 			finish();
+		}else if(v == BAbout)
+		{
+			Log.i(TAG, "about button pressed");
+			showDialog(ABOUT_DIALOG);
 		}
 	}
 
@@ -122,5 +157,14 @@ public class SettingsActivity extends BaseActivity implements
 
 	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
+	}
+
+
+	public void onClick(DialogInterface dialog, int which)
+	{
+		if (dialog.equals(aboutDialog))
+		{
+			removeDialog(ABOUT_DIALOG);
+		}		
 	}
 }
