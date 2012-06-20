@@ -67,7 +67,7 @@ public class DatabaseParser extends DefaultHandler
 		}
 		else if (localName.equalsIgnoreCase(PROXY))
 		{
-			currentProxy = Boolean.parseBoolean(builder.toString().trim());
+			currentProxy = Integer.parseInt(builder.toString().trim()) == 1;
 		}
 		else if (localName.equalsIgnoreCase(DATABASE))
 		{
