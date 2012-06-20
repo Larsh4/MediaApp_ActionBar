@@ -127,4 +127,5 @@
     <string name="dialogSearching">Searching&#8230;</string>
     <string name="dialogNoTerm">No search term was given</string>
     <string name="dialogNoDatabase">No database was selected</string>
+    <string name="settingsAbout">About this app</string>
 </resources>

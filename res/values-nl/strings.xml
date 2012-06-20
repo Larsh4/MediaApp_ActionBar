@@ -69,6 +69,7 @@
 	<string name="settingsLogout">Uitloggen</string>
 	<string name="settingsShowSearchFieldHeader">Toon zoek veld optie in LUCAS zoeken</string>
     <string name="settingsCheckBoxShow">Toon</string>
+    <string name="settingsAbout">Over deze app</string>
   
     <string name="dialogLoginUnsuccessful">Het inloggen is mislukt</string>
     <string name="dialogLoggingIn">Inloggen&#8230;</string> 
