@@ -1,11 +1,16 @@
 package mediaApp.main;
 
 import java.util.List;
+import mediaApp.HTTP.HTTPGetTask;
+import mediaApp.HTTP.HTTPResponseListener;
+import mediaApp.XML.LucasParser;
 import mediaApp.XML.LucasResult;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,11 +22,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SearchResultActivity extends BaseActivity implements OnItemClickListener
+public class SearchResultActivity extends BaseActivity implements OnItemClickListener, HTTPResponseListener
 {
 
-	private static final String			TAG	= "SearchResultAct";
-	private static List<LucasResult>	results;
+	private static final String	TAG	= "SearchResultAct";
+	private List<LucasResult>	results;
+	private View				footer;
+	private static String		searchUrl;
+	private int					page, recordsPerPage, curPos;
+	private ListView			resultList;
+	private ProgressDialog		searchingDialog;
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -32,12 +42,26 @@ public class SearchResultActivity extends BaseActivity implements OnItemClickLis
 			this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
 
-		ListView resultList = (ListView) findViewById(R.id.LVResults);
+		recordsPerPage = Integer
+				.parseInt(getResources().getStringArray(R.array.settingsAmountOfResultsArray)[PreferenceManager
+						.getDefaultSharedPreferences(this).getInt(SettingsActivity.AMOUNT_KEY, 1)]);
+
+		page = 1;
+
+		resultList = (ListView) findViewById(R.id.LVResults);
 		results = mediaApp.getResults();
 		if (results != null && results.size() > 0)
 		{
 			LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			resultList.setAdapter(new SearchResultAdapter(inflater, results));
+
+			if (mediaApp.getCurNrOfRecords() >= page * recordsPerPage)
+			{
+				footer = inflater.inflate(R.layout.footer, null, false);
+				resultList.addFooterView(footer);
+			}
+
+			SearchResultAdapter resultAdapter = new SearchResultAdapter(inflater, results);
+			resultList.setAdapter(resultAdapter);
 			resultList.setOnItemClickListener(this);
 		}
 		else
@@ -47,14 +71,32 @@ public class SearchResultActivity extends BaseActivity implements OnItemClickLis
 			noResultsText.setVisibility(View.VISIBLE);
 		}
 
+		searchUrl = getIntent().getStringExtra("url");
 	}
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
-		Intent resultDetailIntent = new Intent(this, ResultDetailActivity.class);
-		resultDetailIntent.putExtra("id", position);
-		startActivity(resultDetailIntent);
+		if (view == footer)
+		{
+			int startRecord = page * recordsPerPage + 1;
+
+			new HTTPGetTask(this, mediaApp).execute(searchUrl + "&startRecord=" + startRecord);
+
+			searchingDialog = new ProgressDialog(this);
+			searchingDialog.setMessage(getString(R.string.dialogSearching));
+			searchingDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+			searchingDialog.setCancelable(false);
+			searchingDialog.show();
+
+			curPos = resultList.getFirstVisiblePosition();
+		}
+		else
+		{
+			Intent resultDetailIntent = new Intent(this, ResultDetailActivity.class);
+			resultDetailIntent.putExtra("id", position);
+			startActivity(resultDetailIntent);
+		}
 	}
 
 	@Override
@@ -78,5 +120,30 @@ public class SearchResultActivity extends BaseActivity implements OnItemClickLis
 				return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onResponseReceived(String response)
+	{
+		searchingDialog.dismiss();
+
+		page++;
+
+		results.addAll(new LucasParser(mediaApp).parse(response));
+
+		resultList.setAdapter(new SearchResultAdapter(
+				(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE), results));
+
+		if (results.size() < page * recordsPerPage)
+			resultList.removeFooterView(footer);
+		else
+			footer.setEnabled(true);
+
+		resultList.setSelection(curPos);
+	}
+
+	@Override
+	public void onNullResponseReceived()
+	{
 	}
 }

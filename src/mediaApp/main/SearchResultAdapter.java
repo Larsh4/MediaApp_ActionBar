@@ -11,14 +11,12 @@ import android.widget.TextView;
 public class SearchResultAdapter extends BaseAdapter
 {
 
-	private final int				count;
-	private final List<LucasResult>	results;
+	private List<LucasResult>		results;
 	private final LayoutInflater	inflater;
 
 	public SearchResultAdapter(LayoutInflater layoutInflater, List<LucasResult> results)
 	{
 		this.results = results;
-		count = results.size();
 		this.inflater = layoutInflater;
 	}
 
@@ -66,7 +64,7 @@ public class SearchResultAdapter extends BaseAdapter
 	@Override
 	public int getCount()
 	{
-		return count;
+		return results.size();
 	}
 
 	@Override

@@ -10,8 +10,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -125,12 +125,10 @@ public class MainActivity extends BaseActivity implements
 	@Override
 	public void onResponseReceived(String response)
 	{
-		Log.v(TAG, "Response: " + response);
 		removeDialog(LOGGING_IN_DIALOG);
 
 		if (response != null && response.startsWith("<html>\n<head>\n<title>Database Menu</title>"))
 		{
-			Log.d(TAG, "Login Succesful");
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 			int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
 			Intent intent;
@@ -154,7 +152,6 @@ public class MainActivity extends BaseActivity implements
 		}
 		else
 		{
-			Log.d(TAG, "Login Unsuccesful");
 			showDialog(UNSUCCESSFUL_DIALOG);
 		}
 	}
@@ -187,10 +184,20 @@ public class MainActivity extends BaseActivity implements
 		}
 
 		showDialog(LOGGING_IN_DIALOG);
-		((MediaApplication) getApplication()).refreshHttp();
-		ProxyLoginTask plt = new ProxyLoginTask(this, (MediaApplication) getApplication());
-		plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), ETPass.getText().toString());
+		final Handler handler = new Handler();
+		final MainActivity act = this;
+		handler.postDelayed(new Runnable() {
 
+			@Override
+			public void run()
+			{
+				mediaApp.refreshHttp();
+				ProxyLoginTask plt = new ProxyLoginTask(act, mediaApp);
+				plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), ETPass.getText()
+						.toString());
+
+			}
+		}, 1500);
 		GoogleAnalyticsTracker tracker = ((MediaApplication) getApplication()).getTracker();
 		tracker.trackEvent("Android", "proxy", "login", 0);
 		tracker.dispatch();
