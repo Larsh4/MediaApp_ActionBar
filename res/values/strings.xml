@@ -16,6 +16,8 @@
 
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
+    <string name="googleAnalyticsCode">UA-32745076-1</string>
+    
     <string name="appName">MediaApp</string>
     <string name="menuSearch">Search</string>
     <string name="menuNews">News</string>
@@ -124,8 +126,9 @@
     <string name="dialogLoginUnsuccessful">Login was unsuccessful</string>    
     <string name="dialogLoggingIn">Logging in&#8230;</string>
     <string name="dialogLoadingResultDetail">Loading page&#8230;</string>
-    <string name="dialogSearching">Searching&#8230;</string>
+    <string name="dialogSearching">Searching&#8230;\nThis might take a while</string>
     <string name="dialogNoTerm">No search term was given</string>
     <string name="dialogNoDatabase">No database was selected</string>
     <string name="settingsAbout">About this app</string>
+    <string name="resultsLoadMore">Load more results</string>
 </resources>
