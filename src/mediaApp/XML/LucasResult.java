@@ -175,7 +175,8 @@ public class LucasResult implements Comparable<LucasResult>
 	}
 
 	/**
-	 * @param sourceId the sourceId to set
+	 * @param sourceId
+	 *            the sourceId to set
 	 */
 	public void setSourceId(String sourceId)
 	{

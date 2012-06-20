@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import mediaApp.main.MediaApplication;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -13,20 +14,27 @@ import org.xml.sax.helpers.DefaultHandler;
 public class LucasParser extends DefaultHandler
 {
 
-	private static final String	TAG			= "LucasParser";
-	private static final String	RECORD		= "record";
-	private static final String	TITLE		= "title";
-	private static final String	URL			= "url";
-	private static final String	AUTHOR		= "creator";
-	private static final String	DATE		= "issued";
-	private static final String	ISSN		= "issn";
-	private static final String	ISBN		= "isbn";
-	private static final String	SOURCE		= "databaseName";
-	private static final String	SOURCE_ID	= "databaseId";
+	private static final String	TAG				= "LucasParser";
+	private static final String	RECORD			= "record";
+	private static final String	TITLE			= "title";
+	private static final String	URL				= "url";
+	private static final String	AUTHOR			= "creator";
+	private static final String	DATE			= "issued";
+	private static final String	ISSN			= "issn";
+	private static final String	ISBN			= "isbn";
+	private static final String	SOURCE			= "databaseName";
+	private static final String	SOURCE_ID		= "databaseId";
+	private static final String	NR_OF_RECORDS	= "numberOfRecords";
 
 	private List<LucasResult>	results;
 	private LucasResult			currentResult;
 	private StringBuilder		builder;
+	private MediaApplication	mediaApp;
+
+	public LucasParser(MediaApplication mediaApp)
+	{
+		this.mediaApp = mediaApp;
+	}
 
 	public List<LucasResult> parse(String xml) throws RuntimeException
 	{
@@ -103,8 +111,12 @@ public class LucasParser extends DefaultHandler
 				if (currentResult.getTitle() != null && currentResult.getUrl() != null)
 					results.add(currentResult.copy());
 			}
-			builder.setLength(0);
 		}
+		else if (localName.equalsIgnoreCase(NR_OF_RECORDS))
+		{
+			mediaApp.setCurNrOfRecords(Integer.parseInt(builder.toString().trim()));
+		}
+		builder.setLength(0);
 	}
 
 	@Override

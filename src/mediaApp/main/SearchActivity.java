@@ -60,6 +60,8 @@ public class SearchActivity extends BaseActivity implements
 	private static List<Database>	databases;
 	private static List<Category>	categories;
 
+	private String					searchUrl;
+
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -211,7 +213,8 @@ public class SearchActivity extends BaseActivity implements
 				else
 				{
 					showDialog(SEARCHING_DIALOG);
-					new HTTPGetTask(this, (MediaApplication) getApplication()).execute(createURL(0));
+					searchUrl = createURL(0);
+					new HTTPGetTask(this, (MediaApplication) getApplication()).execute(searchUrl);
 
 					GoogleAnalyticsTracker tracker = ((MediaApplication) getApplication()).getTracker();
 					tracker.trackEvent("Android", "LUCAS", "search", 0);
@@ -226,13 +229,14 @@ public class SearchActivity extends BaseActivity implements
 	{
 		Log.i(TAG, "response: " + response);
 		removeDialog(SEARCHING_DIALOG);
-		LucasParser lp = new LucasParser();
+		LucasParser lp = new LucasParser(mediaApp);
 		try
 		{
 			List<LucasResult> list = lp.parse(response);
-			((MediaApplication) getApplication()).setResults(list);
+			mediaApp.setResults(list);
 
 			Intent resultIntent = new Intent(this, SearchResultActivity.class);
+			resultIntent.putExtra("url", searchUrl);
 			startActivity(resultIntent);
 		}
 		catch (RuntimeException e)

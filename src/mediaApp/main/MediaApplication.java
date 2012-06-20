@@ -29,6 +29,7 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	private HttpContext				httpContext;
 	private CategoryListener		catListener;
 	private GoogleAnalyticsTracker	tracker;
+	private int						curNrOfRecords;
 
 	@Override
 	public void onCreate()
@@ -151,5 +152,22 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	public GoogleAnalyticsTracker getTracker()
 	{
 		return tracker;
+	}
+
+	/**
+	 * @return the curNrOfRecords
+	 */
+	public int getCurNrOfRecords()
+	{
+		return curNrOfRecords;
+	}
+
+	/**
+	 * @param curNrOfRecords
+	 *            the curNrOfRecords to set
+	 */
+	public void setCurNrOfRecords(int curNrOfRecords)
+	{
+		this.curNrOfRecords = curNrOfRecords;
 	}
 }
