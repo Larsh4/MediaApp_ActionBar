@@ -1,6 +1,6 @@
--screenshots
 -contact opnemen over proxy login (hash) 
 -add next page button in results	
 -fix crash on non-xml search result 
 -add about page(made by)
 -link to LUCAS website
+-add cancel button to search dialog after 10 sec 
