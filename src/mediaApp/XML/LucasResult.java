@@ -193,6 +193,7 @@ public class LucasResult implements Comparable<LucasResult>
 		copy.isbn = isbn;
 		copy.issn = issn;
 		copy.source = source;
+		copy.sourceId = sourceId;
 		return copy;
 	}
 
