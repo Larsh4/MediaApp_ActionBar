@@ -80,22 +80,22 @@
     <string name="contactFG_location">Bolognalaan 101, Utrecht</string>
     
     <string name="contactFMR">FMR</string>
-    <string name="contactFMR_call">+31612345678</string>
+    <string name="contactFMR_call">088 481 98 78</string>
     <string name="contactFMR_email">mediatheek.fmr@hu.nl</string>
     <string name="contactFMR_location">Heidelberglaan 7, Utrecht</string>
     
     <string name="contactFNTNN1">FNT Nijenoord 1</string>
-    <string name="contactFNTNN1_call">088 481 98 78</string>
+    <string name="contactFNTNN1_call">088 481 81 88</string>
     <string name="contactFNTNN1_email">mediatheek.fnt@hu.nl</string>
     <string name="contactFNTNN1_location">Nijenoord 1, Utrecht</string>
     
     <string name="contactFNTILC">FNT/ILC F.C.Dondersstr. 65</string>
-    <string name="contactFNTILC_call">088 481 81 88</string>
+    <string name="contactFNTILC_call">088 481 88 61</string>
     <string name="contactFNTILC_email">mediatheek.ilc@hu.nl</string>
     <string name="contactFNTILC_location">F.C.Dondersstraat 65, Utrecht</string>
     
     <string name="contactHUAmers">HU Amersfoort</string>
-    <string name="contactHUAmers_call">088 481 88 61</string>
+    <string name="contactHUAmers_call">088 481 27 42</string>
     <string name="contactHUAmers_email">mediatheek.amersfoort@hu.nl</string>
     <string name="contactHUAmers_location">De Nieuwe Poort 21, Amersfoort</string>
     

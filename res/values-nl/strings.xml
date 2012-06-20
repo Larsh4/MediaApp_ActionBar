@@ -78,6 +78,6 @@
     <string name="dialogNoTerm">Er is geen zoek term opgegeven</string>
     <string name="dialogNoDatabase">Er is geen database geselecteerd</string>
     <string name="dialogAboutTitle">Over deze app</string>
-    <string name="dialogAboutText">Deze app is gemaakt in opdracht van de mediatheek van\n\t\tHogeschool Utrecht\n\nDoor de studenten van \nTechinsche Informatica:\n\t\tMax Aalderink\n\t\tLars Hartmann</string>
+    <string name="dialogAboutText">Deze app is gemaakt in opdracht van de mediatheek van\n\t\tHogeschool Utrecht\n\nDoor de studenten van \nTechnische Informatica:\n\t\tMax Aalderink\n\t\tLars Hartmann</string>
     <string name="resultsLoadMore">Laad meer resultaten</string>  
 </resources>
