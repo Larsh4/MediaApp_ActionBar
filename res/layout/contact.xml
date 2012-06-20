@@ -51,7 +51,7 @@
                     <Button
                         android:id="@+id/BEmailFCJ"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactEmail" />
@@ -72,7 +72,7 @@
                     <Button
                         android:id="@+id/BCallFCJ"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactCall" />
@@ -93,7 +93,7 @@
                     <Button
                         android:id="@+id/BLocationFCJ"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactLocation" />
@@ -137,7 +137,7 @@
                     <Button
                         android:id="@+id/BEmailFE"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactEmail" />
@@ -158,7 +158,7 @@
                     <Button
                         android:id="@+id/BCallFE"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactCall" />
@@ -179,7 +179,7 @@
                     <Button
                         android:id="@+id/BLocationFE"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactLocation" />
@@ -223,7 +223,7 @@
                     <Button
                         android:id="@+id/BEmailFEM"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactEmail" />
@@ -244,7 +244,7 @@
                     <Button
                         android:id="@+id/BCallFEM"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactCall" />
@@ -265,7 +265,7 @@
                     <Button
                         android:id="@+id/BLocationFEM"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactLocation" />
@@ -310,7 +310,7 @@
                     <Button
                         android:id="@+id/BEmailFG"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactEmail" />
@@ -331,7 +331,7 @@
                     <Button
                         android:id="@+id/BCallFG"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactCall" />
@@ -352,7 +352,7 @@
                     <Button
                         android:id="@+id/BLocationFG"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactLocation" />
@@ -397,7 +397,7 @@
                     <Button
                         android:id="@+id/BEmailFMR"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactEmail" />
@@ -418,7 +418,7 @@
                     <Button
                         android:id="@+id/BCallFMR"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactCall" />
@@ -439,7 +439,7 @@
                     <Button
                         android:id="@+id/BLocationFMR"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactLocation" />
@@ -483,7 +483,7 @@
                     <Button
                         android:id="@+id/BEmailFNTNN1"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactEmail" />
@@ -504,7 +504,7 @@
                     <Button
                         android:id="@+id/BCallFNTNN1"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactCall" />
@@ -525,7 +525,7 @@
                     <Button
                         android:id="@+id/BLocationFNTNN1"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactLocation" />
@@ -569,7 +569,7 @@
                     <Button
                         android:id="@+id/BEmailFNTILC"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactEmail" />
@@ -590,7 +590,7 @@
                     <Button
                         android:id="@+id/BCallFNTILC"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactCall" />
@@ -611,7 +611,7 @@
                     <Button
                         android:id="@+id/BLocationFNTILC"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactLocation" />
@@ -655,7 +655,7 @@
                     <Button
                         android:id="@+id/BEmailHUAmers"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactEmail" />
@@ -676,7 +676,7 @@
                     <Button
                         android:id="@+id/BCallHUAmers"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactCall" />
@@ -697,7 +697,7 @@
                     <Button
                         android:id="@+id/BLocationHUAmers"
                         style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="@string/contactLocation" />
@@ -736,7 +736,7 @@
                 <Button
                     android:id="@+id/BEmailAlgemeen"
                     style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="@string/contactEmail" />
@@ -773,7 +773,7 @@
                 <Button
                     android:id="@+id/BEmailWebmaster"
                     style="?android:attr/buttonStyleSmall"
-                    android:layout_width="wrap_content"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="@string/contactEmail" />
