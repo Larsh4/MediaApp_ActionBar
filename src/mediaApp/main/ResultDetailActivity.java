@@ -41,7 +41,6 @@ public class ResultDetailActivity extends BaseActivity
 		boolean needsProxy = false;
 		for (Database d : mediaApp.getDatabases())
 		{	
-			Log.w(TAG, "dbCode:"+dbCode+" - d.getId():"+d.getId());
 			if (d.getId().equalsIgnoreCase(dbCode))
 			{
 				needsProxy = d.isProxy();
@@ -56,7 +55,10 @@ public class ResultDetailActivity extends BaseActivity
 		}else
 			Log.w(TAG,"doesn't use proxy");
 		WebView webView = (WebView) findViewById(R.id.WVResultDetail);
-		webView.loadUrl(result.getUrl().toString());
+		webView.getSettings().setJavaScriptEnabled(true);
+		webView.getSettings().setDatabaseEnabled(true);
+		webView.getSettings().setSavePassword(true);
+		webView.loadUrl(url);
 		webView.setWebViewClient(new WebViewClient() {
 
 			@Override

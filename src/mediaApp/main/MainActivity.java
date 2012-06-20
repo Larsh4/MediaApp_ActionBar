@@ -15,9 +15,11 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.CookieSyncManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class MainActivity extends BaseActivity implements
@@ -131,6 +133,8 @@ public class MainActivity extends BaseActivity implements
 		{
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 			int StartUpSelection = sharedPreferences.getInt(SettingsActivity.SELECTION_KEY, R.id.RBNews);
+			CookieSyncManager.createInstance(getApplicationContext());
+			CookieSyncManager.getInstance().sync();
 			Intent intent;
 			switch (StartUpSelection)
 			{
