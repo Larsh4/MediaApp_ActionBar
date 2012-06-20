@@ -100,6 +100,14 @@
             android1:layout_marginTop="25dp"
             android1:text="@string/settingsLogout" />
 
+        <Button
+            android1:id="@+id/BAbout"
+            android1:layout_width="250dp"
+            android1:layout_height="wrap_content"
+            android1:layout_gravity="center_horizontal"
+            android1:layout_marginTop="25dp"
+            android1:text="@string/dialogAboutTitle" />
+
     </LinearLayout>
 
 </ScrollView>

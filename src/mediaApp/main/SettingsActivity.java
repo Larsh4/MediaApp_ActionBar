@@ -9,7 +9,6 @@ import android.content.SharedPreferences.Editor;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -76,12 +75,9 @@ public class SettingsActivity extends BaseActivity implements
 		switch (id)
 		{
 			case ABOUT_DIALOG:
-				Log.i(TAG, "about dialog creation");
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle("About this app");
-				builder.setMessage("Deze app is gemaakt in opdracht van de mediatheek van\n\t\tHogeschool Utrecht\n" +
-						"\nDoor de studenten van \nTechinsche Informatica:\n\t\tMax Aalderink\n\t\tLars Hartmann");
-				
+				builder.setTitle(getString(R.string.dialogAboutTitle));
+				builder.setMessage(getString(R.string.dialogAboutText));				
 				builder.setIcon(R.drawable.ic_home);
 				builder.setNeutralButton("OK", this);
 				aboutDialog = builder.create();
@@ -107,7 +103,6 @@ public class SettingsActivity extends BaseActivity implements
 			finish();
 		}else if(v == BAbout)
 		{
-			Log.i(TAG, "about button pressed");
 			showDialog(ABOUT_DIALOG);
 		}
 	}

@@ -129,6 +129,7 @@
     <string name="dialogSearching">Searching&#8230;\nThis might take a while</string>
     <string name="dialogNoTerm">No search term was given</string>
     <string name="dialogNoDatabase">No database was selected</string>
-    <string name="settingsAbout">About this app</string>
-    <string name="resultsLoadMore">Load more results</string>
+    <string name="dialogAboutTitle">About this app</string>
+    <string name="dialogAboutText">This app was commissioned by the library of\n\t\tUniversity of applied sciences\n\t\tUtrecht - Hogeschool Utrecht\n\nCreated by the students of \nTechinsche Informatica:\n\t\tMax Aalderink\n\t\tLars Hartmann</string><string name="resultsLoadMore">Load more results</string>
+    
 </resources>
