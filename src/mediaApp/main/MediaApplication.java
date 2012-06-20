@@ -38,7 +38,7 @@ public class MediaApplication extends Application implements HTTPResponseListene
 		new HTTPGetTask(this, this).execute("http://dev.mediatheek.hu.nl/apps/android/Lucas_cat.xml");
 
 		tracker = GoogleAnalyticsTracker.getInstance();
-		tracker.startNewSession("UA-32745076-1", this);
+		tracker.startNewSession(getString(R.string.googleAnalyticsCode), this);
 	}
 
 	public HttpClient getHttpClient()

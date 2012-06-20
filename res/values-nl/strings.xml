@@ -74,7 +74,7 @@
     <string name="dialogLoginUnsuccessful">Het inloggen is mislukt</string>
     <string name="dialogLoggingIn">Inloggen&#8230;</string> 
     <string name="dialogLoadingResultDetail">Pagina laden&#8230;</string>
-    <string name="dialogSearching">Zoeken&#8230;</string>  
+    <string name="dialogSearching">Zoeken&#8230;\nDit kan even duren</string>  
     <string name="dialogNoTerm">Er is geen zoek term opgegeven</string>
     <string name="dialogNoDatabase">Er is geen database geselecteerd</string>  
 </resources>
