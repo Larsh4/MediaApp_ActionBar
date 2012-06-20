@@ -98,11 +98,14 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
             android:text="@string/settingsLogout" />
-        
+        
          <Button
              android:id="@+id/BAbout"
              android:layout_width="200dp"
-             android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:layout_marginTop="5dp" android:text="@string/settingsAbout"/>
+             android:layout_height="wrap_content"
+             android:layout_gravity="center_horizontal"
+             android:layout_marginTop="5dp"
+             android:text="@string/dialogAboutTitle" />
 
     </LinearLayout>
 
