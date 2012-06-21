@@ -55,6 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:ems="10"
+        android:imeOptions="actionSend"
         android:hint="@string/loginPassHint"
         android:inputType="textPassword" />
 
@@ -74,7 +75,7 @@
         <Button
             android:id="@+id/BLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content"            
             android:text="@string/loginButton" />
 
     </LinearLayout>

@@ -2,6 +2,7 @@ package mediaApp.main;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import mediaApp.XML.Category;
@@ -18,10 +19,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -34,6 +37,7 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class SearchActivity extends BaseActivity implements
@@ -43,13 +47,15 @@ public class SearchActivity extends BaseActivity implements
 		OnItemSelectedListener,
 		android.content.DialogInterface.OnClickListener,
 		CategoryListener,
-		OnCheckedChangeListener
+		OnCheckedChangeListener,
+		OnKeyListener
 {
 
 	private static String			TAG						= "SearchAct";
 	// UI
 	private ListView				LV;
 	private EditText				ETSearchField;
+	private Button					BSearch;
 	private RadioGroup				RGSearchBy;
 	// Dialogs
 	static final int				SEARCHING_DIALOG		= 1;
@@ -115,9 +121,10 @@ public class SearchActivity extends BaseActivity implements
 		}
 
 		ETSearchField = (EditText) findViewById(R.id.ETSearch);
+		ETSearchField.setOnKeyListener(this);
 		// button part
-		Button button = (Button) findViewById(R.id.searchBut);
-		button.setOnClickListener(this);
+		BSearch = (Button) findViewById(R.id.searchBut);
+		BSearch.setOnClickListener(this);
 
 		RGSearchBy = (RadioGroup) findViewById(R.id.RGSearchBy);
 		RGSearchBy.setOnCheckedChangeListener(this);
@@ -376,5 +383,15 @@ public class SearchActivity extends BaseActivity implements
 	@Override
 	public void onNullResponseReceived()
 	{
+	}
+
+	@Override
+	public boolean onKey(View arg0, int keyCode, KeyEvent event) {
+		if((event.getAction() == KeyEvent.ACTION_DOWN) &&
+				(keyCode == KeyEvent.KEYCODE_ENTER)){			
+			onClick(BSearch);
+			return true;
+		}			
+		return false;
 	}
 }

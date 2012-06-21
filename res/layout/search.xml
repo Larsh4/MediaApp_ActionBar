@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="@string/searchHeader"
+        android:text="@string/searchHeader"        
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <LinearLayout
@@ -24,6 +24,7 @@
             android:layout_marginLeft="15dp"
             android:layout_weight="6"
             android:hint="@string/searchTerm"
+            android:imeOptions="actionSearch"
             android:inputType="textNoSuggestions" />
 
         <Button

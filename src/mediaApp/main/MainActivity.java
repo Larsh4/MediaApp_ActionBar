@@ -12,9 +12,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
 import android.webkit.CookieSyncManager;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -25,7 +27,8 @@ import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 public class MainActivity extends BaseActivity implements
 		HTTPResponseListener,
 		OnClickListener,
-		android.content.DialogInterface.OnClickListener
+		android.content.DialogInterface.OnClickListener,
+		OnKeyListener
 {
 
 	static final String	TAG					= "MainAct";
@@ -41,6 +44,7 @@ public class MainActivity extends BaseActivity implements
 	static final String	PASS_KEY			= "pass";
 	// UI
 	EditText			ETUser, ETPass;
+	Button				BLogin;
 	CheckBox			CHRemember;
 
 	public void onCreate(Bundle savedInstanceState)
@@ -54,8 +58,10 @@ public class MainActivity extends BaseActivity implements
 		// UI
 		ETUser = (EditText) findViewById(R.id.ETLoginUser);
 		ETPass = (EditText) findViewById(R.id.ETLoginPass);
+		ETPass.setOnKeyListener(this);
 		CHRemember = (CheckBox) findViewById(R.id.CHLoginRemember);
-		((Button) findViewById(R.id.BLogin)).setOnClickListener(this);
+		BLogin = ((Button) findViewById(R.id.BLogin));
+		BLogin.setOnClickListener(this);
 	}
 
 	@Override
@@ -210,5 +216,15 @@ public class MainActivity extends BaseActivity implements
 	@Override
 	public void onNullResponseReceived()
 	{
+	}
+	
+	@Override
+	public boolean onKey(View arg0, int keyCode, KeyEvent event) {
+		if((event.getAction() == KeyEvent.ACTION_DOWN) &&
+				(keyCode == KeyEvent.KEYCODE_ENTER)){			
+			onClick(BLogin);
+			return true;
+		}			
+		return false;
 	}
 }
