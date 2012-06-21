@@ -2,7 +2,6 @@ package mediaApp.main;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import mediaApp.HTTP.HTTPGetTask;
 import mediaApp.HTTP.HTTPResponseListener;
 import mediaApp.XML.Category;
@@ -35,7 +34,6 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class SearchActivity extends BaseActivity implements
@@ -301,10 +299,8 @@ public class SearchActivity extends BaseActivity implements
 				break;
 		}
 
-		URL += "&query=";//\"";
-		URL += ETSearchField.getText().toString();//.replace(" ", "+");
-		//URL += "\"";
-		Log.i(TAG, URL);
+		URL += "&query=";
+		URL += ETSearchField.getText().toString().trim().replaceAll(" ", "+and+");
 		return URL;
 	}
 
