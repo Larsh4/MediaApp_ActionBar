@@ -72,7 +72,7 @@
     <string name="contactFEM">FEM</string>
     <string name="contactFEM_call">088 481 64 33</string>
     <string name="contactFEM_email">mediatheek.fem@hu.nl</string>
-    <string name="contactFEM_location">Adualaan 101, Utrecht</string>
+    <string name="contactFEM_location">Padualaan 101, Utrecht</string>
     
     <string name="contactFG">FG</string>
     <string name="contactFG_call">088 481 51 59</string>
@@ -130,6 +130,6 @@
     <string name="dialogNoTerm">No search term was given</string>
     <string name="dialogNoDatabase">No database was selected</string>
     <string name="dialogAboutTitle">About this app</string>
-    <string name="dialogAboutText">This app was commissioned by the library of\n\t\tUniversity of applied sciences\n\t\tUtrecht - Hogeschool Utrecht\n\nCreated by the students of \nTechinsche Informatica:\n\t\tMax Aalderink\n\t\tLars Hartmann</string><string name="resultsLoadMore">Load more results</string>
+    <string name="dialogAboutText">This app was commissioned by the library of\n\t\tUniversity of applied sciences\n\t\tUtrecht - Hogeschool Utrecht\n\nCreated by the students of \nTechnische Informatica:\n\t\tMax Aalderink\n\t\tLars Hartmann\n\nVersion</string><string name="resultsLoadMore">Load more results</string>
     
 </resources>

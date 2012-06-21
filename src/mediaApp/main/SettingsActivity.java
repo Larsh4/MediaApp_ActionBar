@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -71,13 +72,20 @@ public class SettingsActivity extends BaseActivity implements
 	
 	
 	protected Dialog onCreateDialog(int id)
-	{
+	{ 
 		switch (id)
 		{
 			case ABOUT_DIALOG:
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);				
+				String versionName = "1.0";
+				try {
+					versionName = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0 ).versionName;
+				} catch (NameNotFoundException e) {
+					e.printStackTrace();
+				}
 				builder.setTitle(getString(R.string.dialogAboutTitle));
-				builder.setMessage(getString(R.string.dialogAboutText));				
+				builder.setMessage(getString(R.string.dialogAboutText)+
+						" "+versionName);				
 				builder.setIcon(R.drawable.ic_home);
 				builder.setNeutralButton("OK", this);
 				aboutDialog = builder.create();
