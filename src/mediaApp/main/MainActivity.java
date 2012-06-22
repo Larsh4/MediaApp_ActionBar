@@ -62,8 +62,11 @@ public class MainActivity extends BaseActivity implements
 		CHRemember = (CheckBox) findViewById(R.id.CHLoginRemember);
 		BLogin = ((Button) findViewById(R.id.BLogin));
 		BLogin.setOnClickListener(this);
-		ETUser.setText(savedInstanceState.getString(USER_KEY));
-		ETPass.setText(savedInstanceState.getString(PASS_KEY));
+		if(savedInstanceState!=null)
+		{
+			ETUser.setText(savedInstanceState.getString(USER_KEY));
+			ETPass.setText(savedInstanceState.getString(PASS_KEY));
+		}
 	}
 	
 	@Override
@@ -74,13 +77,10 @@ public class MainActivity extends BaseActivity implements
 	}
 
 	
-	protected void onResume()
+	protected void onStart()
 	{
 		super.onResume();
 		LoadPreferences();
-		// auto login if remembered
-		if (CHRemember.isChecked())
-			login();
 	}
 
 	
@@ -131,12 +131,16 @@ public class MainActivity extends BaseActivity implements
 	private void LoadPreferences()
 	{
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-		boolean remember = (sharedPreferences.getInt(REMEMBER_KEY, 0) == 1);
-		String strSavedMem1 = sharedPreferences.getString(USER_KEY, "");
-		String strSavedMem2 = sharedPreferences.getString(PASS_KEY, "");
-		CHRemember.setChecked(remember);
-		ETUser.setText(strSavedMem1);
-		ETPass.setText(strSavedMem2);
+		boolean remember = (sharedPreferences.getInt(REMEMBER_KEY, 0) == 1);		
+		CHRemember.setChecked(remember);		
+		if(ETUser.getText().length()==0 && ETPass.getText().length()==0){
+			String strSavedMem = sharedPreferences.getString(USER_KEY, "");			
+			ETUser.setText(strSavedMem);			
+			strSavedMem = sharedPreferences.getString(PASS_KEY, "");			
+			ETPass.setText(strSavedMem);
+			if(ETUser.getText().length()!=0 && ETPass.getText().length()!=0)
+				login();
+		}			
 	}
 
 	
