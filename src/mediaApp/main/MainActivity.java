@@ -31,8 +31,6 @@ public class MainActivity extends BaseActivity implements
 		OnKeyListener
 {
 
-	static final String	TAG					= "MainAct";
-
 	// Dialogs
 	static final int	LOGGING_IN_DIALOG	= 1;
 	ProgressDialog		progressDialog;
@@ -70,7 +68,8 @@ public class MainActivity extends BaseActivity implements
 	}
 	
 	@Override
-	protected void onSaveInstanceState(Bundle outState) {
+	protected void onSaveInstanceState(Bundle outState) 
+	{
 		outState.putString(USER_KEY, ETUser.getText().toString());
 		outState.putString(PASS_KEY, ETPass.getText().toString());
 		super.onSaveInstanceState(outState);
@@ -86,8 +85,6 @@ public class MainActivity extends BaseActivity implements
 	
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
-		// MenuInflater menuInflater = getMenuInflater();
-		// menuInflater.inflate(R.menu.main, menu);
 		return true;
 	}
 
@@ -218,7 +215,6 @@ public class MainActivity extends BaseActivity implements
 				ProxyLoginTask plt = new ProxyLoginTask(act, mediaApp);
 				plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), ETPass.getText()
 						.toString());
-
 			}
 		}, 1500);
 		GoogleAnalyticsTracker tracker = ((MediaApplication) getApplication()).getTracker();
@@ -229,6 +225,8 @@ public class MainActivity extends BaseActivity implements
 	
 	public void onNullResponseReceived()
 	{
+		removeDialog(LOGGING_IN_DIALOG);
+		showDialog(UNSUCCESSFUL_DIALOG);
 	}
 	
 	

@@ -11,7 +11,6 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class CategoryParser extends DefaultHandler
 {
-
 	private static final String	CATEGORY	= "categorie";
 	private static final String	NAME		= "name";
 	private static final String	ID			= "catGroupID";
@@ -27,7 +26,6 @@ public class CategoryParser extends DefaultHandler
 		try
 		{
 			SAXParser parser = factory.newSAXParser();
-
 			InputSource is = new InputSource();
 			is.setCharacterStream(new StringReader(xml));
 			parser.parse(is, this);

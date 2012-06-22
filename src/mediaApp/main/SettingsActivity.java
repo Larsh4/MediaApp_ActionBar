@@ -30,9 +30,6 @@ public class SettingsActivity extends BaseActivity implements
 		DialogInterface.OnClickListener,
 		OnItemSelectedListener
 {
-
-	static final String	TAG				= "SettingsAct";
-
 	// UI
 	private RadioGroup			RGStartup;
 	private CheckBox			CBShowSearch;

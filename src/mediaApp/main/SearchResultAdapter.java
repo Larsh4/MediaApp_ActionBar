@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 public class SearchResultAdapter extends BaseAdapter
 {
-
 	private List<LucasResult>		results;
 	private final LayoutInflater	inflater;
 

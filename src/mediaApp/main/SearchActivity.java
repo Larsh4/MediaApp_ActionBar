@@ -18,7 +18,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -50,8 +49,6 @@ public class SearchActivity extends BaseActivity implements
 		OnCheckedChangeListener,
 		OnKeyListener
 {
-
-	private static String			TAG						= "SearchAct";
 	// UI
 	private ListView				LV;
 	private EditText				ETSearchField;
@@ -61,8 +58,10 @@ public class SearchActivity extends BaseActivity implements
 	static final int				SEARCHING_DIALOG		= 1;
 	static final int				NO_SEARCH_TERM_DIALOG	= 2;
 	static final int				NO_DB_SELECTED_DIALOG	= 3;
+	static final int				COM_ERROR_DIALOG 		= 4;	
 	AlertDialog						alertDialog;
 	ProgressDialog					progressDialog;
+	// Lists
 	private static List<Database>	databases;
 	private static List<Category>	categories;
 
@@ -196,6 +195,17 @@ public class SearchActivity extends BaseActivity implements
 				builder2.setNeutralButton("OK", this);
 				alertDialog = builder2.create();
 				return alertDialog;
+			case COM_ERROR_DIALOG:
+				AlertDialog.Builder builder3 = new AlertDialog.Builder(this);
+				builder3.setTitle(R.string.appName);
+				builder3.setMessage(getString(R.string.dialogComError));
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+					builder3.setIconAttribute(android.R.attr.alertDialogIcon);
+				else
+					builder3.setIcon(R.drawable.ic_dialog_alert_holo_light);
+				builder3.setNeutralButton("OK", this);
+				alertDialog = builder3.create();
+				return alertDialog;	
 			default:
 				return null;
 		}
@@ -234,7 +244,6 @@ public class SearchActivity extends BaseActivity implements
 	
 	public void onResponseReceived(String response)
 	{
-		Log.i(TAG, "response: " + response);
 		removeDialog(SEARCHING_DIALOG);
 		LucasParser lp = new LucasParser(mediaApp);
 		try
@@ -383,6 +392,8 @@ public class SearchActivity extends BaseActivity implements
 	
 	public void onNullResponseReceived()
 	{
+		removeDialog(SEARCHING_DIALOG);
+		showDialog(COM_ERROR_DIALOG);		
 	}
 
 	

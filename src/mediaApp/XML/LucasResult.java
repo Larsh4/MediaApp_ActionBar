@@ -8,7 +8,6 @@ import java.util.Date;
 
 public class LucasResult implements Comparable<LucasResult>
 {
-
 	static final SimpleDateFormat	FORMATTER				= new SimpleDateFormat("yyyy-MM-dd");
 	static final SimpleDateFormat	MONTH_YEAR_FORMATTER	= new SimpleDateFormat("MMMM-yyyy");
 	static final SimpleDateFormat	YEAR_ONLY_FORMATTER		= new SimpleDateFormat("yyyy");

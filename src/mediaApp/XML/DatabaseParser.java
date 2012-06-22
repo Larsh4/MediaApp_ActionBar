@@ -11,7 +11,6 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class DatabaseParser extends DefaultHandler
 {
-
 	private static final String	DATABASE	= "databank";
 	private static final String	NAME		= "name";
 	private static final String	ID			= "dbID";

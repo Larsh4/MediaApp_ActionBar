@@ -33,8 +33,6 @@ import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 public class NewsActivity extends ActionBarListActivity
 {
 
-	static final String			TAG			= "NewsAct";
-
 	private ArrayList<RSSItem>	itemlist	= null;
 	private RSSListAdapter		rssadapter	= null;
 
@@ -50,7 +48,6 @@ public class NewsActivity extends ActionBarListActivity
 			if (StartUpSelection != R.id.RBNews)
 				this.getActionBar().setDisplayHomeAsUpEnabled(true);
 		}
-
 		itemlist = new ArrayList<RSSItem>();
 	}
 
@@ -58,9 +55,8 @@ public class NewsActivity extends ActionBarListActivity
 	protected void onResume()
 	{
 		super.onResume();
-
 		new RetrieveRSSFeeds().execute();
-
+		
 		GoogleAnalyticsTracker tracker = ((MediaApplication) getApplication()).getTracker();
 		tracker.trackPageView("android/news");
 		tracker.dispatch();
@@ -144,11 +140,8 @@ public class NewsActivity extends ActionBarListActivity
 			SAXParser parser = factory.newSAXParser();
 			XMLReader xmlreader = parser.getXMLReader();
 			RSSParser theRssHandler = new RSSParser(list);
-
 			xmlreader.setContentHandler(theRssHandler);
-
 			InputSource is = new InputSource(url.openStream());
-
 			xmlreader.parse(is);
 		}
 		catch (Exception e)
@@ -167,9 +160,7 @@ public class NewsActivity extends ActionBarListActivity
 		{
 			retrieveRSSFeed("http://www.mediatheek.hu.nl/Rss.ashx?ID={971F23C4-AB46-4386-BD4C-6343799B7281}&parentID={98653ABB-C8A4-4848-B883-87EE3C7B28FA}",
 							itemlist);
-
 			rssadapter = new RSSListAdapter(NewsActivity.this, R.layout.rssitemview, itemlist);
-
 			return null;
 		}
 
@@ -181,9 +172,9 @@ public class NewsActivity extends ActionBarListActivity
 
 		@Override
 		protected void onPreExecute()
-		{
-			progress = ProgressDialog.show(NewsActivity.this, null, "Loading RSS Feeds...");
-
+		{			
+			progress = ProgressDialog.show(NewsActivity.this, null, 
+        			getResources().getString(R.string.dialogLoadingRSS));
 			super.onPreExecute();
 		}
 
@@ -191,9 +182,7 @@ public class NewsActivity extends ActionBarListActivity
 		protected void onPostExecute(Void result)
 		{
 			setListAdapter(rssadapter);
-
 			progress.dismiss();
-
 			super.onPostExecute(result);
 		}
 
@@ -212,7 +201,6 @@ public class NewsActivity extends ActionBarListActivity
 		public RSSListAdapter(Context context, int textviewid, List<RSSItem> objects)
 		{
 			super(context, textviewid, objects);
-
 			this.objects = objects;
 		}
 
@@ -252,9 +240,8 @@ public class NewsActivity extends ActionBarListActivity
 				TextView title = (TextView) view.findViewById(R.id.txtTitle);
 				TextView date = (TextView) view.findViewById(R.id.txtDate);
 				TextView description = (TextView) view.findViewById(R.id.txtDescription);
-
 				title.setText(data.title);
-				date.setText("on " + data.date);
+				date.setText(data.date);
 				description.setText(data.description);
 			}
 			return view;

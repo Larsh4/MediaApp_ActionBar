@@ -16,7 +16,6 @@ public abstract class BaseActivity extends ActionBarActivity
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-
 		mediaApp = (MediaApplication) getApplication();
 	}
 
@@ -48,11 +47,8 @@ public abstract class BaseActivity extends ActionBarActivity
 				break;
 
 			case R.id.menu_news:
-				// Toast.makeText(this, "Fake refreshing...", Toast.LENGTH_SHORT).show();
 				getActionBarHelper().setRefreshActionItemState(true);
-				getWindow().getDecorView().postDelayed(new Runnable() {
-
-					
+				getWindow().getDecorView().postDelayed(new Runnable() {					
 					public void run()
 					{
 						getActionBarHelper().setRefreshActionItemState(false);

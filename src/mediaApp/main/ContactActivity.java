@@ -14,9 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class ContactActivity extends BaseActivity implements OnClickListener
-{
-	static final String TAG 			= "ContactAct";
-	
+{	
 	private Resources res;
 	
 	public void onCreate(Bundle savedInstanceState)
@@ -93,7 +91,7 @@ public class ContactActivity extends BaseActivity implements OnClickListener
 		//Webmaster
 		but = (Button) findViewById(R.id.BEmailWebmaster);
 		but.setOnClickListener(this);	
-	}
+	}	
 	
 	
     public boolean onCreateOptionsMenu(Menu menu) {

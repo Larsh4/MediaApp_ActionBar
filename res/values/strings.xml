@@ -129,7 +129,8 @@
     <string name="dialogSearching">Searching&#8230;\nThis might take a while</string>
     <string name="dialogNoTerm">No search term was given</string>
     <string name="dialogNoDatabase">No database was selected</string>
-    <string name="dialogAboutTitle">About this app</string>
+    <string name="dialogComError">Communication Error</string><string name="dialogLoadingRSS">Loading RSS Feeds&#8230;</string><string name="dialogAboutTitle">About this app</string>
     <string name="dialogAboutText">This app was commissioned by the library of\n\t\tUniversity of applied sciences\n\t\tUtrecht - Hogeschool Utrecht\n\nCreated by the students of \nTechnische Informatica:\n\t\tMax Aalderink\n\t\tLars Hartmann\n\nVersion</string><string name="resultsLoadMore">Load more results</string>
     
+            
 </resources>

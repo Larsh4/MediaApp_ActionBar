@@ -2,7 +2,6 @@ package mediaApp.XML;
 
 public class Database
 {
-
 	private String	name, id;
 	private boolean	proxy;
 

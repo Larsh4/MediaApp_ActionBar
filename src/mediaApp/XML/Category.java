@@ -2,7 +2,6 @@ package mediaApp.XML;
 
 public class Category
 {
-
 	private String	name, groupId, subId;
 
 	public Category(String name, String groupId, String subId)

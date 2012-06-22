@@ -13,8 +13,6 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class LucasParser extends DefaultHandler
 {
-
-	private static final String	TAG				= "LucasParser";
 	private static final String	RECORD			= "record";
 	private static final String	TITLE			= "title";
 	private static final String	URL				= "url";
@@ -42,7 +40,6 @@ public class LucasParser extends DefaultHandler
 		try
 		{
 			SAXParser parser = factory.newSAXParser();
-
 			InputSource is = new InputSource();
 			is.setCharacterStream(new StringReader(xml));
 			parser.parse(is, this);

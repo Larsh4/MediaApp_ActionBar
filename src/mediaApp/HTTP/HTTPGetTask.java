@@ -9,14 +9,11 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.util.EntityUtils;
 import android.os.AsyncTask;
-import android.util.Log;
 
 public class HTTPGetTask extends AsyncTask<String, String, String>
 {
-
 	private HTTPResponseListener	listener;
 	private MediaApplication		application;
-	private static String			TAG	= "HTTPGetAlt";
 
 	public HTTPGetTask(HTTPResponseListener list, MediaApplication app)
 	{
@@ -37,11 +34,9 @@ public class HTTPGetTask extends AsyncTask<String, String, String>
 		}
 		catch (SocketTimeoutException e)
 		{
-			// Log.e(TAG, "doInBackground socket timed out", e);
 		}
 		catch (Exception e)
 		{
-			// Log.e(TAG, "Error in doInbackground: ", e);
 		}
 		if (response != null)
 		{
@@ -58,7 +53,6 @@ public class HTTPGetTask extends AsyncTask<String, String, String>
 				return null;
 			}
 		}
-		Log.d(TAG, "Response null");
 		return null;
 	}
 

@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
-
 import mediaApp.main.MediaApplication;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
@@ -15,14 +13,10 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-
 import android.os.AsyncTask;
-import android.util.Log;
 
 public class ProxyLoginTask extends AsyncTask<String, Void, String>
 {
-
-	static final String					TAG	= "ProxyLoginTaskAlt";
 	private final HTTPResponseListener	listener;
 	private MediaApplication			application;
 
@@ -59,16 +53,12 @@ public class ProxyLoginTask extends AsyncTask<String, Void, String>
 		}
 		catch (SocketTimeoutException e)
 		{
-			Log.e(TAG, "doInBackground socket timed out", e);
 		}
 		catch (Exception e)
 		{
-			Log.e(TAG, "Error in doInbackground: ", e);
 		}
-		Log.v(TAG, "done");
 		if (response != null){
 			try {
-				Log.v(TAG,"response received");
 				return EntityUtils.toString(response.getEntity());
 			} catch (ParseException e) {
 				return null;

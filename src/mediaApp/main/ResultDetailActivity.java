@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,8 +16,6 @@ import android.webkit.WebViewClient;
 
 public class ResultDetailActivity extends BaseActivity
 {
-
-	static final String			TAG	= "ResultDetailAct";
 	private static LucasResult	result;
 
 	public void onCreate(Bundle savedInstanceState)
@@ -49,11 +46,8 @@ public class ResultDetailActivity extends BaseActivity
 		}
 
 		String url = result.getUrl().toString();
-		if (needsProxy){
+		if (needsProxy)
 			url = "http://www.dbproxy.hu.nl/login?url=" + url;
-			Log.w(TAG,"uses proxy");
-		}else
-			Log.w(TAG,"doesn't use proxy");
 		WebView webView = (WebView) findViewById(R.id.WVResultDetail);
 		webView.getSettings().setJavaScriptEnabled(true);
 		webView.getSettings().setDatabaseEnabled(true);

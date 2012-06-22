@@ -20,8 +20,6 @@ import com.google.android.apps.analytics.GoogleAnalyticsTracker;
 
 public class MediaApplication extends Application implements HTTPResponseListener
 {
-
-	private static final String		TAG	= "MediaApp";
 	private List<LucasResult>		results;
 	private List<Database>			databases;
 	private List<Category>			categories;
@@ -30,7 +28,6 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	private CategoryListener		catListener;
 	private GoogleAnalyticsTracker	tracker;
 	private int						curNrOfRecords;
-
 	
 	public void onCreate()
 	{
@@ -143,7 +140,6 @@ public class MediaApplication extends Application implements HTTPResponseListene
 			new HTTPGetTask(this, this).execute("http://dev.mediatheek.hu.nl/apps/android/Lucas_cat.xml");
 		else
 			new HTTPGetTask(this, this).execute("http://dev.mediatheek.hu.nl/apps/android/Lucas_dbs.xml");
-
 	}
 
 	/**
