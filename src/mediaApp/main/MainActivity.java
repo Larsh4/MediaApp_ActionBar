@@ -62,6 +62,15 @@ public class MainActivity extends BaseActivity implements
 		CHRemember = (CheckBox) findViewById(R.id.CHLoginRemember);
 		BLogin = ((Button) findViewById(R.id.BLogin));
 		BLogin.setOnClickListener(this);
+		ETUser.setText(savedInstanceState.getString(USER_KEY));
+		ETPass.setText(savedInstanceState.getString(PASS_KEY));
+	}
+	
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		outState.putString(USER_KEY, ETUser.getText().toString());
+		outState.putString(PASS_KEY, ETPass.getText().toString());
+		super.onSaveInstanceState(outState);
 	}
 
 	
