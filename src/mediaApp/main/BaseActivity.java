@@ -9,9 +9,7 @@ import android.view.MenuItem;
 
 public abstract class BaseActivity extends ActionBarActivity
 {
-
 	protected MediaApplication	mediaApp;
-
 	
 	protected void onCreate(Bundle savedInstanceState)
 	{

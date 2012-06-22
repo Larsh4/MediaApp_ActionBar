@@ -36,6 +36,7 @@ public class SettingsActivity extends BaseActivity implements
 	private Spinner				SAmount;
 	private Button				BLogout;
 	private Button				BAbout;
+	// Dialogs
 	static final int			ABOUT_DIALOG	= 1;
 	private AlertDialog			aboutDialog;
 	// Preference Keys

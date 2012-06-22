@@ -30,16 +30,15 @@ public class MainActivity extends BaseActivity implements
 		android.content.DialogInterface.OnClickListener,
 		OnKeyListener
 {
-
-	// Dialogs
-	static final int	LOGGING_IN_DIALOG	= 1;
-	ProgressDialog		progressDialog;
-	static final int	UNSUCCESSFUL_DIALOG	= 2;
-	AlertDialog			alertDialog;	
 	// UI
 	EditText			ETUser, ETPass;
 	Button				BLogin;
 	CheckBox			CHRemember;
+	// Dialogs
+	static final int	LOGGING_IN_DIALOG	= 1;
+	ProgressDialog		progressDialog;
+	static final int	UNSUCCESSFUL_DIALOG	= 2;
+	AlertDialog			alertDialog;		
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -120,6 +119,15 @@ public class MainActivity extends BaseActivity implements
 				break;
 		}
 	}
+	
+	public boolean onKey(View arg0, int keyCode, KeyEvent event) {
+		if((event.getAction() == KeyEvent.ACTION_DOWN) &&
+				(keyCode == KeyEvent.KEYCODE_ENTER)){			
+			onClick(BLogin);
+			return true;
+		}			
+		return false;
+	}
 
 	private void LoadPreferences()
 	{
@@ -135,12 +143,55 @@ public class MainActivity extends BaseActivity implements
 				login();
 		}			
 	}
+	
+	public void onClick(DialogInterface dialog, int which)
+	{
+		if (dialog.equals(alertDialog))
+		{
+			removeDialog(UNSUCCESSFUL_DIALOG);
+		}
+		if (dialog.equals(progressDialog))
+		{
+			removeDialog(LOGGING_IN_DIALOG);
+		}
+	}
 
+	private void login()
+	{
+		SaveIntPreferences(SettingsActivity.REMEMBER_KEY, CHRemember.isChecked() ? 1 : 0);
+		if (CHRemember.isChecked())
+		{
+			SaveStringPreferences(SettingsActivity.USER_KEY, ETUser.getText().toString());
+			SaveStringPreferences(SettingsActivity.PASS_KEY, ETPass.getText().toString());
+		}
+		else
+		{
+			SaveStringPreferences(SettingsActivity.USER_KEY, "");
+			SaveStringPreferences(SettingsActivity.PASS_KEY, "");
+		}
+
+		showDialog(LOGGING_IN_DIALOG);
+		final Handler handler = new Handler();
+		final MainActivity act = this;
+		handler.postDelayed(new Runnable() {			
+			public void run()
+			{
+				mediaApp.refreshHttp();
+				ProxyLoginTask plt = new ProxyLoginTask(act, mediaApp);
+				plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), 
+						ETPass.getText().toString());
+			}
+		}, 1500);
+		GoogleAnalyticsTracker tracker = ((MediaApplication) getApplication()).getTracker();
+		tracker.trackEvent("Android", "proxy", "login", 0);
+		tracker.dispatch();
+	}
 	
 	public void onResponseReceived(String response)
 	{
 		removeDialog(LOGGING_IN_DIALOG);
-
+		
+		// check if response is equal to what is expected on successful login
 		if (response != null && response.startsWith("<html>\n<head>\n<title>Database Menu</title>"))
 		{
 			SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -173,65 +224,9 @@ public class MainActivity extends BaseActivity implements
 	}
 
 	
-	public void onClick(DialogInterface dialog, int which)
-	{
-		if (dialog.equals(alertDialog))
-		{
-			removeDialog(UNSUCCESSFUL_DIALOG);
-		}
-		if (dialog.equals(progressDialog))
-		{
-			removeDialog(LOGGING_IN_DIALOG);
-		}
-	}
-
-	private void login()
-	{
-		SaveIntPreferences(SettingsActivity.REMEMBER_KEY, CHRemember.isChecked() ? 1 : 0);
-		if (CHRemember.isChecked())
-		{
-			SaveStringPreferences(SettingsActivity.USER_KEY, ETUser.getText().toString());
-			SaveStringPreferences(SettingsActivity.PASS_KEY, ETPass.getText().toString());
-		}
-		else
-		{
-			SaveStringPreferences(SettingsActivity.USER_KEY, "");
-			SaveStringPreferences(SettingsActivity.PASS_KEY, "");
-		}
-
-		showDialog(LOGGING_IN_DIALOG);
-		final Handler handler = new Handler();
-		final MainActivity act = this;
-		handler.postDelayed(new Runnable() {
-
-			
-			public void run()
-			{
-				mediaApp.refreshHttp();
-				ProxyLoginTask plt = new ProxyLoginTask(act, mediaApp);
-				plt.execute("http://login.www.dbproxy.hu.nl/login", ETUser.getText().toString(), ETPass.getText()
-						.toString());
-			}
-		}, 1500);
-		GoogleAnalyticsTracker tracker = ((MediaApplication) getApplication()).getTracker();
-		tracker.trackEvent("Android", "proxy", "login", 0);
-		tracker.dispatch();
-	}
-
-	
 	public void onNullResponseReceived()
 	{
 		removeDialog(LOGGING_IN_DIALOG);
 		showDialog(UNSUCCESSFUL_DIALOG);
-	}
-	
-	
-	public boolean onKey(View arg0, int keyCode, KeyEvent event) {
-		if((event.getAction() == KeyEvent.ACTION_DOWN) &&
-				(keyCode == KeyEvent.KEYCODE_ENTER)){			
-			onClick(BLogin);
-			return true;
-		}			
-		return false;
 	}
 }

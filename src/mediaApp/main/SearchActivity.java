@@ -119,12 +119,11 @@ public class SearchActivity extends BaseActivity implements
 			pbLoading.setVisibility(View.VISIBLE);
 		}
 
+		// buttons, radio-buttons and editText part
 		ETSearchField = (EditText) findViewById(R.id.ETSearch);
 		ETSearchField.setOnKeyListener(this);
-		// button part
 		BSearch = (Button) findViewById(R.id.searchBut);
 		BSearch.setOnClickListener(this);
-
 		RGSearchBy = (RadioGroup) findViewById(R.id.RGSearchBy);
 		RGSearchBy.setOnCheckedChangeListener(this);
 	}
@@ -240,7 +239,15 @@ public class SearchActivity extends BaseActivity implements
 				break;
 		}
 	}
-
+	
+	public boolean onKey(View arg0, int keyCode, KeyEvent event) {
+		if((event.getAction() == KeyEvent.ACTION_DOWN) &&
+				(keyCode == KeyEvent.KEYCODE_ENTER)){			
+			onClick(BSearch);
+			return true;
+		}			
+		return false;
+	}
 	
 	public void onResponseReceived(String response)
 	{
@@ -394,15 +401,5 @@ public class SearchActivity extends BaseActivity implements
 	{
 		removeDialog(SEARCHING_DIALOG);
 		showDialog(COM_ERROR_DIALOG);		
-	}
-
-	
-	public boolean onKey(View arg0, int keyCode, KeyEvent event) {
-		if((event.getAction() == KeyEvent.ACTION_DOWN) &&
-				(keyCode == KeyEvent.KEYCODE_ENTER)){			
-			onClick(BSearch);
-			return true;
-		}			
-		return false;
 	}
 }

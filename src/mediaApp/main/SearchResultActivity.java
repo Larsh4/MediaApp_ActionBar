@@ -71,6 +71,28 @@ public class SearchResultActivity extends BaseActivity implements OnItemClickLis
 
 		searchUrl = getIntent().getStringExtra("url");
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu)
+	{
+		MenuInflater menuInflater = getMenuInflater();
+		menuInflater.inflate(R.menu.searchresult, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item)
+	{
+		switch (item.getItemId())
+		{
+			case android.R.id.home:
+				Intent serverIntent = new Intent(this, SearchActivity.class);
+				serverIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				startActivity(serverIntent);
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
@@ -94,29 +116,7 @@ public class SearchResultActivity extends BaseActivity implements OnItemClickLis
 			resultDetailIntent.putExtra("id", position);
 			startActivity(resultDetailIntent);
 		}
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu)
-	{
-		MenuInflater menuInflater = getMenuInflater();
-		menuInflater.inflate(R.menu.searchresult, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item)
-	{
-		switch (item.getItemId())
-		{
-			case android.R.id.home:
-				Intent serverIntent = new Intent(this, SearchActivity.class);
-				serverIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(serverIntent);
-				return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+	}	
 
 	public void onResponseReceived(String response)
 	{
