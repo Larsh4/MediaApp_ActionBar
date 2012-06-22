@@ -12,7 +12,7 @@ import android.os.AsyncTask;
 
 public class HTTPGetTask extends AsyncTask<String, String, String>
 {
-	private HTTPResponseListener	listener;
+	private HTTPResponseListener	listener; 
 	private MediaApplication		application;
 
 	public HTTPGetTask(HTTPResponseListener list, MediaApplication app)

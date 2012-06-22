@@ -11,6 +11,7 @@ public class Category
 		this.subId = subId;
 	}
 
+	//returns category code and and sub-category code for URL  
 	public String getURL()
 	{
 		if (subId != null && subId.length() > 0)

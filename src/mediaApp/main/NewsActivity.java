@@ -123,11 +123,8 @@ public class NewsActivity extends ActionBarListActivity
 	protected void onListItemClick(ListView l, View v, int position, long id)
 	{
 		super.onListItemClick(l, v, position, id);
-
 		RSSItem data = itemlist.get(position);
-
 		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(data.link));
-
 		startActivity(intent);
 	}
 
@@ -195,9 +192,7 @@ public class NewsActivity extends ActionBarListActivity
 
 	private class RSSListAdapter extends ArrayAdapter<RSSItem>
 	{
-
 		private List<RSSItem>	objects	= null;
-
 		public RSSListAdapter(Context context, int textviewid, List<RSSItem> objects)
 		{
 			super(context, textviewid, objects);
