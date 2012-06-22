@@ -95,7 +95,6 @@ public class SettingsActivity extends BaseActivity implements
 		}
 	}
 
-	@Override
 	public void onClick(View v)
 	{
 		if (v == BLogout)
@@ -135,13 +134,11 @@ public class SettingsActivity extends BaseActivity implements
 		SAmount.setSelection(SpinnerPos);
 	}
 
-	@Override
 	public void onCheckedChanged(RadioGroup arg0, int arg1)
 	{
 		SaveIntPreferences(SELECTION_KEY, arg1);
 	}
 
-	@Override
 	public void onCheckedChanged(CompoundButton arg0, boolean arg1)
 	{
 		int i;
@@ -152,13 +149,11 @@ public class SettingsActivity extends BaseActivity implements
 		SaveIntPreferences(SHOW_KEY, i);
 	}
 
-	@Override
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
 			long arg3) {
 		SaveIntPreferences(AMOUNT_KEY, arg2);		
 	}
 
-	@Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 	}
 

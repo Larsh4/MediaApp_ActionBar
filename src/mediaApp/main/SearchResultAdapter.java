@@ -20,7 +20,6 @@ public class SearchResultAdapter extends BaseAdapter
 		this.inflater = layoutInflater;
 	}
 
-	@Override
 	public View getView(int position, View convertView, ViewGroup parent)
 	{
 		View view = null;
@@ -61,19 +60,16 @@ public class SearchResultAdapter extends BaseAdapter
 		return view;
 	}
 
-	@Override
 	public int getCount()
 	{
 		return results.size();
 	}
 
-	@Override
 	public Object getItem(int idx)
 	{
 		return results != null ? results.get(idx) : null;
 	}
 
-	@Override
 	public long getItemId(int position)
 	{
 		return position;

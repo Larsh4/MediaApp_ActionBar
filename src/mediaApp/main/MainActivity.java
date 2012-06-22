@@ -64,7 +64,7 @@ public class MainActivity extends BaseActivity implements
 		BLogin.setOnClickListener(this);
 	}
 
-	@Override
+	
 	protected void onResume()
 	{
 		super.onResume();
@@ -74,7 +74,7 @@ public class MainActivity extends BaseActivity implements
 			login();
 	}
 
-	@Override
+	
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		// MenuInflater menuInflater = getMenuInflater();
@@ -108,7 +108,7 @@ public class MainActivity extends BaseActivity implements
 		}
 	}
 
-	@Override
+	
 	public void onClick(View v)
 	{
 		switch (v.getId())
@@ -130,7 +130,7 @@ public class MainActivity extends BaseActivity implements
 		ETPass.setText(strSavedMem2);
 	}
 
-	@Override
+	
 	public void onResponseReceived(String response)
 	{
 		removeDialog(LOGGING_IN_DIALOG);
@@ -166,7 +166,7 @@ public class MainActivity extends BaseActivity implements
 		}
 	}
 
-	@Override
+	
 	public void onClick(DialogInterface dialog, int which)
 	{
 		if (dialog.equals(alertDialog))
@@ -198,7 +198,7 @@ public class MainActivity extends BaseActivity implements
 		final MainActivity act = this;
 		handler.postDelayed(new Runnable() {
 
-			@Override
+			
 			public void run()
 			{
 				mediaApp.refreshHttp();
@@ -213,12 +213,12 @@ public class MainActivity extends BaseActivity implements
 		tracker.dispatch();
 	}
 
-	@Override
+	
 	public void onNullResponseReceived()
 	{
 	}
 	
-	@Override
+	
 	public boolean onKey(View arg0, int keyCode, KeyEvent event) {
 		if((event.getAction() == KeyEvent.ACTION_DOWN) &&
 				(keyCode == KeyEvent.KEYCODE_ENTER)){			

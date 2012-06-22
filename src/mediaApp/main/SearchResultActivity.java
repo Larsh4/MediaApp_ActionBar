@@ -74,7 +74,6 @@ public class SearchResultActivity extends BaseActivity implements OnItemClickLis
 		searchUrl = getIntent().getStringExtra("url");
 	}
 
-	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
 		if (view == footer)
@@ -122,7 +121,6 @@ public class SearchResultActivity extends BaseActivity implements OnItemClickLis
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
 	public void onResponseReceived(String response)
 	{
 		searchingDialog.dismiss();
@@ -142,7 +140,6 @@ public class SearchResultActivity extends BaseActivity implements OnItemClickLis
 		resultList.setSelection(curPos);
 	}
 
-	@Override
 	public void onNullResponseReceived()
 	{
 	}

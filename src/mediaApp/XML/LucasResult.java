@@ -268,7 +268,6 @@ public class LucasResult implements Comparable<LucasResult>
 		return true;
 	}
 
-	@Override
 	public int compareTo(LucasResult another)
 	{
 		if (another == null)

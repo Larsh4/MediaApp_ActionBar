@@ -95,14 +95,14 @@ public class ContactActivity extends BaseActivity implements OnClickListener
 		but.setOnClickListener(this);	
 	}
 	
-	@Override
+	
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.contact, menu);
         return true;//super.onCreateOptionsMenu(menu);
     }
 
-	@Override
+	
 	public void onClick(View v)
 	{
 		Intent intent;		

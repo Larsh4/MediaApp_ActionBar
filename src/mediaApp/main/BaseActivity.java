@@ -12,7 +12,7 @@ public abstract class BaseActivity extends ActionBarActivity
 
 	protected MediaApplication	mediaApp;
 
-	@Override
+	
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
@@ -20,7 +20,7 @@ public abstract class BaseActivity extends ActionBarActivity
 		mediaApp = (MediaApplication) getApplication();
 	}
 
-	@Override
+	
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		switch (item.getItemId())
@@ -52,7 +52,7 @@ public abstract class BaseActivity extends ActionBarActivity
 				getActionBarHelper().setRefreshActionItemState(true);
 				getWindow().getDecorView().postDelayed(new Runnable() {
 
-					@Override
+					
 					public void run()
 					{
 						getActionBarHelper().setRefreshActionItemState(false);

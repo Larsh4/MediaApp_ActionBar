@@ -130,7 +130,7 @@ public class SearchActivity extends BaseActivity implements
 		RGSearchBy.setOnCheckedChangeListener(this);
 	}
 
-	@Override
+	
 	protected void onResume()
 	{
 		View searchField = findViewById(R.id.searchFieldLayout);
@@ -148,7 +148,7 @@ public class SearchActivity extends BaseActivity implements
 		super.onResume();
 	}
 
-	@Override
+	
 	protected void onDestroy()
 	{
 		if (progressDialog != null)
@@ -156,7 +156,7 @@ public class SearchActivity extends BaseActivity implements
 		super.onDestroy();
 	}
 
-	@Override
+	
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
 		MenuInflater menuInflater = getMenuInflater();
@@ -201,7 +201,7 @@ public class SearchActivity extends BaseActivity implements
 		}
 	}
 
-	@Override
+	
 	public void onClick(View v)
 	{
 		switch (v.getId())
@@ -231,7 +231,7 @@ public class SearchActivity extends BaseActivity implements
 		}
 	}
 
-	@Override
+	
 	public void onResponseReceived(String response)
 	{
 		Log.i(TAG, "response: " + response);
@@ -252,7 +252,7 @@ public class SearchActivity extends BaseActivity implements
 		}
 	}
 
-	@Override
+	
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id)
 	{
 		/*
@@ -311,19 +311,19 @@ public class SearchActivity extends BaseActivity implements
 		return URL;
 	}
 
-	@Override
+	
 	public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3)
 	{
 
 	}
 
-	@Override
+	
 	public void onNothingSelected(AdapterView<?> arg0)
 	{
 
 	}
 
-	@Override
+	
 	public void onClick(DialogInterface dialog, int arg1)
 	{
 		if (dialog.equals(alertDialog))
@@ -337,7 +337,7 @@ public class SearchActivity extends BaseActivity implements
 		}
 	}
 
-	@Override
+	
 	public void categoriesLoaded()
 	{
 		LV = (ListView) findViewById(R.id.LSearchBy);
@@ -357,7 +357,7 @@ public class SearchActivity extends BaseActivity implements
 			databases = mediaApp.getDatabases();
 	}
 
-	@Override
+	
 	public void onCheckedChanged(RadioGroup group, int checkedId)
 	{
 		List<String> dbs = new ArrayList<String>();
@@ -380,12 +380,12 @@ public class SearchActivity extends BaseActivity implements
 			LV.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dbs));
 	}
 
-	@Override
+	
 	public void onNullResponseReceived()
 	{
 	}
 
-	@Override
+	
 	public boolean onKey(View arg0, int keyCode, KeyEvent event) {
 		if((event.getAction() == KeyEvent.ACTION_DOWN) &&
 				(keyCode == KeyEvent.KEYCODE_ENTER)){			

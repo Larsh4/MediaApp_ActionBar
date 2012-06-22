@@ -31,7 +31,7 @@ public class MediaApplication extends Application implements HTTPResponseListene
 	private GoogleAnalyticsTracker	tracker;
 	private int						curNrOfRecords;
 
-	@Override
+	
 	public void onCreate()
 	{
 		super.onCreate();
@@ -60,7 +60,7 @@ public class MediaApplication extends Application implements HTTPResponseListene
 		httpContext.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
 	}
 
-	@Override
+	
 	public void onResponseReceived(String response)
 	{
 		if (categories == null)
@@ -136,7 +136,7 @@ public class MediaApplication extends Application implements HTTPResponseListene
 		this.databases = databases;
 	}
 
-	@Override
+	
 	public void onNullResponseReceived()
 	{
 		if (categories == null)
