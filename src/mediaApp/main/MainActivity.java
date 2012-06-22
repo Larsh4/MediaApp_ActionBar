@@ -35,11 +35,7 @@ public class MainActivity extends BaseActivity implements
 	static final int	LOGGING_IN_DIALOG	= 1;
 	ProgressDialog		progressDialog;
 	static final int	UNSUCCESSFUL_DIALOG	= 2;
-	AlertDialog			alertDialog;
-	// Preference Keys
-	static final String	REMEMBER_KEY		= "remember";
-	static final String	USER_KEY			= "user";
-	static final String	PASS_KEY			= "pass";
+	AlertDialog			alertDialog;	
 	// UI
 	EditText			ETUser, ETPass;
 	Button				BLogin;
@@ -62,16 +58,16 @@ public class MainActivity extends BaseActivity implements
 		BLogin.setOnClickListener(this);
 		if(savedInstanceState!=null)
 		{
-			ETUser.setText(savedInstanceState.getString(USER_KEY));
-			ETPass.setText(savedInstanceState.getString(PASS_KEY));
+			ETUser.setText(savedInstanceState.getString(SettingsActivity.USER_KEY));
+			ETPass.setText(savedInstanceState.getString(SettingsActivity.PASS_KEY));
 		}
 	}
 	
 	@Override
 	protected void onSaveInstanceState(Bundle outState) 
 	{
-		outState.putString(USER_KEY, ETUser.getText().toString());
-		outState.putString(PASS_KEY, ETPass.getText().toString());
+		outState.putString(SettingsActivity.USER_KEY, ETUser.getText().toString());
+		outState.putString(SettingsActivity.PASS_KEY, ETPass.getText().toString());
 		super.onSaveInstanceState(outState);
 	}
 
@@ -128,12 +124,12 @@ public class MainActivity extends BaseActivity implements
 	private void LoadPreferences()
 	{
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-		boolean remember = (sharedPreferences.getInt(REMEMBER_KEY, 0) == 1);		
+		boolean remember = (sharedPreferences.getInt(SettingsActivity.REMEMBER_KEY, 0) == 1);		
 		CHRemember.setChecked(remember);		
 		if(ETUser.getText().length()==0 && ETPass.getText().length()==0){
-			String strSavedMem = sharedPreferences.getString(USER_KEY, "");			
+			String strSavedMem = sharedPreferences.getString(SettingsActivity.USER_KEY, "");			
 			ETUser.setText(strSavedMem);			
-			strSavedMem = sharedPreferences.getString(PASS_KEY, "");			
+			strSavedMem = sharedPreferences.getString(SettingsActivity.PASS_KEY, "");			
 			ETPass.setText(strSavedMem);
 			if(ETUser.getText().length()!=0 && ETPass.getText().length()!=0)
 				login();
@@ -191,16 +187,16 @@ public class MainActivity extends BaseActivity implements
 
 	private void login()
 	{
-		SaveIntPreferences(REMEMBER_KEY, CHRemember.isChecked() ? 1 : 0);
+		SaveIntPreferences(SettingsActivity.REMEMBER_KEY, CHRemember.isChecked() ? 1 : 0);
 		if (CHRemember.isChecked())
 		{
-			SaveStringPreferences(USER_KEY, ETUser.getText().toString());
-			SaveStringPreferences(PASS_KEY, ETPass.getText().toString());
+			SaveStringPreferences(SettingsActivity.USER_KEY, ETUser.getText().toString());
+			SaveStringPreferences(SettingsActivity.PASS_KEY, ETPass.getText().toString());
 		}
 		else
 		{
-			SaveStringPreferences(USER_KEY, "");
-			SaveStringPreferences(PASS_KEY, "");
+			SaveStringPreferences(SettingsActivity.USER_KEY, "");
+			SaveStringPreferences(SettingsActivity.PASS_KEY, "");
 		}
 
 		showDialog(LOGGING_IN_DIALOG);

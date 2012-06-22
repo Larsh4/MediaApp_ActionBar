@@ -39,9 +39,12 @@ public class SettingsActivity extends BaseActivity implements
 	static final int			ABOUT_DIALOG	= 1;
 	private AlertDialog			aboutDialog;
 	// Preference Keys
-	static final String	SELECTION_KEY	= "RGStartupSel";
-	static final String	AMOUNT_KEY		= "SAmountOfResults";
-	static final String	SHOW_KEY		= "CHShowSearch";
+	static final String	USER_KEY			= "user";
+	static final String	PASS_KEY			= "pass";
+	static final String	REMEMBER_KEY		= "remember";
+	static final String	SELECTION_KEY		= "startupSel";
+	static final String	AMOUNT_KEY			= "amountOfResults";
+	static final String	SHOW_KEY			= "showSearch";
 
 	public void onCreate(Bundle savedInstanceState)
 	{
@@ -98,9 +101,9 @@ public class SettingsActivity extends BaseActivity implements
 		{
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 			Editor editor = prefs.edit();
-			editor.remove(MainActivity.USER_KEY);
-			editor.remove(MainActivity.PASS_KEY);
-			editor.remove(MainActivity.REMEMBER_KEY);
+			editor.remove(USER_KEY);
+			editor.remove(PASS_KEY);
+			editor.remove(REMEMBER_KEY);
 			editor.commit();
 
 			startActivity(new Intent(this, MainActivity.class));

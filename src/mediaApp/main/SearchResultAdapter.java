@@ -68,7 +68,7 @@ public class SearchResultAdapter extends BaseAdapter
 	{
 		return results != null ? results.get(idx) : null;
 	}
-
+	
 	public long getItemId(int position)
 	{
 		return position;
